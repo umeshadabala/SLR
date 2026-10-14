@@ -1,0 +1,16 @@
+{
+  "step": "step_08I_A_weight_tying",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "tie_word_embeddings": true,
+  "embedding_keys": [
+    "model.embed_tokens.weight"
+  ],
+  "lm_head_keys": [],
+  "embedding_shape": [
+    151936,
+    1536
+  ],
+  "embedding_dtype": "torch.bfloat16",
+  "embedding_device": "cpu",
+  "conclusion": "lm_head uses tied embedding matrix"
+}

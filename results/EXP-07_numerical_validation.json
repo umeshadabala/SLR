@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-10-13T06:55:44Z",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "prompt": "Selective Layer Residency enables",
+  "input_tokens": 5,
+  "top1_token_id": 498,
+  "top1_token_text": " you",
+  "top5_token_ids": [
+    498,
+    279,
+    264,
+    3847,
+    13402
+  ],
+  "max_abs_diff": 0.0,
+  "mean_abs_diff": 0.0,
+  "rmse": 0.0,
+  "relative_l2_error": 0.0,
+  "cosine_similarity": 0.9999775886535645,
+  "top1_agreement": true,
+  "top5_agreement": true,
+  "slr_time_sec": 1.4180962080008612,
+  "ref_time_sec": 0.43736537499898986
+}

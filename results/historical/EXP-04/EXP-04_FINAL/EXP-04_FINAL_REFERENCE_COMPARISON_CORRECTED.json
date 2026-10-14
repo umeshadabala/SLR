@@ -1,0 +1,89 @@
+{
+  "experiment": "EXP-04",
+  "stage": "final_reference_comparison_corrected",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "parameters": 1543714304,
+  "input_ids": [
+    [
+      9707,
+      11,
+      525,
+      264,
+      674,
+      374,
+      13,
+      20
+    ]
+  ],
+  "selective": {
+    "transformer_layers": 28,
+    "peak_transformer_residency_mb": 89.259765625,
+    "pre_final_norm": 1071.94775390625,
+    "final_norm": 517.0911865234375,
+    "final_shape": [
+      1,
+      8,
+      1536
+    ]
+  },
+  "reference": {
+    "final_norm": 517.0911865234375,
+    "final_shape": [
+      1,
+      8,
+      1536
+    ]
+  },
+  "hidden_state_comparison": {
+    "max_absolute_difference": 0.0,
+    "mean_absolute_difference": 0.0,
+    "rmse": 0.0,
+    "relative_l2_error": 0.0,
+    "cosine_similarity": 0.9999997019767761,
+    "relative_norm_difference": 0.0
+  },
+  "logit_comparison": {
+    "selective_top10_ids": [
+      15,
+      20,
+      13,
+      17,
+      16,
+      21,
+      19,
+      22,
+      18,
+      23
+    ],
+    "reference_top10_ids": [
+      15,
+      20,
+      13,
+      17,
+      16,
+      21,
+      19,
+      22,
+      18,
+      23
+    ],
+    "selective_top1": 15,
+    "reference_top1": 15,
+    "top10_intersection": 10,
+    "max_absolute_difference": 0.0,
+    "mean_absolute_difference": 0.0,
+    "top1_agreement": true,
+    "top10_agreement": true
+  },
+  "validation": {
+    "shape_match": true,
+    "finite_output": true,
+    "cosine_similarity_pass": true,
+    "relative_l2_error_pass": true,
+    "top1_agreement": true,
+    "top10_agreement": true,
+    "all_transformer_layers_released": true
+  },
+  "diagnostic_note": "The prior comparison failed because model.model.norm.weight remained on META. This run loads only model.norm.weight from the safetensors checkpoint and reproduces Qwen2 RMSNorm explicitly, without loading transformer layers into RAM."
+}

@@ -1,0 +1,185 @@
+{
+  "experiment": "EXP-05_CELL_13",
+  "status": "PASS",
+  "target_layer": 17,
+  "method": "one_projection_at_a_time_per_output_channel_INT8",
+  "input_shape": [
+    1,
+    8,
+    1536
+  ],
+  "reference_execution_sec": 0.19785146699996403,
+  "projections": [
+    {
+      "projection": "self_attn.q_proj",
+      "weight_shape": [
+        1536,
+        1536
+      ],
+      "weight_parameters": 2359296,
+      "bf16_weight_bytes": 4718592,
+      "int8_weight_bytes": 2359296,
+      "scale_bytes": 6144,
+      "compression_ratio": 1.9948051948051948,
+      "quantization_sec": 0.043036878000293655,
+      "execution_sec": 0.14906470500000069,
+      "weight_relative_l2": 0.009230713360011578,
+      "weight_rmse": 0.00024178565945476294,
+      "output_max_abs_diff": 0.140625,
+      "output_mean_abs_diff": 0.01724039576947689,
+      "output_rmse": 0.024627182632684708,
+      "output_relative_l2": 0.00979656632989645,
+      "output_cosine": 0.9999550580978394
+    },
+    {
+      "projection": "self_attn.k_proj",
+      "weight_shape": [
+        256,
+        1536
+      ],
+      "weight_parameters": 393216,
+      "bf16_weight_bytes": 786432,
+      "int8_weight_bytes": 393216,
+      "scale_bytes": 1024,
+      "compression_ratio": 1.9948051948051948,
+      "quantization_sec": 0.007360950000020239,
+      "execution_sec": 0.13612056799956918,
+      "weight_relative_l2": 0.009318560361862183,
+      "weight_rmse": 0.00020552521164063364,
+      "output_max_abs_diff": 0.125,
+      "output_mean_abs_diff": 0.019742190837860107,
+      "output_rmse": 0.027613485231995583,
+      "output_relative_l2": 0.010984502732753754,
+      "output_cosine": 0.9999430179595947
+    },
+    {
+      "projection": "self_attn.v_proj",
+      "weight_shape": [
+        256,
+        1536
+      ],
+      "weight_parameters": 393216,
+      "bf16_weight_bytes": 786432,
+      "int8_weight_bytes": 393216,
+      "scale_bytes": 1024,
+      "compression_ratio": 1.9948051948051948,
+      "quantization_sec": 0.007533199000135937,
+      "execution_sec": 0.19780659200023365,
+      "weight_relative_l2": 0.009203591383993626,
+      "weight_rmse": 0.0002709240070544183,
+      "output_max_abs_diff": 0.125,
+      "output_mean_abs_diff": 0.021440446376800537,
+      "output_rmse": 0.028250519186258316,
+      "output_relative_l2": 0.011237910948693752,
+      "output_cosine": 0.9999402761459351
+    },
+    {
+      "projection": "self_attn.o_proj",
+      "weight_shape": [
+        1536,
+        1536
+      ],
+      "weight_parameters": 2359296,
+      "bf16_weight_bytes": 4718592,
+      "int8_weight_bytes": 2359296,
+      "scale_bytes": 6144,
+      "compression_ratio": 1.9948051948051948,
+      "quantization_sec": 0.03565164300016477,
+      "execution_sec": 0.18384218799974406,
+      "weight_relative_l2": 0.010503184981644154,
+      "weight_rmse": 0.00028296513482928276,
+      "output_max_abs_diff": 0.138671875,
+      "output_mean_abs_diff": 0.021863698959350586,
+      "output_rmse": 0.02876858226954937,
+      "output_relative_l2": 0.011443994008004665,
+      "output_cosine": 0.9999383687973022
+    },
+    {
+      "projection": "mlp.gate_proj",
+      "weight_shape": [
+        8960,
+        1536
+      ],
+      "weight_parameters": 13762560,
+      "bf16_weight_bytes": 27525120,
+      "int8_weight_bytes": 13762560,
+      "scale_bytes": 35840,
+      "compression_ratio": 1.9948051948051948,
+      "quantization_sec": 0.22804316100018696,
+      "execution_sec": 0.10236179100002119,
+      "weight_relative_l2": 0.009500485844910145,
+      "weight_rmse": 0.00026229670038446784,
+      "output_max_abs_diff": 0.078125,
+      "output_mean_abs_diff": 0.012392888776957989,
+      "output_rmse": 0.017185257747769356,
+      "output_relative_l2": 0.006836207117885351,
+      "output_cosine": 0.9999798536300659
+    },
+    {
+      "projection": "mlp.up_proj",
+      "weight_shape": [
+        8960,
+        1536
+      ],
+      "weight_parameters": 13762560,
+      "bf16_weight_bytes": 27525120,
+      "int8_weight_bytes": 13762560,
+      "scale_bytes": 35840,
+      "compression_ratio": 1.9948051948051948,
+      "quantization_sec": 0.34061344699966867,
+      "execution_sec": 0.16846319200021753,
+      "weight_relative_l2": 0.00927936751395464,
+      "weight_rmse": 0.00025892394478432834,
+      "output_max_abs_diff": 0.078125,
+      "output_mean_abs_diff": 0.011690457351505756,
+      "output_rmse": 0.016397960484027863,
+      "output_relative_l2": 0.006523024290800095,
+      "output_cosine": 0.9999818205833435
+    },
+    {
+      "projection": "mlp.down_proj",
+      "weight_shape": [
+        1536,
+        8960
+      ],
+      "weight_parameters": 13762560,
+      "bf16_weight_bytes": 27525120,
+      "int8_weight_bytes": 13762560,
+      "scale_bytes": 6144,
+      "compression_ratio": 1.999107541276216,
+      "quantization_sec": 0.3063445990001128,
+      "execution_sec": 0.09872925499985286,
+      "weight_relative_l2": 0.012162749655544758,
+      "weight_rmse": 0.0003242679813411087,
+      "output_max_abs_diff": 0.21875,
+      "output_mean_abs_diff": 0.016390234231948853,
+      "output_rmse": 0.022670703008770943,
+      "output_relative_l2": 0.009018288925290108,
+      "output_cosine": 0.999962568283081
+    }
+  ],
+  "ranking": {
+    "by_output_relative_l2": [
+      "self_attn.o_proj",
+      "self_attn.v_proj",
+      "self_attn.k_proj",
+      "self_attn.q_proj",
+      "mlp.down_proj",
+      "mlp.gate_proj",
+      "mlp.up_proj"
+    ],
+    "by_lowest_output_cosine": [
+      "self_attn.o_proj",
+      "self_attn.v_proj",
+      "self_attn.k_proj",
+      "self_attn.q_proj",
+      "mlp.down_proj",
+      "mlp.gate_proj",
+      "mlp.up_proj"
+    ]
+  },
+  "residency": {
+    "cpu_params": 0,
+    "meta_params": 46797824
+  }
+}

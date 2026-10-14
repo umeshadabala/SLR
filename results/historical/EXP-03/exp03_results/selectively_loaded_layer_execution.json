@@ -1,0 +1,59 @@
+{
+  "experiment": "EXP-03",
+  "step": "step_06H_selective_layer_execution",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "input": {
+    "shape": [
+      1,
+      8,
+      1536
+    ],
+    "dtype": "torch.bfloat16",
+    "device": "cpu"
+  },
+  "rope": {
+    "cos_shape": [
+      1,
+      8,
+      128
+    ],
+    "sin_shape": [
+      1,
+      8,
+      128
+    ],
+    "dtype": "torch.bfloat16",
+    "device": "cpu"
+  },
+  "output": {
+    "shape": [
+      1,
+      8,
+      1536
+    ],
+    "dtype": "torch.bfloat16",
+    "device": "cpu",
+    "finite": true
+  },
+  "residency": {
+    "layer0": [
+      "cpu"
+    ],
+    "layer1": [
+      "meta"
+    ]
+  },
+  "performance": {
+    "execution_seconds": 0.43511710399980075,
+    "rss_before_gb": 0.5642166137695312,
+    "rss_after_gb": 0.6466102600097656,
+    "rss_delta_gb": 0.08239364624023438
+  },
+  "validation": {
+    "shape_correct": true,
+    "dtype_correct": true,
+    "device_correct": true,
+    "finite": true,
+    "success": true
+  }
+}

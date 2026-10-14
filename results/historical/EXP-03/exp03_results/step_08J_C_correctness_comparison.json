@@ -1,0 +1,15 @@
+{
+  "step": "step_08J_C_correctness_comparison",
+  "selective_top1": 15,
+  "reference_top1": 15,
+  "top1_match": true,
+  "max_absolute_error": 0.0,
+  "mean_absolute_error": 0.0,
+  "mean_relative_error": 0.0,
+  "cosine_similarity": 0.9999774098396301,
+  "top10_intersection": 10,
+  "top10_jaccard": 1.0,
+  "logit_close": true,
+  "cosine_close": true,
+  "correctness_pass": true
+}

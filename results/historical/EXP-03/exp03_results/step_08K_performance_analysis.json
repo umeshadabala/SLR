@@ -1,0 +1,26 @@
+{
+  "step": "step_08K_performance_analysis",
+  "transformer_weight_volume_gb": 2.4406967163085938,
+  "peak_transformer_residency_mb": 89.259765625,
+  "residency_reduction_percent": 96.42857142857143,
+  "weight_volume_to_peak_residency_ratio": 28.0,
+  "peak_process_rss_gb": 0.6507186889648438,
+  "timing": {
+    "total_streaming_sec": 31.44731057800027,
+    "load_sec": 9.751259240000309,
+    "execution_sec": 11.60272391000126,
+    "release_sec": 10.020944217998931,
+    "residency_overhead_sec": 19.77220345799924,
+    "output_projection_sec": 2.3352298590002647
+  },
+  "fractions": {
+    "compute_fraction": 0.3689575895917226,
+    "residency_overhead_fraction": 0.6287406806682975
+  },
+  "per_layer": {
+    "average_load_sec": 0.3482592585714396,
+    "average_execution_sec": 0.41438299678575924,
+    "average_release_sec": 0.3578908649285332,
+    "average_total_sec": 1.123118234928581
+  }
+}

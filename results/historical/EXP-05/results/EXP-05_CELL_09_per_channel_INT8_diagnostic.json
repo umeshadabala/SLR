@@ -1,0 +1,196 @@
+{
+  "experiment": "EXP-05_CELL_09",
+  "purpose": "Compare per-tensor and per-output-channel INT8 quantization on Qwen2.5-1.5B Layer 0",
+  "layer": 0,
+  "input_shape": [
+    1,
+    8,
+    1536
+  ],
+  "weight_results": {
+    "mlp.down_proj.weight": {
+      "shape": [
+        1536,
+        8960
+      ],
+      "per_tensor": {
+        "max_abs_diff": 0.002197265625,
+        "mean_abs_diff": 0.001097986358217895,
+        "rmse": 0.0012693897588178515,
+        "relative_l2": 0.0473850779235363,
+        "cosine": 0.9982917904853821
+      },
+      "per_output_channel": {
+        "max_abs_diff": 0.002197265625,
+        "mean_abs_diff": 0.00023182632867246866,
+        "rmse": 0.00028095091693103313,
+        "relative_l2": 0.010487443767488003,
+        "cosine": 1.0007236003875732
+      },
+      "per_tensor_scale_count": 1,
+      "per_channel_scale_count": 1536
+    },
+    "mlp.gate_proj.weight": {
+      "shape": [
+        8960,
+        1536
+      ],
+      "per_tensor": {
+        "max_abs_diff": 0.001953125,
+        "mean_abs_diff": 0.0009370849002152681,
+        "rmse": 0.0010842392221093178,
+        "relative_l2": 0.03521271422505379,
+        "cosine": 0.9996365308761597
+      },
+      "per_output_channel": {
+        "max_abs_diff": 0.001953125,
+        "mean_abs_diff": 0.00022411845566239208,
+        "rmse": 0.0002770349965430796,
+        "relative_l2": 0.009003065526485443,
+        "cosine": 1.000689148902893
+      },
+      "per_tensor_scale_count": 1,
+      "per_channel_scale_count": 8960
+    },
+    "mlp.up_proj.weight": {
+      "shape": [
+        8960,
+        1536
+      ],
+      "per_tensor": {
+        "max_abs_diff": 0.001953125,
+        "mean_abs_diff": 0.000610042130574584,
+        "rmse": 0.0007067329715937376,
+        "relative_l2": 0.027646269649267197,
+        "cosine": 0.9991472959518433
+      },
+      "per_output_channel": {
+        "max_abs_diff": 0.001220703125,
+        "mean_abs_diff": 0.00018499724683351815,
+        "rmse": 0.00022273817739915103,
+        "relative_l2": 0.008714606054127216,
+        "cosine": 1.000776767730713
+      },
+      "per_tensor_scale_count": 1,
+      "per_channel_scale_count": 8960
+    },
+    "self_attn.k_proj.weight": {
+      "shape": [
+        256,
+        1536
+      ],
+      "per_tensor": {
+        "max_abs_diff": 0.001953125,
+        "mean_abs_diff": 0.0008502544951625168,
+        "rmse": 0.0009885861072689295,
+        "relative_l2": 0.01770840957760811,
+        "cosine": 0.9998102188110352
+      },
+      "per_output_channel": {
+        "max_abs_diff": 0.001953125,
+        "mean_abs_diff": 0.0003992292331531644,
+        "rmse": 0.0004949020803906024,
+        "relative_l2": 0.008865156210958958,
+        "cosine": 0.9999396204948425
+      },
+      "per_tensor_scale_count": 1,
+      "per_channel_scale_count": 256
+    },
+    "self_attn.o_proj.weight": {
+      "shape": [
+        1536,
+        1536
+      ],
+      "per_tensor": {
+        "max_abs_diff": 0.001220703125,
+        "mean_abs_diff": 0.0005523986183106899,
+        "rmse": 0.0006395588279701769,
+        "relative_l2": 0.027902722358703613,
+        "cosine": 0.9992939829826355
+      },
+      "per_output_channel": {
+        "max_abs_diff": 0.0010986328125,
+        "mean_abs_diff": 0.00019177056674379855,
+        "rmse": 0.00023751199478283525,
+        "relative_l2": 0.010363913141191006,
+        "cosine": 0.9998691082000732
+      },
+      "per_tensor_scale_count": 1,
+      "per_channel_scale_count": 1536
+    },
+    "self_attn.q_proj.weight": {
+      "shape": [
+        1536,
+        1536
+      ],
+      "per_tensor": {
+        "max_abs_diff": 0.0078125,
+        "mean_abs_diff": 0.0027660131454467773,
+        "rmse": 0.003195403376594186,
+        "relative_l2": 0.06580215692520142,
+        "cosine": 0.9979880452156067
+      },
+      "per_output_channel": {
+        "max_abs_diff": 0.005859375,
+        "mean_abs_diff": 0.0003734910860657692,
+        "rmse": 0.0005641643656417727,
+        "relative_l2": 0.011616071686148643,
+        "cosine": 1.000014066696167
+      },
+      "per_tensor_scale_count": 1,
+      "per_channel_scale_count": 1536
+    },
+    "self_attn.v_proj.weight": {
+      "shape": [
+        256,
+        1536
+      ],
+      "per_tensor": {
+        "max_abs_diff": 0.0009765625,
+        "mean_abs_diff": 0.00045914994552731514,
+        "rmse": 0.0005317821050994098,
+        "relative_l2": 0.028389018028974533,
+        "cosine": 0.9995324611663818
+      },
+      "per_output_channel": {
+        "max_abs_diff": 0.0009765625,
+        "mean_abs_diff": 0.0001500601356383413,
+        "rmse": 0.00018155400175601244,
+        "relative_l2": 0.009692219085991383,
+        "cosine": 0.9999179244041443
+      },
+      "per_tensor_scale_count": 1,
+      "per_channel_scale_count": 256
+    }
+  },
+  "layer_output": {
+    "per_tensor": {
+      "max_abs_diff": 0.11328125,
+      "mean_abs_diff": 0.02289413847029209,
+      "rmse": 0.028976785019040108,
+      "relative_l2": 0.024716239422559738,
+      "cosine": 0.9996981024742126
+    },
+    "per_output_channel": {
+      "max_abs_diff": 0.0625,
+      "mean_abs_diff": 0.006787724792957306,
+      "rmse": 0.009224365465342999,
+      "relative_l2": 0.007868078537285328,
+      "cosine": 0.9999727010726929
+    }
+  },
+  "storage_bytes": {
+    "original_bf16": 93595648,
+    "per_tensor_int8": 46802972,
+    "per_output_channel_int8": 46895104
+  },
+  "summary": {
+    "per_tensor_output_cosine": 0.9996981024742126,
+    "per_channel_output_cosine": 0.9999727010726929,
+    "per_tensor_output_relative_l2": 0.024716239422559738,
+    "per_channel_output_relative_l2": 0.007868078537285328,
+    "relative_l2_improvement": 0.01684816088527441,
+    "per_tensor_compression": 1.999780013970053,
+    "per_channel_compression": 1.9958511660407023
+  }
+}

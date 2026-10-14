@@ -1,0 +1,605 @@
+{
+  "experiment": "EXP-04",
+  "step": "4B",
+  "variant": "persistent_safe_open",
+  "model": {
+    "name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "parameters": 1543714304,
+    "layers": 28,
+    "dtype": "bfloat16",
+    "device": "cpu"
+  },
+  "input": {
+    "input_ids": [
+      [
+        9707,
+        11,
+        525,
+        264,
+        674,
+        374,
+        13,
+        20
+      ]
+    ],
+    "sequence_length": 8
+  },
+  "checkpoint": {
+    "path": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/model.safetensors",
+    "tensor_count": 338,
+    "layer_disk_bytes": 2620678144,
+    "layer_disk_gb": 2.4406967163085938,
+    "persistent_handle": true,
+    "handle_open_sec": 0.005986763000009887,
+    "index_sec": 0.0038466210000933643,
+    "handle_close_sec": 0.0005151290001776943
+  },
+  "streaming": {
+    "layers_completed": 28,
+    "peak_transformer_bytes": 93595648,
+    "peak_transformer_mb": 89.259765625,
+    "peak_rss_gb": 3.5874862670898438,
+    "initial_rss_gb": 1.9191017150878906
+  },
+  "timing": {
+    "embedding_load_sec": 0.00045909799996479705,
+    "total_load_sec": 0.39220928300005653,
+    "total_execution_sec": 12.20454159000019,
+    "total_release_sec": 0.03983532600000217,
+    "final_norm_sec": 0.004211248000046908,
+    "overall_sec": 12.69377006500008
+  },
+  "final_output": {
+    "shape": [
+      1,
+      8,
+      1536
+    ],
+    "dtype": "torch.bfloat16",
+    "device": "cpu",
+    "norm": 1072.0,
+    "finite": true
+  },
+  "validation": {
+    "all_layers_valid": true,
+    "all_layers_released": true,
+    "final_shape_valid": true,
+    "final_finite": true,
+    "success": true
+  },
+  "per_layer": [
+    {
+      "layer": 0,
+      "load_sec": 0.0013868619998902432,
+      "execution_sec": 0.1911362650000683,
+      "release_sec": 0.0009508260000075097,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 1,
+      "load_sec": 0.002097754000033092,
+      "execution_sec": 0.12309486699996341,
+      "release_sec": 0.0006827290001183428,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 2,
+      "load_sec": 0.0014850739999019424,
+      "execution_sec": 0.16145380299985845,
+      "release_sec": 0.0006749389999640698,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 3,
+      "load_sec": 0.001239638000015475,
+      "execution_sec": 0.18143743499990705,
+      "release_sec": 0.0006753840000328637,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 4,
+      "load_sec": 0.001222892000214415,
+      "execution_sec": 0.19814745899998343,
+      "release_sec": 0.0008126870000069175,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 5,
+      "load_sec": 0.0012742290000460343,
+      "execution_sec": 0.13137195600006635,
+      "release_sec": 0.0009181510001781135,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 6,
+      "load_sec": 0.0013730900000155088,
+      "execution_sec": 0.17373987299993132,
+      "release_sec": 0.0010566540001946123,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 7,
+      "load_sec": 0.0015279179999652115,
+      "execution_sec": 0.15642433900006836,
+      "release_sec": 0.0006839699999545701,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 8,
+      "load_sec": 0.001797331000034319,
+      "execution_sec": 0.15531753400000525,
+      "release_sec": 0.0005852140000115469,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 9,
+      "load_sec": 0.0009915620000811032,
+      "execution_sec": 0.14680887800000164,
+      "release_sec": 0.0006739809998634883,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 10,
+      "load_sec": 0.02874218900001324,
+      "execution_sec": 0.7550394140000662,
+      "release_sec": 0.0011266659998909745,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 11,
+      "load_sec": 0.037831892999975025,
+      "execution_sec": 0.9256755760000033,
+      "release_sec": 0.0007442629998877237,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 12,
+      "load_sec": 0.037673405999839815,
+      "execution_sec": 0.9033296430000064,
+      "release_sec": 0.0006818179999754648,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 13,
+      "load_sec": 0.04304701799992472,
+      "execution_sec": 1.1802265540000008,
+      "release_sec": 0.0006098789999668952,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 14,
+      "load_sec": 0.05330933699997331,
+      "execution_sec": 1.4050947230000475,
+      "release_sec": 0.011250826999912533,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 15,
+      "load_sec": 0.05593435400010094,
+      "execution_sec": 1.2917401960000916,
+      "release_sec": 0.006850776999954178,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 16,
+      "load_sec": 0.07014350400004332,
+      "execution_sec": 1.111228163000078,
+      "release_sec": 0.0006231219999790483,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 17,
+      "load_sec": 0.02945301499994457,
+      "execution_sec": 0.7510226550000425,
+      "release_sec": 0.0007376270000349905,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 18,
+      "load_sec": 0.0011550880001323094,
+      "execution_sec": 0.4833961189999627,
+      "release_sec": 0.000713128999905166,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 19,
+      "load_sec": 0.0018673269998998876,
+      "execution_sec": 0.14954206900006284,
+      "release_sec": 0.0006770509999114438,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 20,
+      "load_sec": 0.0011419800000567193,
+      "execution_sec": 0.3618054580001626,
+      "release_sec": 0.0033062719999179535,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 21,
+      "load_sec": 0.008510829999977432,
+      "execution_sec": 0.20977627999991455,
+      "release_sec": 0.0006548300000304152,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 22,
+      "load_sec": 0.0012537319998955354,
+      "execution_sec": 0.3109614289999172,
+      "release_sec": 0.000892481999926531,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 23,
+      "load_sec": 0.0025373120001859206,
+      "execution_sec": 0.15723247699997955,
+      "release_sec": 0.0006691850001061539,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 24,
+      "load_sec": 0.0017029369998908805,
+      "execution_sec": 0.16217400999994425,
+      "release_sec": 0.0006520930000988301,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 25,
+      "load_sec": 0.0013036640000336774,
+      "execution_sec": 0.13873344299986456,
+      "release_sec": 0.0006399390001661232,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 26,
+      "load_sec": 0.0011358819999713887,
+      "execution_sec": 0.13414683600012722,
+      "release_sec": 0.000634468000043853,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    },
+    {
+      "layer": 27,
+      "load_sec": 0.0010694650000004913,
+      "execution_sec": 0.1544841360000646,
+      "release_sec": 0.000656362999961857,
+      "resident_bytes": 93595648,
+      "resident_mb": 89.259765625,
+      "input_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "finite": true
+    }
+  ]
+}

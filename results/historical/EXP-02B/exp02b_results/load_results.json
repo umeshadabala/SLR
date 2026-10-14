@@ -1,0 +1,10 @@
+{
+  "experiment": "EXP-02b-INT8-bitsandbytes",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "method": "bitsandbytes load_in_8bit (no FP32 precursor)",
+  "baseline_rss_gb": 0.5362,
+  "load_time_sec": 27.91,
+  "peak_rss_gb_during_load": 4.7931,
+  "rss_gb_after_load": 4.7313,
+  "total_params": 1543714304
+}

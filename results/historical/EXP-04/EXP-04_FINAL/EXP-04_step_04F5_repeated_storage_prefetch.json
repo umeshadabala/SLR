@@ -1,0 +1,115 @@
+{
+  "experiment": "EXP-04",
+  "step": "4F-5",
+  "stage": "repeated_storage_prefetch_benchmark",
+  "num_baseline_runs": 5,
+  "num_prefetch_runs": 5,
+  "target_layer": 2,
+  "baseline": {
+    "runs": [
+      {
+        "load_sec": 0.0013213169995651697,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "load_sec": 0.001363304999358661,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "load_sec": 0.0012834799999836832,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "load_sec": 0.0011247000002185814,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "load_sec": 0.003117158000350173,
+        "residency_mb": 178.51953125,
+        "success": true
+      }
+    ],
+    "statistics": {
+      "mean": 0.0016419919998952536,
+      "median": 0.0013213169995651697,
+      "std": 0.0008295684866261842,
+      "min": 0.0011247000002185814,
+      "max": 0.003117158000350173
+    }
+  },
+  "prefetch": {
+    "runs": [
+      {
+        "prefetch_total_sec": 0.002527826000005007,
+        "prefetch_read_sec": 0.001799153000320075,
+        "post_prefetch_load_sec": 0.0017705299997032853,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "prefetch_total_sec": 0.0012003920001006918,
+        "prefetch_read_sec": 0.0008132099992508302,
+        "post_prefetch_load_sec": 0.0015189020004982012,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "prefetch_total_sec": 0.0023349080001935363,
+        "prefetch_read_sec": 0.0015971239999998943,
+        "post_prefetch_load_sec": 0.0016714869998395443,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "prefetch_total_sec": 0.005073117000392813,
+        "prefetch_read_sec": 0.0006461579996539513,
+        "post_prefetch_load_sec": 0.0012859270000262768,
+        "residency_mb": 178.51953125,
+        "success": true
+      },
+      {
+        "prefetch_total_sec": 0.001496849000432121,
+        "prefetch_read_sec": 0.001121149000027799,
+        "post_prefetch_load_sec": 0.0012567069998112856,
+        "residency_mb": 178.51953125,
+        "success": true
+      }
+    ],
+    "post_prefetch_load_statistics": {
+      "mean": 0.0015007105999757186,
+      "median": 0.0015189020004982012,
+      "std": 0.00022801741489040337,
+      "min": 0.0012567069998112856,
+      "max": 0.0017705299997032853
+    },
+    "background_read_statistics": {
+      "mean": 0.00119535879985051,
+      "median": 0.001121149000027799,
+      "std": 0.0004947597982096457,
+      "min": 0.0006461579996539513,
+      "max": 0.001799153000320075
+    }
+  },
+  "comparison": {
+    "baseline_median_sec": 0.0013213169995651697,
+    "prefetch_median_sec": 0.0015189020004982012,
+    "absolute_difference_sec": -0.00019758500093303155,
+    "relative_reduction_percent": -14.953641026192392,
+    "median_speedup": 0.8699158992033564
+  },
+  "residency": {
+    "one_layer_mb": 89.259765625,
+    "two_layer_mb": 178.51953125,
+    "third_model_layer_installed": false
+  },
+  "validation": {
+    "all_baseline_runs": true,
+    "all_prefetch_runs": true,
+    "residency_bounded": true,
+    "final_cleanup": true
+  }
+}

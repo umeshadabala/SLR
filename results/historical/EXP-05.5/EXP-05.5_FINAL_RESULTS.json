@@ -1,0 +1,74 @@
+{
+  "experiment": "EXP-05.5",
+  "title": "Mixed-Precision Selective Residency with Persistent KV Cache",
+  "status": "COMPLETE",
+  "completed_at": "2026-10-07T00:51:57.640404",
+  "architecture": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "attention_precision": "BF16",
+    "mlp_precision": "INT8_per_output_channel",
+    "residency_strategy": "one_transformer_layer_at_a_time",
+    "kv_cache": "Transformers DynamicCache",
+    "decoding": "greedy"
+  },
+  "cell_4": {
+    "status": "PASS",
+    "layers": 28,
+    "prefix_tokens": 8,
+    "decode_tokens": 1,
+    "cache_transition": "8 -> 9",
+    "peak_active_layers": 1,
+    "peak_active_params": 46797824,
+    "final_cpu_params": 0,
+    "final_meta_params": 1310339072,
+    "prefix_load_seconds": 9.624281342999666,
+    "prefix_execution_seconds": 2.4153617039994515,
+    "decode_load_seconds": 3.953113072999713,
+    "decode_execution_seconds": 0.3014361110006121
+  },
+  "cell_5": {
+    "status": "PASS",
+    "prefix_tokens": 8,
+    "generated_tokens": 8,
+    "cache_transition": "8 -> 16",
+    "generated_token_ids": [
+      220,
+      16,
+      13,
+      220,
+      16,
+      13,
+      220,
+      16
+    ],
+    "mean_token_latency_seconds": 4.3661672289995295,
+    "mean_tokens_per_second": 0.22903382934078353,
+    "peak_active_params": 46797824,
+    "final_cpu_params": 0,
+    "final_meta_params": 1310339072
+  },
+  "residency": {
+    "total_transformer_params": 1310339072,
+    "active_layer_params": 46797824,
+    "active_fraction": 0.03571428571428571,
+    "active_fraction_percent": 3.571428571428571,
+    "residency_reduction_factor": 28.0,
+    "peak_active_layers": 1
+  },
+  "conclusions": [
+    "Full 28-layer mixed-precision execution is operational.",
+    "Only one transformer layer is CPU-resident at any point.",
+    "Persistent DynamicCache survives layer streaming.",
+    "An 8-token prefix followed by 8 autoregressive decode steps increases cache length from 8 to 16.",
+    "Transformer parameters are fully released back to META after execution.",
+    "INT8 reconstruction and weight loading dominate per-token latency.",
+    "The architecture is functionally validated but performance is limited by storage-to-compute reconstruction overhead."
+  ],
+  "limitations": [
+    "Direct native INT8 compute is not implemented.",
+    "Generation throughput is low because INT8 weights are reconstructed for each layer and token.",
+    "The experiment validates functional KV-cache integration, not deployment-grade generation performance.",
+    "The generated sequence is a systems diagnostic and should not be treated as a language-quality benchmark."
+  ],
+  "overall": "SUCCESS_WITH_PERFORMANCE_LIMITATION"
+}

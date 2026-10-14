@@ -1,0 +1,89 @@
+{
+  "experiment": "EXP-05_CELL_14",
+  "status": "PASS",
+  "target_layer": 17,
+  "method": "per_output_channel_symmetric_INT8",
+  "reference_execution_sec": 0.2458858089999012,
+  "groups": [
+    {
+      "configuration": "all_int8",
+      "quantized_projections": [
+        "mlp.down_proj",
+        "mlp.gate_proj",
+        "mlp.up_proj",
+        "self_attn.k_proj",
+        "self_attn.o_proj",
+        "self_attn.q_proj",
+        "self_attn.v_proj"
+      ],
+      "quantized_projection_count": 7,
+      "quantization_sec": 1.4579309289997582,
+      "execution_sec": 0.1323882169999706,
+      "output_max_abs_diff": 0.421875,
+      "output_mean_abs_diff": 0.04291512444615364,
+      "output_rmse": 0.05510682985186577,
+      "output_relative_l2": 0.02192121371626854,
+      "output_cosine": 0.9997642040252686,
+      "bf16_projection_storage_bytes": 93585408,
+      "effective_projection_storage_bytes": 140470272,
+      "compression_ratio": 0.666229278747321,
+      "storage_reduction_percent": -50.0984768907563
+    },
+    {
+      "configuration": "attention_int8",
+      "quantized_projections": [
+        "self_attn.k_proj",
+        "self_attn.o_proj",
+        "self_attn.q_proj",
+        "self_attn.v_proj"
+      ],
+      "quantized_projection_count": 4,
+      "quantization_sec": 0.06534468799964088,
+      "execution_sec": 0.12167834199999561,
+      "output_max_abs_diff": 0.25,
+      "output_mean_abs_diff": 0.03598177433013916,
+      "output_rmse": 0.04646766930818558,
+      "output_relative_l2": 0.018484599888324738,
+      "output_cosine": 0.9998334646224976,
+      "bf16_projection_storage_bytes": 93585408,
+      "effective_projection_storage_bytes": 99104768,
+      "compression_ratio": 0.9443078258353826,
+      "storage_reduction_percent": -5.897671568627461
+    },
+    {
+      "configuration": "mlp_int8",
+      "quantized_projections": [
+        "mlp.down_proj",
+        "mlp.gate_proj",
+        "mlp.up_proj"
+      ],
+      "quantized_projection_count": 3,
+      "quantization_sec": 1.0402193429999897,
+      "execution_sec": 0.07111657599989485,
+      "output_max_abs_diff": 0.25,
+      "output_mean_abs_diff": 0.023916205391287804,
+      "output_rmse": 0.03159429877996445,
+      "output_relative_l2": 0.012568050064146519,
+      "output_cosine": 0.9999241828918457,
+      "bf16_projection_storage_bytes": 93585408,
+      "effective_projection_storage_bytes": 134950912,
+      "compression_ratio": 0.6934774031019516,
+      "storage_reduction_percent": -44.20080532212884
+    }
+  ],
+  "attention_projections": [
+    "self_attn.q_proj",
+    "self_attn.k_proj",
+    "self_attn.v_proj",
+    "self_attn.o_proj"
+  ],
+  "mlp_projections": [
+    "mlp.gate_proj",
+    "mlp.up_proj",
+    "mlp.down_proj"
+  ],
+  "residency": {
+    "cpu_params": 0,
+    "meta_params": 46797824
+  }
+}

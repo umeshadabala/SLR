@@ -1,0 +1,49 @@
+{
+  "experiment_id": "EXP-02a",
+  "experiment_name": "FP16 precision \u2014 Qwen2.5-1.5B-Instruct (CPU)",
+  "hypothesis": "Loading the model in FP16 instead of FP32 will reduce peak RAM (load and inference) relative to EXP-01, roughly proportional to the halved parameter byte-width, with comparable or slightly worse CPU throughput since this CPU has no native FP16 compute acceleration.",
+  "setup": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "dtype": "float16",
+    "device": "cpu",
+    "torch_threads": 2,
+    "max_new_tokens": 64,
+    "decoding": "greedy",
+    "benchmark_prompt_count": 12,
+    "single_variable_change_from_exp01": "dtype: float32 -> float16"
+  },
+  "measurement": {
+    "load_time_sec": 11.72,
+    "load_time_note": "warm cache (model already downloaded) \u2014 not comparable to EXP-01 cold load time",
+    "peak_rss_gb_during_load": 6.3303,
+    "peak_rss_gb_during_inference": 3.5037,
+    "avg_tokens_per_sec": 1.2428,
+    "total_output_tokens": 486,
+    "successful_prompts": 12,
+    "failed_prompts": 0
+  },
+  "comparison_to_exp01": {
+    "peak_ram_load_gb": {
+      "exp01_fp32": 8.6423,
+      "exp02a_fp16": 6.3303,
+      "pct_change": -26.8
+    },
+    "peak_ram_inference_gb": {
+      "exp01_fp32": 6.9316,
+      "exp02a_fp16": 3.5037,
+      "pct_change": -49.5
+    },
+    "avg_tokens_per_sec": {
+      "exp01_fp32": 1.3079,
+      "exp02a_fp16": 1.2428,
+      "pct_change": -5.0
+    }
+  },
+  "result": "12/12 success. Peak inference RAM dropped 49.5% (6.9316GB -> 3.5037GB). Peak load RAM dropped 26.8%. Throughput changed by -5.0% (effectively flat, within run-to-run noise).",
+  "conclusion": "FP16 is a strictly beneficial, nearly-free optimization for this memory-constrained use case on this CPU: inference memory nearly halves with no meaningful throughput cost. This supports using FP16 as the new default precision floor for all subsequent experiments (EXP-02b INT8 onward should compare against FP16, not just FP32, since FP16 is clearly superior to FP32 for our stated goal of minimizing RAM under a strict budget).",
+  "caveats": [
+    "Load time not comparable to EXP-01 (warm cache vs cold download).",
+    "Peak load RAM reduction (27%) is less than theoretical 50%, likely due to transient FP32/BF16 intermediate buffers during safetensors deserialization and cast; not yet root-caused.",
+    "Per-prompt latency variance remains high (11.9s-55.7s), consistent with EXP-01 \u2014 likely shared-CPU contention in Colab, not an FP16 artifact."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "experiment": "EXP-04",
+  "step": "4C-2",
+  "stage": "prebound_destination_rebuild",
+  "status": "PASS",
+  "pytorch_version": "2.11.0+cpu",
+  "threads": 1,
+  "interop_threads": 1,
+  "model_class": "Qwen2ForCausalLM",
+  "num_layers": 28,
+  "expected_bindings": 336,
+  "actual_bindings": 336,
+  "parameter_bindings": 336,
+  "buffer_bindings": 0,
+  "build_time_sec": 0.013610267000331078,
+  "validation": {
+    "layer_count": true,
+    "binding_count": true,
+    "destination_types": true,
+    "child_module_regression": true,
+    "all_bindings_valid": true
+  }
+}

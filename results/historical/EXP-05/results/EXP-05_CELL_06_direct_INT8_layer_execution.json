@@ -1,0 +1,46 @@
+{
+  "experiment": "EXP-05",
+  "cell": "CELL-6",
+  "layer_id": 0,
+  "int8_file": "/content/EXP-05/checkpoints/int8/layer_00/model.safetensors",
+  "int8_file_size_bytes": 46800000,
+  "load": {
+    "tensor_count": 12,
+    "int8_data_bytes": 46797824,
+    "reconstructed_bytes": 93595648,
+    "reconstruction_time_sec": 0.774312301000009,
+    "total_load_time_sec": 0.780698325000003
+  },
+  "residency": {
+    "cpu_parameters": 46797824,
+    "meta_parameters": 0
+  },
+  "execution_time_sec": 0.09678741000016089,
+  "output_shape": [
+    1,
+    8,
+    1536
+  ],
+  "output_dtype": "torch.bfloat16",
+  "comparison": {
+    "max_abs_difference": 0.15625,
+    "mean_abs_difference": 0.02675333060324192,
+    "rmse": 0.03411349281668663,
+    "relative_l2_error": 0.03009902689379057,
+    "cosine_similarity": 0.9995511174201965
+  },
+  "cleanup": {
+    "cpu_parameters_after": 0,
+    "meta_parameters_after": 46797824,
+    "success": true
+  },
+  "validation": {
+    "tensor_count": true,
+    "residency": true,
+    "shape": true,
+    "finite": true,
+    "cosine": true,
+    "cleanup": true,
+    "success": true
+  }
+}

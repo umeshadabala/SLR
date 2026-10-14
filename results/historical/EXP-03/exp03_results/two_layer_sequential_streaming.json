@@ -1,0 +1,56 @@
+{
+  "experiment": "EXP-03",
+  "step": "step_07_two_layer_sequential_streaming",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "input": {
+    "batch_size": 1,
+    "sequence_length": 8,
+    "hidden_size": 1536,
+    "dtype": "torch.bfloat16"
+  },
+  "layers": [
+    {
+      "layer": 0,
+      "load_time_sec": 0.9656687009996858,
+      "execution_time_sec": 0.1585776500000975,
+      "release_time_sec": 0.6103469600002427,
+      "storage_mb": 89.259765625,
+      "rss_before_load_gb": 0.6474227905273438,
+      "rss_after_load_gb": 0.6478500366210938,
+      "rss_after_release_gb": 0.6474227905273438,
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 1,
+      "load_time_sec": 0.8655844999998408,
+      "execution_time_sec": 0.6125204400000257,
+      "release_time_sec": 0.806735050000043,
+      "storage_mb": 89.259765625,
+      "rss_before_load_gb": 0.6474227905273438,
+      "rss_after_load_gb": 0.6478500366210938,
+      "rss_after_release_gb": 0.6474266052246094,
+      "output_valid": true,
+      "released": true
+    }
+  ],
+  "residency": {
+    "peak_transformer_weight_mb": 89.259765625,
+    "final_layer0": {
+      "meta": 12
+    },
+    "final_layer1": {
+      "meta": 12
+    }
+  },
+  "performance": {
+    "peak_rss_gb": 0.6478500366210938,
+    "total_streaming_time_sec": 4.044808611000008
+  },
+  "validation": {
+    "layer0_output_valid": true,
+    "layer1_output_valid": true,
+    "both_layers_released": true,
+    "success": true
+  }
+}

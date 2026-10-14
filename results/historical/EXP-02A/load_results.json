@@ -1,0 +1,9 @@
+{
+  "experiment": "EXP-02a-FP16",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "load_time_sec": 11.72,
+  "baseline_rss_gb_before_load": 0.4874,
+  "peak_rss_gb_during_load": 6.3303,
+  "total_params": 1543714304,
+  "loaded_dtype": "torch.float16"
+}

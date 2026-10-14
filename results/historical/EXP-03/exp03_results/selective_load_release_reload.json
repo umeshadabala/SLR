@@ -1,0 +1,35 @@
+{
+  "experiment": "EXP-03",
+  "step": "step_05_selective_load_release_reload",
+  "layer0_initial": {
+    "device": "meta"
+  },
+  "layer0_after_release": {
+    "device": "meta"
+  },
+  "layer1_after_load": {
+    "device": "cpu",
+    "tensor_count": 12,
+    "storage_mb": 89.259765625
+  },
+  "layer0_after_reload": {
+    "device": "cpu",
+    "tensor_count": 12,
+    "storage_mb": 89.259765625
+  },
+  "verification": {
+    "layer0_meta_after_release": true,
+    "layer1_cpu_after_load": true,
+    "layer0_cpu_after_reload": true,
+    "layer1_meta_after_release": true,
+    "selective_residency_cycle": true
+  },
+  "rss": {
+    "initial_gb": 0.5493354797363281,
+    "after_release_layer0_gb": 0.5484771728515625,
+    "before_layer1_gb": 0.5484771728515625,
+    "after_layer1_gb": 0.5489044189453125,
+    "before_layer0_reload_gb": 0.5489082336425781,
+    "after_layer0_reload_gb": 0.5493354797363281
+  }
+}

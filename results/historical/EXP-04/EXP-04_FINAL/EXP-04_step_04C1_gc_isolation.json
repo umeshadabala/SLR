@@ -1,0 +1,507 @@
+{
+  "experiment": "EXP-04",
+  "step": "4C-1",
+  "question": "Does per-layer gc.collect() hurt selective-residency performance?",
+  "model": {
+    "name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "parameters": 1543714304,
+    "layers": 28,
+    "dtype": "bfloat16",
+    "device": "cpu"
+  },
+  "gc_every_layer": {
+    "name": "gc_every_layer",
+    "collect_every_layer": true,
+    "open_sec": 0.0016014819998417806,
+    "load_sec": 0.07611625200024719,
+    "execution_sec": 3.896746722999069,
+    "release_sec": 0.023411076999309444,
+    "gc_sec": 12.783948675999909,
+    "final_gc_sec": 2.6170000637648627e-06,
+    "benchmark_sec": 16.902519849999862,
+    "peak_residency_mb": 89.259765625,
+    "final_shape": [
+      1,
+      8,
+      1536
+    ],
+    "final_norm": 1072.0,
+    "finite": true,
+    "layers": [
+      {
+        "layer": 0,
+        "load_sec": 0.003392007000002195,
+        "execution_sec": 0.22526063599980262,
+        "release_sec": 0.002531450999867957,
+        "gc_sec": 0.5759101640001063,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 1,
+        "load_sec": 0.0010881879998123622,
+        "execution_sec": 0.20054343200035873,
+        "release_sec": 0.0007435879997501615,
+        "gc_sec": 0.4625971970003775,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 2,
+        "load_sec": 0.008287867000035476,
+        "execution_sec": 0.1426264359997731,
+        "release_sec": 0.0006559640000887157,
+        "gc_sec": 0.41775209099978383,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 3,
+        "load_sec": 0.001132734000293567,
+        "execution_sec": 0.12028328699989288,
+        "release_sec": 0.0006267819999266067,
+        "gc_sec": 0.40040889100009736,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 4,
+        "load_sec": 0.0028316450002421334,
+        "execution_sec": 0.11896911899975748,
+        "release_sec": 0.0006587469997612061,
+        "gc_sec": 0.4156039049998981,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 5,
+        "load_sec": 0.0016846989997247874,
+        "execution_sec": 0.11883373899991057,
+        "release_sec": 0.0007031810000626137,
+        "gc_sec": 0.3915945569997348,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 6,
+        "load_sec": 0.0011266829997111927,
+        "execution_sec": 0.1200659959999939,
+        "release_sec": 0.0007164250000641914,
+        "gc_sec": 0.4362715469997056,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 7,
+        "load_sec": 0.00116436899998007,
+        "execution_sec": 0.11612965199992686,
+        "release_sec": 0.0006283100001382991,
+        "gc_sec": 0.3572301620001781,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 8,
+        "load_sec": 0.0041625629996815405,
+        "execution_sec": 0.10681413699967379,
+        "release_sec": 0.0006194359998517029,
+        "gc_sec": 0.39789887899996756,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 9,
+        "load_sec": 0.002418284999748721,
+        "execution_sec": 0.12082029600014721,
+        "release_sec": 0.0006975889996283513,
+        "gc_sec": 0.38235538600019936,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 10,
+        "load_sec": 0.0013753909997831215,
+        "execution_sec": 0.11158624200015765,
+        "release_sec": 0.0006315399996310589,
+        "gc_sec": 0.4288278750000245,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 11,
+        "load_sec": 0.007292778000191902,
+        "execution_sec": 0.14159967600016898,
+        "release_sec": 0.0006581340003322111,
+        "gc_sec": 0.3714593939998849,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 12,
+        "load_sec": 0.0034674980001909717,
+        "execution_sec": 0.10256320500002403,
+        "release_sec": 0.0006167129999994359,
+        "gc_sec": 0.3817832919999091,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 13,
+        "load_sec": 0.003993427000295924,
+        "execution_sec": 0.11394292300019515,
+        "release_sec": 0.000698704000114958,
+        "gc_sec": 0.38420108800028174,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 14,
+        "load_sec": 0.0014070889997128688,
+        "execution_sec": 0.11329501399995934,
+        "release_sec": 0.000658224999824597,
+        "gc_sec": 0.4767982379999012,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 15,
+        "load_sec": 0.007244763000016974,
+        "execution_sec": 0.11380851900003108,
+        "release_sec": 0.001109873000132211,
+        "gc_sec": 0.42984639799988145,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 16,
+        "load_sec": 0.0016020200000639306,
+        "execution_sec": 0.1208612020000146,
+        "release_sec": 0.0006679090001853183,
+        "gc_sec": 0.49422588500010534,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 17,
+        "load_sec": 0.0015564919999633275,
+        "execution_sec": 0.10931013499975961,
+        "release_sec": 0.0006630269999732263,
+        "gc_sec": 0.3845749440001782,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 18,
+        "load_sec": 0.0017291519998252625,
+        "execution_sec": 0.10588919199972224,
+        "release_sec": 0.0007137160000638687,
+        "gc_sec": 0.38626237200014657,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 19,
+        "load_sec": 0.003032349000022805,
+        "execution_sec": 0.10351054400007342,
+        "release_sec": 0.0006717480000588694,
+        "gc_sec": 0.3609395329999643,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 20,
+        "load_sec": 0.0013657980002790282,
+        "execution_sec": 0.16511248000006162,
+        "release_sec": 0.0007020880002528429,
+        "gc_sec": 0.7778466879999542,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 21,
+        "load_sec": 0.0016005170000426006,
+        "execution_sec": 0.22915500299995983,
+        "release_sec": 0.0007204769999589189,
+        "gc_sec": 0.6336177359999056,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 22,
+        "load_sec": 0.00103844500017658,
+        "execution_sec": 0.3322942029999467,
+        "release_sec": 0.0006672790000266104,
+        "gc_sec": 0.6967346919996089,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 23,
+        "load_sec": 0.0011067710001952946,
+        "execution_sec": 0.2231495430000905,
+        "release_sec": 0.0026088009999511996,
+        "gc_sec": 0.7103945149997344,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 24,
+        "load_sec": 0.0010243220003758324,
+        "execution_sec": 0.11029599899984532,
+        "release_sec": 0.001043518999722437,
+        "gc_sec": 0.40098836100014523,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 25,
+        "load_sec": 0.003082841999912489,
+        "execution_sec": 0.10547855799995887,
+        "release_sec": 0.0006705309997414588,
+        "gc_sec": 0.4082707610000398,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 26,
+        "load_sec": 0.0014008930002091802,
+        "execution_sec": 0.10070955299988782,
+        "release_sec": 0.0006984149999880174,
+        "gc_sec": 0.40230522399997426,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 27,
+        "load_sec": 0.005506664999757049,
+        "execution_sec": 0.10383800199997495,
+        "release_sec": 0.0006289050002123986,
+        "gc_sec": 0.41724890100022094,
+        "resident_mb": 89.259765625
+      }
+    ]
+  },
+  "no_gc_during_streaming": {
+    "name": "no_gc_during_streaming",
+    "collect_every_layer": false,
+    "open_sec": 0.0059494639999684296,
+    "load_sec": 0.04188055600070584,
+    "execution_sec": 3.1369045980004557,
+    "release_sec": 0.01963220299967361,
+    "gc_sec": 0.0,
+    "final_gc_sec": 0.4171571839997341,
+    "benchmark_sec": 3.7281820060002246,
+    "peak_residency_mb": 89.259765625,
+    "final_shape": [
+      1,
+      8,
+      1536
+    ],
+    "final_norm": 1072.0,
+    "finite": true,
+    "layers": [
+      {
+        "layer": 0,
+        "load_sec": 0.0017392120003023592,
+        "execution_sec": 0.10212739100006729,
+        "release_sec": 0.0006550210000568768,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 1,
+        "load_sec": 0.0010029040004155831,
+        "execution_sec": 0.11272596299977522,
+        "release_sec": 0.0005792680003651185,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 2,
+        "load_sec": 0.0010718680000536551,
+        "execution_sec": 0.10540934600021501,
+        "release_sec": 0.0006533529999614984,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 3,
+        "load_sec": 0.001144232000115153,
+        "execution_sec": 0.11216759200033266,
+        "release_sec": 0.0006168519998936972,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 4,
+        "load_sec": 0.003765286000088963,
+        "execution_sec": 0.11511939199999688,
+        "release_sec": 0.000696154000252136,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 5,
+        "load_sec": 0.0010497969997231849,
+        "execution_sec": 0.10684168500029045,
+        "release_sec": 0.0006710679999741842,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 6,
+        "load_sec": 0.001041689999965456,
+        "execution_sec": 0.1036025870002959,
+        "release_sec": 0.0006257709997044003,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 7,
+        "load_sec": 0.001084476999949402,
+        "execution_sec": 0.11128819499981546,
+        "release_sec": 0.0006640749998041429,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 8,
+        "load_sec": 0.001184548999844992,
+        "execution_sec": 0.10299909200011825,
+        "release_sec": 0.0006716070001857588,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 9,
+        "load_sec": 0.0010463670000717684,
+        "execution_sec": 0.10671220999984143,
+        "release_sec": 0.0007095750002008572,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 10,
+        "load_sec": 0.001423736000106146,
+        "execution_sec": 0.09975947300017651,
+        "release_sec": 0.0006313409999165742,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 11,
+        "load_sec": 0.001009590999728971,
+        "execution_sec": 0.10692818699999407,
+        "release_sec": 0.0007112729999789735,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 12,
+        "load_sec": 0.0012410889999046049,
+        "execution_sec": 0.10522050700001273,
+        "release_sec": 0.0007040099999358063,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 13,
+        "load_sec": 0.002075519999834796,
+        "execution_sec": 0.13695719999986977,
+        "release_sec": 0.0006621100001211744,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 14,
+        "load_sec": 0.0017485379999016004,
+        "execution_sec": 0.10658427499993195,
+        "release_sec": 0.0006632859999626817,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 15,
+        "load_sec": 0.0011202710002180538,
+        "execution_sec": 0.11098216999971555,
+        "release_sec": 0.0006481000000349013,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 16,
+        "load_sec": 0.0015124899996408203,
+        "execution_sec": 0.1044277390001298,
+        "release_sec": 0.0006302359997789608,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 17,
+        "load_sec": 0.0012758900002154405,
+        "execution_sec": 0.11126710300004561,
+        "release_sec": 0.000693879000209563,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 18,
+        "load_sec": 0.0010273280004184926,
+        "execution_sec": 0.11468723500001943,
+        "release_sec": 0.0009452539998164866,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 19,
+        "load_sec": 0.0012996590003240271,
+        "execution_sec": 0.10879293200014217,
+        "release_sec": 0.0007081270000526274,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 20,
+        "load_sec": 0.0013876980001441552,
+        "execution_sec": 0.10807684699966558,
+        "release_sec": 0.0007302859999072098,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 21,
+        "load_sec": 0.003008382000189158,
+        "execution_sec": 0.11652739700002712,
+        "release_sec": 0.0007028469999568188,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 22,
+        "load_sec": 0.001558770999963599,
+        "execution_sec": 0.11036822799997026,
+        "release_sec": 0.00069487000018853,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 23,
+        "load_sec": 0.0024454969998259912,
+        "execution_sec": 0.11411062900015168,
+        "release_sec": 0.0006218230000740732,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 24,
+        "load_sec": 0.0010524829999667418,
+        "execution_sec": 0.11189068999965457,
+        "release_sec": 0.0006900039998072316,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 25,
+        "load_sec": 0.001915848999942682,
+        "execution_sec": 0.14959231100010584,
+        "release_sec": 0.0006784229999539093,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 26,
+        "load_sec": 0.0010688380002648046,
+        "execution_sec": 0.11495330500019918,
+        "release_sec": 0.0006689389997518447,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      },
+      {
+        "layer": 27,
+        "load_sec": 0.0015785439995852357,
+        "execution_sec": 0.12678491699989536,
+        "release_sec": 0.0013046509998275724,
+        "gc_sec": 0.0,
+        "resident_mb": 89.259765625
+      }
+    ]
+  },
+  "comparison": {
+    "benchmark_difference_sec": 13.174337843999638,
+    "speedup": 4.533716385840751
+  }
+}

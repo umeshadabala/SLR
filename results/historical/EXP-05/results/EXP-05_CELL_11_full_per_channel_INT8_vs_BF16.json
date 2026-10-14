@@ -1,0 +1,436 @@
+{
+  "experiment": "EXP-05_CELL_11",
+  "status": "PASS",
+  "method": "symmetric_per_output_channel_int8",
+  "layers": 28,
+  "input_shape": [
+    1,
+    8,
+    1536
+  ],
+  "bf16": {
+    "load_sec": 0.022162244998980896,
+    "execute_sec": 5.639167042999361,
+    "release_sec": 0.022967836998304847,
+    "total_sec": 5.684297124996647
+  },
+  "int8_channel": {
+    "load_reconstruction_sec": 9.248910834999151,
+    "execute_sec": 3.530048105998958,
+    "release_sec": 0.022408432002521295,
+    "total_sec": 12.80136737300063,
+    "max_active_parameters": 46797824,
+    "max_active_bf16_bytes": 93595648
+  },
+  "final_comparison": {
+    "max_abs_diff": 26.0,
+    "mean_abs_diff": 1.0421953201293945,
+    "rmse": 1.4918560981750488,
+    "relative_l2": 0.1575506627559662,
+    "cosine": 0.9878740906715393,
+    "reference_norm": 1049.6558837890625,
+    "test_norm": 1064.9954833984375
+  },
+  "bf16_layers": [
+    {
+      "layer": 0,
+      "load_sec": 0.0003341470001032576,
+      "execute_sec": 0.6898971329997039,
+      "release_sec": 0.0004850079999414447
+    },
+    {
+      "layer": 1,
+      "load_sec": 0.00021715200000471668,
+      "execute_sec": 0.6163990179998109,
+      "release_sec": 0.0005306180000843597
+    },
+    {
+      "layer": 2,
+      "load_sec": 0.00027466399978948175,
+      "execute_sec": 0.41869841500010807,
+      "release_sec": 0.0057066209997174155
+    },
+    {
+      "layer": 3,
+      "load_sec": 0.00034978299981958116,
+      "execute_sec": 0.5945566589998634,
+      "release_sec": 0.00048597000022709835
+    },
+    {
+      "layer": 4,
+      "load_sec": 0.012438540999937686,
+      "execute_sec": 0.5882480760001272,
+      "release_sec": 0.0005637919998662255
+    },
+    {
+      "layer": 5,
+      "load_sec": 0.0002643269999680342,
+      "execute_sec": 0.12112877900017338,
+      "release_sec": 0.000506978999965213
+    },
+    {
+      "layer": 6,
+      "load_sec": 0.00023020199978418532,
+      "execute_sec": 0.11512067900002876,
+      "release_sec": 0.0005217140001150256
+    },
+    {
+      "layer": 7,
+      "load_sec": 0.0015665229998376162,
+      "execute_sec": 0.1374738120002803,
+      "release_sec": 0.0005820459996357386
+    },
+    {
+      "layer": 8,
+      "load_sec": 0.00023265400022864924,
+      "execute_sec": 0.11275641699967309,
+      "release_sec": 0.000532758999725047
+    },
+    {
+      "layer": 9,
+      "load_sec": 0.0006657560002167884,
+      "execute_sec": 0.112937034999959,
+      "release_sec": 0.0004894469998362183
+    },
+    {
+      "layer": 10,
+      "load_sec": 0.000274486000307661,
+      "execute_sec": 0.12196502999995573,
+      "release_sec": 0.0005566490003729996
+    },
+    {
+      "layer": 11,
+      "load_sec": 0.000742794999951002,
+      "execute_sec": 0.12558403000002727,
+      "release_sec": 0.0005954690000180562
+    },
+    {
+      "layer": 12,
+      "load_sec": 0.00024958399990282487,
+      "execute_sec": 0.11890337100021497,
+      "release_sec": 0.0005202379998081597
+    },
+    {
+      "layer": 13,
+      "load_sec": 0.0003118619997621863,
+      "execute_sec": 0.11808543799998006,
+      "release_sec": 0.0005436779997580743
+    },
+    {
+      "layer": 14,
+      "load_sec": 0.00022507499988932977,
+      "execute_sec": 0.12218313099992884,
+      "release_sec": 0.0010249809997731063
+    },
+    {
+      "layer": 15,
+      "load_sec": 0.00029527300011977786,
+      "execute_sec": 0.13008076300002358,
+      "release_sec": 0.0005616090002149576
+    },
+    {
+      "layer": 16,
+      "load_sec": 0.0004532829998424859,
+      "execute_sec": 0.11508907899997212,
+      "release_sec": 0.0005003209998903912
+    },
+    {
+      "layer": 17,
+      "load_sec": 0.0002818839998326439,
+      "execute_sec": 0.10781770999983564,
+      "release_sec": 0.0005552289999286586
+    },
+    {
+      "layer": 18,
+      "load_sec": 0.000306267999803822,
+      "execute_sec": 0.11522704200024236,
+      "release_sec": 0.0005302439999468334
+    },
+    {
+      "layer": 19,
+      "load_sec": 0.00028062000001227716,
+      "execute_sec": 0.11164011699975163,
+      "release_sec": 0.0005190529996070836
+    },
+    {
+      "layer": 20,
+      "load_sec": 0.00027947599983235705,
+      "execute_sec": 0.11778257400010261,
+      "release_sec": 0.0007468829999197624
+    },
+    {
+      "layer": 21,
+      "load_sec": 0.00025800599996728124,
+      "execute_sec": 0.11873109199996179,
+      "release_sec": 0.0004945979999320116
+    },
+    {
+      "layer": 22,
+      "load_sec": 0.0002818590000970289,
+      "execute_sec": 0.11452946800000063,
+      "release_sec": 0.0005144480001035845
+    },
+    {
+      "layer": 23,
+      "load_sec": 0.00037130700002308004,
+      "execute_sec": 0.1306213069997284,
+      "release_sec": 0.0026772609999170527
+    },
+    {
+      "layer": 24,
+      "load_sec": 0.0002393899999333371,
+      "execute_sec": 0.11383594100016126,
+      "release_sec": 0.0005369310001697158
+    },
+    {
+      "layer": 25,
+      "load_sec": 0.00024904899964894867,
+      "execute_sec": 0.11675651699988521,
+      "release_sec": 0.0005330509998202615
+    },
+    {
+      "layer": 26,
+      "load_sec": 0.00023183200028142892,
+      "execute_sec": 0.12012741599983201,
+      "release_sec": 0.0006050150000191934
+    },
+    {
+      "layer": 27,
+      "load_sec": 0.00025644700008342625,
+      "execute_sec": 0.11299099400002888,
+      "release_sec": 0.0005472249999911583
+    }
+  ],
+  "int8_layers": [
+    {
+      "layer": 0,
+      "load_sec": 0.2963212559998283,
+      "execute_sec": 0.09713201499971547,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005313550000209943
+    },
+    {
+      "layer": 1,
+      "load_sec": 0.28382372800024314,
+      "execute_sec": 0.09594264499992278,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005079440002191404
+    },
+    {
+      "layer": 2,
+      "load_sec": 0.329792690999966,
+      "execute_sec": 0.10546337100004166,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0007628339999428135
+    },
+    {
+      "layer": 3,
+      "load_sec": 0.2789077699999325,
+      "execute_sec": 0.12186307000001761,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005247070002951659
+    },
+    {
+      "layer": 4,
+      "load_sec": 0.3333142940000471,
+      "execute_sec": 0.11020067300023584,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005595190000349248
+    },
+    {
+      "layer": 5,
+      "load_sec": 0.27889151800036416,
+      "execute_sec": 0.10119424300000901,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0004776279997713573
+    },
+    {
+      "layer": 6,
+      "load_sec": 0.28454610099970523,
+      "execute_sec": 0.13308493299973634,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005444010002975119
+    },
+    {
+      "layer": 7,
+      "load_sec": 0.3130770869997832,
+      "execute_sec": 0.09874513400018259,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005493870003192569
+    },
+    {
+      "layer": 8,
+      "load_sec": 0.2687565989999712,
+      "execute_sec": 0.10434048700017229,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0007474590001947945
+    },
+    {
+      "layer": 9,
+      "load_sec": 0.2843585579998944,
+      "execute_sec": 0.0955095619997337,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.00054350299978978
+    },
+    {
+      "layer": 10,
+      "load_sec": 0.2665053299997453,
+      "execute_sec": 0.09478457899967907,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.00044352700024319347
+    },
+    {
+      "layer": 11,
+      "load_sec": 0.26748564199988323,
+      "execute_sec": 0.09594133799964766,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0006305050001174095
+    },
+    {
+      "layer": 12,
+      "load_sec": 0.294792574999974,
+      "execute_sec": 0.09936314300011873,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005397220002123504
+    },
+    {
+      "layer": 13,
+      "load_sec": 0.26138033500001256,
+      "execute_sec": 0.09893964399998367,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005318620001162344
+    },
+    {
+      "layer": 14,
+      "load_sec": 0.26128256199990574,
+      "execute_sec": 0.09745032299997547,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0007586599999740429
+    },
+    {
+      "layer": 15,
+      "load_sec": 0.3330169300002126,
+      "execute_sec": 0.11132334100011576,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005698579998352216
+    },
+    {
+      "layer": 16,
+      "load_sec": 0.335141184999884,
+      "execute_sec": 0.10393236900017655,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005337520001376106
+    },
+    {
+      "layer": 17,
+      "load_sec": 0.271683060000214,
+      "execute_sec": 0.13188905400011208,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005793420000372862
+    },
+    {
+      "layer": 18,
+      "load_sec": 0.47804402599967943,
+      "execute_sec": 0.25077865200000815,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0004725080002572213
+    },
+    {
+      "layer": 19,
+      "load_sec": 0.6055919140003425,
+      "execute_sec": 0.13391970299971945,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.002551252000102977
+    },
+    {
+      "layer": 20,
+      "load_sec": 0.45696988800000327,
+      "execute_sec": 0.23398059400005877,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0030258360002335394
+    },
+    {
+      "layer": 21,
+      "load_sec": 0.46448719899990465,
+      "execute_sec": 0.1463261839999177,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005472049997479189
+    },
+    {
+      "layer": 22,
+      "load_sec": 0.40303865399982897,
+      "execute_sec": 0.21245050099969376,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0027612170001702907
+    },
+    {
+      "layer": 23,
+      "load_sec": 0.3926765510000223,
+      "execute_sec": 0.20080776099985087,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005839760001435934
+    },
+    {
+      "layer": 24,
+      "load_sec": 0.3978900360002626,
+      "execute_sec": 0.16086885000004258,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.000528645000031247
+    },
+    {
+      "layer": 25,
+      "load_sec": 0.2640691449996666,
+      "execute_sec": 0.09460078500023883,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0005092430001241155
+    },
+    {
+      "layer": 26,
+      "load_sec": 0.2557317939999848,
+      "execute_sec": 0.09763858899987099,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0004861359998358239
+    },
+    {
+      "layer": 27,
+      "load_sec": 0.2873344069998893,
+      "execute_sec": 0.10157656299998052,
+      "active_parameters": 46797824,
+      "active_bf16_bytes": 93595648,
+      "release_sec": 0.0006064490003154788
+    }
+  ],
+  "residency": {
+    "bf16_cpu": 0,
+    "bf16_meta": 1310339072,
+    "int8_cpu": 0,
+    "int8_meta": 1310339072
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "experiment": "EXP-04",
+  "step": "4F-2",
+  "stage": "asynchronous_prefetch_overlap_validation",
+  "compute_layer": 0,
+  "prefetch_layer": 2,
+  "compute_interval": {
+    "start_sec": 0.001219953000145324,
+    "end_sec": 0.10029505500006053,
+    "duration_sec": 0.0990751019999152
+  },
+  "prefetch_interval": {
+    "start_sec": 0.0005275729999993928,
+    "end_sec": 0.003982651000114856,
+    "duration_sec": 0.0034550780001154635
+  },
+  "overlap": {
+    "overlap_sec": 0.0027626979999695322,
+    "overlap_fraction_of_prefetch": 0.7996051029462162,
+    "overlap_fraction_of_compute": 0.02788488675966134
+  },
+  "execution_validation": {
+    "layer1_exec_sec": 0.10434526100016228,
+    "layer2_exec_sec": 0.10838809699998819,
+    "final_shape": [
+      1,
+      8,
+      1536
+    ],
+    "dtype": "torch.bfloat16",
+    "finite": true
+  },
+  "validation": {
+    "prefetch_completed": true,
+    "actual_overlap_measured": true,
+    "prefetched_layer_executed": true,
+    "all_test_layers_released": true
+  },
+  "timeline_events": [
+    {
+      "event": "prefetch_start",
+      "layer": 2,
+      "timestamp": 0.0005275729999993928,
+      "thread_id": 135553798371008
+    },
+    {
+      "event": "compute_start",
+      "layer": 0,
+      "timestamp": 0.001219953000145324,
+      "thread_id": 135556057317504
+    },
+    {
+      "event": "prefetch_end",
+      "layer": 2,
+      "timestamp": 0.003982651000114856,
+      "thread_id": 135553798371008,
+      "duration_sec": 0.0034550780001154635
+    },
+    {
+      "event": "compute_end",
+      "layer": 0,
+      "timestamp": 0.10029505500006053,
+      "thread_id": 135556057317504,
+      "duration_sec": 0.0990751019999152
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "experiment": "EXP-04",
+  "step": "4F-0",
+  "stage": "concurrency_environment_sanity",
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "pytorch": "2.11.0+cpu",
+  "safetensors": "0.8.0",
+  "torch_threads": {
+    "intra_op": 1,
+    "inter_op": 1
+  },
+  "num_layers": 28,
+  "layer_params": 46797824,
+  "one_layer_residency_mb": 89.259765625,
+  "two_layer_residency_mb": 178.51953125,
+  "checkpoint_tensors": 338,
+  "thread_test": {
+    "thread_id": 135553798371008,
+    "different_from_main": true
+  },
+  "future_test": {
+    "completed": true
+  },
+  "cpu_worker_test": {
+    "shape": [
+      256,
+      256
+    ],
+    "dtype": "torch.bfloat16",
+    "finite": true
+  },
+  "safetensor_worker_test": {
+    "shape": [
+      1536
+    ],
+    "dtype": "torch.bfloat16",
+    "elapsed_sec": 0.00042893000045296503,
+    "finite": true
+  },
+  "validation": {
+    "required_objects": true,
+    "threading": true,
+    "future_synchronization": true,
+    "cpu_worker": true,
+    "safetensor_worker_read": true,
+    "no_package_changes": true
+  }
+}

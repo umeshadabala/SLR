@@ -1,0 +1,10 @@
+{
+  "step": "step_08J_A_reference_safety_check",
+  "total_ram_gb": 12.671417236328125,
+  "available_ram_gb": 7.698078155517578,
+  "current_process_rss_gb": 1.185302734375,
+  "checkpoint_size_gb": 2.8754278495907784,
+  "historical_fp16_peak_gb": 6.33,
+  "safety_margin_gb": 1.368078155517578,
+  "reference_safe": true
+}

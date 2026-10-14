@@ -1,0 +1,13 @@
+{
+  "experiment_id": "EXP-03",
+  "stage": "single_layer_loading",
+  "layer_id": 0,
+  "tensor_count": 12,
+  "layer_storage_mb": 89.259765625,
+  "rss_before_gb": 0.5600013732910156,
+  "rss_after_load_gb": 0.5481185913085938,
+  "rss_after_assignment_gb": 0.5481185913085938,
+  "layer_0_device": "cpu",
+  "layer_1_device": "meta",
+  "status": "success"
+}

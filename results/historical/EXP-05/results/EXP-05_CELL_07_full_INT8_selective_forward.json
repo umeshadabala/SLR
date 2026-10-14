@@ -1,0 +1,256 @@
+{
+  "experiment": "EXP-05",
+  "cell": "CELL-7",
+  "method": "stored_symmetric_per_tensor_int8",
+  "model_file": "/content/EXP-05/checkpoints/source/model.safetensors",
+  "int8_root": "/content/EXP-05/checkpoints/int8",
+  "layer_count": 28,
+  "total_load_reconstruct_sec": 12.882932334000316,
+  "total_execution_sec": 4.23179475599909,
+  "total_release_sec": 0.02410543100063478,
+  "overall_sec": 17.201470766000057,
+  "max_active_parameters": 46797824,
+  "max_active_layer_mb": 89.259765625,
+  "final_hidden_shape": [
+    1,
+    8,
+    1536
+  ],
+  "final_hidden_norm": 678.7242431640625,
+  "final_transformer_cpu_parameters": 0,
+  "final_transformer_meta_parameters": 1310339072,
+  "layers": [
+    {
+      "layer_id": 0,
+      "load_reconstruct_sec": 0.7918809899999815,
+      "execution_sec": 0.3228904939999211,
+      "release_sec": 0.002732065000145667,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 1,
+      "load_reconstruct_sec": 1.0006173230001423,
+      "execution_sec": 0.33173606800005473,
+      "release_sec": 0.0006176619999678223,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 2,
+      "load_reconstruct_sec": 1.0381251610001527,
+      "execution_sec": 0.3447136149998187,
+      "release_sec": 0.0005606009999610251,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 3,
+      "load_reconstruct_sec": 0.7192202260000613,
+      "execution_sec": 0.14851318099999844,
+      "release_sec": 0.0005557929998758482,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 4,
+      "load_reconstruct_sec": 0.6773837099999582,
+      "execution_sec": 0.155925070999956,
+      "release_sec": 0.0017146640000191837,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 5,
+      "load_reconstruct_sec": 0.4923280309999427,
+      "execution_sec": 0.10248630799992497,
+      "release_sec": 0.0005900749999909749,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 6,
+      "load_reconstruct_sec": 0.5309709600001042,
+      "execution_sec": 0.14127227899984973,
+      "release_sec": 0.0005994830000872753,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 7,
+      "load_reconstruct_sec": 0.5690417380001236,
+      "execution_sec": 0.23127438500000608,
+      "release_sec": 0.0005611460001091473,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 8,
+      "load_reconstruct_sec": 0.7301817489999394,
+      "execution_sec": 0.21764850700014904,
+      "release_sec": 0.0005149149999397196,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 9,
+      "load_reconstruct_sec": 0.8237306270000317,
+      "execution_sec": 0.20694376100004774,
+      "release_sec": 0.0010708610000165208,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 10,
+      "load_reconstruct_sec": 0.6966156819999014,
+      "execution_sec": 0.2003074489998653,
+      "release_sec": 0.0006019540001034329,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 11,
+      "load_reconstruct_sec": 0.5033916349998435,
+      "execution_sec": 0.11865567599988935,
+      "release_sec": 0.0017534099999920727,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 12,
+      "load_reconstruct_sec": 0.3580346590001682,
+      "execution_sec": 0.09525537500007886,
+      "release_sec": 0.0006627669999943464,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 13,
+      "load_reconstruct_sec": 0.24194499800000813,
+      "execution_sec": 0.0976747360000445,
+      "release_sec": 0.0005894850000913721,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 14,
+      "load_reconstruct_sec": 0.2944670130000304,
+      "execution_sec": 0.09543972200003736,
+      "release_sec": 0.0005783009999049682,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 15,
+      "load_reconstruct_sec": 0.2481294239998988,
+      "execution_sec": 0.09444642499988731,
+      "release_sec": 0.000659446000099706,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 16,
+      "load_reconstruct_sec": 0.24799817000007351,
+      "execution_sec": 0.11464275499997711,
+      "release_sec": 0.0005921590000070864,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 17,
+      "load_reconstruct_sec": 0.26737681700001303,
+      "execution_sec": 0.10044765400016331,
+      "release_sec": 0.0006642089999786549,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 18,
+      "load_reconstruct_sec": 0.2982821079999667,
+      "execution_sec": 0.13277108799979942,
+      "release_sec": 0.0006110700001045188,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 19,
+      "load_reconstruct_sec": 0.27807061099997554,
+      "execution_sec": 0.13322390400003314,
+      "release_sec": 0.0006541739999192941,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 20,
+      "load_reconstruct_sec": 0.24792122500002733,
+      "execution_sec": 0.09409168799993495,
+      "release_sec": 0.0006925579998551257,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 21,
+      "load_reconstruct_sec": 0.24339201900011176,
+      "execution_sec": 0.10110799699987183,
+      "release_sec": 0.0006357820000175707,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 22,
+      "load_reconstruct_sec": 0.2675155659999291,
+      "execution_sec": 0.11315571399995861,
+      "release_sec": 0.0005668400001468399,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 23,
+      "load_reconstruct_sec": 0.2565697160000582,
+      "execution_sec": 0.14468048399999134,
+      "release_sec": 0.0028508170000804967,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 24,
+      "load_reconstruct_sec": 0.2591929830000481,
+      "execution_sec": 0.09662382699980299,
+      "release_sec": 0.0006706579999899986,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 25,
+      "load_reconstruct_sec": 0.2956721880000259,
+      "execution_sec": 0.09500312799991661,
+      "release_sec": 0.0005674310000358673,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 26,
+      "load_reconstruct_sec": 0.253699061999896,
+      "execution_sec": 0.10012657600009334,
+      "release_sec": 0.0006371530000706116,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    },
+    {
+      "layer_id": 27,
+      "load_reconstruct_sec": 0.25117794299990237,
+      "execution_sec": 0.10073688900001798,
+      "release_sec": 0.0005999520001296332,
+      "cpu_parameters": 46797824,
+      "meta_parameters_after": 46797824
+    }
+  ],
+  "validation": {
+    "all_layers": true,
+    "all_released": true,
+    "shape": true,
+    "finite": true,
+    "one_layer_residency": true,
+    "success": true
+  }
+}

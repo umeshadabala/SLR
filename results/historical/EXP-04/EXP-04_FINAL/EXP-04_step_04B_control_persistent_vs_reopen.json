@@ -1,0 +1,988 @@
+{
+  "experiment": "EXP-04",
+  "step": "4B-CONTROL",
+  "question": "Does persistent safe_open reduce selective-residency overhead?",
+  "model": {
+    "name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "parameters": 1543714304,
+    "layers": 28,
+    "dtype": "bfloat16",
+    "device": "cpu"
+  },
+  "input": {
+    "input_ids": [
+      [
+        9707,
+        11,
+        525,
+        264,
+        674,
+        374,
+        13,
+        20
+      ]
+    ],
+    "sequence_length": 8
+  },
+  "persistent": {
+    "variant": "persistent",
+    "timing": {
+      "total_open_sec": 0.001528248999875359,
+      "total_load_sec": 0.06660851200035722,
+      "total_execution_sec": 5.126829001999795,
+      "total_release_sec": 0.03406388799930937,
+      "close_sec": 0.11113082099996063,
+      "benchmark_sec": 5.370313161000013
+    },
+    "streaming": {
+      "peak_transformer_bytes": 93595648,
+      "peak_transformer_mb": 89.259765625
+    },
+    "final_output": {
+      "shape": [
+        1,
+        8,
+        1536
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "cpu",
+      "finite": true
+    },
+    "layers": [
+      {
+        "layer": 0,
+        "open_sec": 0.001528248999875359,
+        "load_sec": 0.00206654399994477,
+        "execution_sec": 0.11574948799989215,
+        "release_sec": 0.0007505559999572142,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 1,
+        "open_sec": 0.0,
+        "load_sec": 0.0010111839999353833,
+        "execution_sec": 0.11710603200003789,
+        "release_sec": 0.0007791129999077384,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 2,
+        "open_sec": 0.0,
+        "load_sec": 0.001599669999905018,
+        "execution_sec": 0.16718658200011305,
+        "release_sec": 0.0027845039999192522,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 3,
+        "open_sec": 0.0,
+        "load_sec": 0.0025550960001510248,
+        "execution_sec": 0.16485304899993025,
+        "release_sec": 0.003746494999859351,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 4,
+        "open_sec": 0.0,
+        "load_sec": 0.0011998019999737153,
+        "execution_sec": 0.26564368600020316,
+        "release_sec": 0.0007755469998755871,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 5,
+        "open_sec": 0.0,
+        "load_sec": 0.006238152999912927,
+        "execution_sec": 0.12556288099995072,
+        "release_sec": 0.00065893199985112,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 6,
+        "open_sec": 0.0,
+        "load_sec": 0.0009256729999833624,
+        "execution_sec": 0.12682260800011136,
+        "release_sec": 0.0006178579999414069,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 7,
+        "open_sec": 0.0,
+        "load_sec": 0.0009113480000451091,
+        "execution_sec": 0.22319100899994737,
+        "release_sec": 0.0007582929999898624,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 8,
+        "open_sec": 0.0,
+        "load_sec": 0.001033134000181235,
+        "execution_sec": 0.16897378499993465,
+        "release_sec": 0.0006216140000105952,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 9,
+        "open_sec": 0.0,
+        "load_sec": 0.003404563000003691,
+        "execution_sec": 0.26039259300000595,
+        "release_sec": 0.0028186570000343636,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 10,
+        "open_sec": 0.0,
+        "load_sec": 0.004442744000016319,
+        "execution_sec": 0.1933824889999869,
+        "release_sec": 0.0005882570001176646,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 11,
+        "open_sec": 0.0,
+        "load_sec": 0.005334634000064398,
+        "execution_sec": 0.23221478100003878,
+        "release_sec": 0.002722047000133898,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 12,
+        "open_sec": 0.0,
+        "load_sec": 0.0009087700000236509,
+        "execution_sec": 0.24185059900014494,
+        "release_sec": 0.0006085039999561559,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 13,
+        "open_sec": 0.0,
+        "load_sec": 0.0036790530000416766,
+        "execution_sec": 0.24567856799990295,
+        "release_sec": 0.0006530719999773282,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 14,
+        "open_sec": 0.0,
+        "load_sec": 0.004982455000117625,
+        "execution_sec": 0.25361484099994414,
+        "release_sec": 0.0014006190001509822,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 15,
+        "open_sec": 0.0,
+        "load_sec": 0.0012583909999648313,
+        "execution_sec": 0.15729520699983368,
+        "release_sec": 0.0006102539998664724,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 16,
+        "open_sec": 0.0,
+        "load_sec": 0.0009937360000549234,
+        "execution_sec": 0.19637786899988896,
+        "release_sec": 0.0007414070000777429,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 17,
+        "open_sec": 0.0,
+        "load_sec": 0.005556706999868766,
+        "execution_sec": 0.2421768429999247,
+        "release_sec": 0.0006457150000187539,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 18,
+        "open_sec": 0.0,
+        "load_sec": 0.0011350520001087716,
+        "execution_sec": 0.18130536600006053,
+        "release_sec": 0.0010882829999445676,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 19,
+        "open_sec": 0.0,
+        "load_sec": 0.0014226240000425605,
+        "execution_sec": 0.23182537100001355,
+        "release_sec": 0.0021657190000041737,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 20,
+        "open_sec": 0.0,
+        "load_sec": 0.004838995000000068,
+        "execution_sec": 0.2870103520001521,
+        "release_sec": 0.0031166969999958383,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 21,
+        "open_sec": 0.0,
+        "load_sec": 0.003748445999917749,
+        "execution_sec": 0.17407379499991293,
+        "release_sec": 0.000799262000100498,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 22,
+        "open_sec": 0.0,
+        "load_sec": 0.0013693500000044878,
+        "execution_sec": 0.15684802600003422,
+        "release_sec": 0.0005981919998703233,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 23,
+        "open_sec": 0.0,
+        "load_sec": 0.0012772870002208947,
+        "execution_sec": 0.11083063199998833,
+        "release_sec": 0.0006290449998687109,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 24,
+        "open_sec": 0.0,
+        "load_sec": 0.000998593999838704,
+        "execution_sec": 0.12077155399992989,
+        "release_sec": 0.0005947399999968184,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 25,
+        "open_sec": 0.0,
+        "load_sec": 0.0014535520001572877,
+        "execution_sec": 0.11310145799984639,
+        "release_sec": 0.000750907999872652,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 26,
+        "open_sec": 0.0,
+        "load_sec": 0.0011238659999435185,
+        "execution_sec": 0.12788172200021108,
+        "release_sec": 0.0006302869999217364,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 27,
+        "open_sec": 0.0,
+        "load_sec": 0.0011390889999347564,
+        "execution_sec": 0.1251078159998542,
+        "release_sec": 0.0014093110000885645,
+        "close_sec": 0.0,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      }
+    ]
+  },
+  "reopen": {
+    "variant": "reopen",
+    "timing": {
+      "total_open_sec": 0.11445860999992874,
+      "total_load_sec": 0.08061151799802246,
+      "total_execution_sec": 4.428489064999894,
+      "total_release_sec": 0.020677972999465055,
+      "close_sec": 0.0,
+      "benchmark_sec": 20.773490146999848
+    },
+    "streaming": {
+      "peak_transformer_bytes": 93595648,
+      "peak_transformer_mb": 89.259765625
+    },
+    "final_output": {
+      "shape": [
+        1,
+        8,
+        1536
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "cpu",
+      "finite": true
+    },
+    "layers": [
+      {
+        "layer": 0,
+        "open_sec": 0.004154558999971414,
+        "load_sec": 0.001281570999935866,
+        "execution_sec": 0.11336938999988888,
+        "release_sec": 0.0006738549998317467,
+        "close_sec": 0.0026123770001049706,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 1,
+        "open_sec": 0.0026050540000142064,
+        "load_sec": 0.0027539349998733087,
+        "execution_sec": 0.13176451999993333,
+        "release_sec": 0.0006350310000016179,
+        "close_sec": 0.004581622999921819,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 2,
+        "open_sec": 0.004413222000039241,
+        "load_sec": 0.0011355770000136545,
+        "execution_sec": 0.11141991299996334,
+        "release_sec": 0.0006280469999637717,
+        "close_sec": 0.0034618300001056923,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 3,
+        "open_sec": 0.0020658040000398614,
+        "load_sec": 0.006051981999917189,
+        "execution_sec": 0.10965295100004369,
+        "release_sec": 0.0006525139999666862,
+        "close_sec": 0.003277960999866991,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 4,
+        "open_sec": 0.0016785819998403895,
+        "load_sec": 0.001960045000032551,
+        "execution_sec": 0.11453816700009156,
+        "release_sec": 0.001091324000071836,
+        "close_sec": 0.004239744999949835,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 5,
+        "open_sec": 0.005326754999941841,
+        "load_sec": 0.0012826990000576188,
+        "execution_sec": 0.11394592900001044,
+        "release_sec": 0.0006392369998593495,
+        "close_sec": 0.0036903939999319846,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 6,
+        "open_sec": 0.001643086000058247,
+        "load_sec": 0.0035831399998187408,
+        "execution_sec": 0.11193495499992423,
+        "release_sec": 0.0006495089999134507,
+        "close_sec": 0.003952699000137727,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 7,
+        "open_sec": 0.0018978820000938867,
+        "load_sec": 0.0030168629998570395,
+        "execution_sec": 0.13276119600004677,
+        "release_sec": 0.0009645220000038535,
+        "close_sec": 0.00433969599998818,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 8,
+        "open_sec": 0.0032975110002553265,
+        "load_sec": 0.0011794919996646058,
+        "execution_sec": 0.13436005899984593,
+        "release_sec": 0.0018953980002152093,
+        "close_sec": 0.0038901109996913874,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 9,
+        "open_sec": 0.002879488999951718,
+        "load_sec": 0.004274037999948632,
+        "execution_sec": 0.12058302099967477,
+        "release_sec": 0.0006946080002308008,
+        "close_sec": 0.004282928000066022,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 10,
+        "open_sec": 0.0018331340002077923,
+        "load_sec": 0.0013905249998060754,
+        "execution_sec": 0.1487644089997957,
+        "release_sec": 0.0008992949997264077,
+        "close_sec": 0.004583533000186435,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 11,
+        "open_sec": 0.0019170149998899433,
+        "load_sec": 0.001192714999888267,
+        "execution_sec": 0.10226253000018914,
+        "release_sec": 0.000633669999842823,
+        "close_sec": 0.003767326999877696,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 12,
+        "open_sec": 0.0018777380000756239,
+        "load_sec": 0.0018028350000349747,
+        "execution_sec": 0.10205752000001667,
+        "release_sec": 0.0006572800002686563,
+        "close_sec": 0.0035809989999506797,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 13,
+        "open_sec": 0.003766297999845847,
+        "load_sec": 0.0013048999999227817,
+        "execution_sec": 0.11962054700006775,
+        "release_sec": 0.0007151069999054016,
+        "close_sec": 0.003746617000160768,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 14,
+        "open_sec": 0.0018946310001410893,
+        "load_sec": 0.0037824920000275597,
+        "execution_sec": 0.11533076100022299,
+        "release_sec": 0.0008267430002888432,
+        "close_sec": 0.0034984030003215594,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 15,
+        "open_sec": 0.0040212429998973676,
+        "load_sec": 0.002031463000093936,
+        "execution_sec": 0.1758448930004306,
+        "release_sec": 0.0008131790000334149,
+        "close_sec": 0.007974960999945324,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 16,
+        "open_sec": 0.0052323859999887645,
+        "load_sec": 0.005888345000130357,
+        "execution_sec": 0.2532522340002288,
+        "release_sec": 0.0006090300003052107,
+        "close_sec": 0.007436914000209072,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 17,
+        "open_sec": 0.029939959999865096,
+        "load_sec": 0.013416771999800403,
+        "execution_sec": 0.637790410999969,
+        "release_sec": 0.0006313859998954285,
+        "close_sec": 0.010034998999799427,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 18,
+        "open_sec": 0.0016190849996746692,
+        "load_sec": 0.0010862739995900483,
+        "execution_sec": 0.16006640699970376,
+        "release_sec": 0.0006314439997368027,
+        "close_sec": 0.0031803870001567702,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 19,
+        "open_sec": 0.003071085000101448,
+        "load_sec": 0.0015935320002427034,
+        "execution_sec": 0.2593473750002886,
+        "release_sec": 0.0005893289999221452,
+        "close_sec": 0.010198905999914132,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 20,
+        "open_sec": 0.005858469000031619,
+        "load_sec": 0.005867049999778828,
+        "execution_sec": 0.2582372500000929,
+        "release_sec": 0.0006513980001727759,
+        "close_sec": 0.003384864000054222,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 21,
+        "open_sec": 0.0019431700002314756,
+        "load_sec": 0.003389641000012489,
+        "execution_sec": 0.10631183799978317,
+        "release_sec": 0.0005664119998982642,
+        "close_sec": 0.005701607999981206,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 22,
+        "open_sec": 0.005235867999999755,
+        "load_sec": 0.0024243319999186497,
+        "execution_sec": 0.2366406360001747,
+        "release_sec": 0.0006459399996856519,
+        "close_sec": 0.010635712000294006,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 23,
+        "open_sec": 0.0018948760002786003,
+        "load_sec": 0.0018596909999359923,
+        "execution_sec": 0.11996979700006705,
+        "release_sec": 0.0006701299998894683,
+        "close_sec": 0.003108794000127091,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 24,
+        "open_sec": 0.002633631999742647,
+        "load_sec": 0.002391680000073393,
+        "execution_sec": 0.1040670229999705,
+        "release_sec": 0.0006629739996242279,
+        "close_sec": 0.0037866410002607154,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 25,
+        "open_sec": 0.0017466740000600112,
+        "load_sec": 0.0011809259999608912,
+        "execution_sec": 0.10704882399977578,
+        "release_sec": 0.0007171050001488766,
+        "close_sec": 0.004254368000147224,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 26,
+        "open_sec": 0.005980007999824011,
+        "load_sec": 0.0023711479998382856,
+        "execution_sec": 0.1178306930000872,
+        "release_sec": 0.0006362520002767269,
+        "close_sec": 0.003319337999982963,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      },
+      {
+        "layer": 27,
+        "open_sec": 0.00403139399986685,
+        "load_sec": 0.0011178549998476228,
+        "execution_sec": 0.109715815999607,
+        "release_sec": 0.0005972539997856074,
+        "close_sec": 0.0029520809998757613,
+        "resident_bytes": 93595648,
+        "resident_mb": 89.259765625,
+        "output_shape": [
+          1,
+          8,
+          1536
+        ],
+        "finite": true
+      }
+    ]
+  },
+  "comparison": {
+    "extra_open_overhead_sec": 0.11293036100005338,
+    "load_difference_sec": 0.014003005997665241,
+    "benchmark_difference_sec": 15.403176985999835,
+    "persistent_speedup": 3.8682083379904033
+  },
+  "validation": {
+    "persistent_valid": true,
+    "reopen_valid": true
+  }
+}

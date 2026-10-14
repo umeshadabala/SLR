@@ -1,0 +1,232 @@
+{
+  "experiment": "EXP-05",
+  "cell": "CELL-3",
+  "method": "symmetric_per_tensor_int8",
+  "layer_id": 0,
+  "tensor_count": 12,
+  "original_storage_bytes": 93595648,
+  "quantized_storage_bytes": 46797872,
+  "compression_ratio": 1.9999979486246726,
+  "storage_reduction_fraction": 0.49999948715564213,
+  "storage_reduction_percent": 49.999948715564216,
+  "tensors": [
+    {
+      "key": "model.layers.0.input_layernorm.weight",
+      "shape": [
+        1536
+      ],
+      "parameters": 1536,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 3072,
+      "quantized_bytes": 1536,
+      "scale_bytes": 4,
+      "stored_bytes": 1540,
+      "quantization_time_sec": 0.17081811100001687,
+      "max_abs_error": 0.0234375,
+      "mean_abs_error": 0.0107638044282794,
+      "relative_l2_error": 0.0269186559926831
+    },
+    {
+      "key": "model.layers.0.mlp.down_proj.weight",
+      "shape": [
+        1536,
+        8960
+      ],
+      "parameters": 13762560,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 27525120,
+      "quantized_bytes": 13762560,
+      "scale_bytes": 4,
+      "stored_bytes": 13762564,
+      "quantization_time_sec": 1.3809151380000912,
+      "max_abs_error": 0.002197265625,
+      "mean_abs_error": 0.001097986358217895,
+      "relative_l2_error": 0.04738507721398701
+    },
+    {
+      "key": "model.layers.0.mlp.gate_proj.weight",
+      "shape": [
+        8960,
+        1536
+      ],
+      "parameters": 13762560,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 27525120,
+      "quantized_bytes": 13762560,
+      "scale_bytes": 4,
+      "stored_bytes": 13762564,
+      "quantization_time_sec": 1.045282698000051,
+      "max_abs_error": 0.001953125,
+      "mean_abs_error": 0.0009370849002152681,
+      "relative_l2_error": 0.035212714483975734
+    },
+    {
+      "key": "model.layers.0.mlp.up_proj.weight",
+      "shape": [
+        8960,
+        1536
+      ],
+      "parameters": 13762560,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 27525120,
+      "quantized_bytes": 13762560,
+      "scale_bytes": 4,
+      "stored_bytes": 13762564,
+      "quantization_time_sec": 0.9723431429999891,
+      "max_abs_error": 0.001953125,
+      "mean_abs_error": 0.000610042130574584,
+      "relative_l2_error": 0.027646269758732845
+    },
+    {
+      "key": "model.layers.0.post_attention_layernorm.weight",
+      "shape": [
+        1536
+      ],
+      "parameters": 1536,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 3072,
+      "quantized_bytes": 1536,
+      "scale_bytes": 4,
+      "stored_bytes": 1540,
+      "quantization_time_sec": 0.0003240329999698588,
+      "max_abs_error": 0.00390625,
+      "mean_abs_error": 0.0011843746760860085,
+      "relative_l2_error": 0.00399100041075501
+    },
+    {
+      "key": "model.layers.0.self_attn.k_proj.bias",
+      "shape": [
+        256
+      ],
+      "parameters": 256,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 512,
+      "quantized_bytes": 256,
+      "scale_bytes": 4,
+      "stored_bytes": 260,
+      "quantization_time_sec": 0.0004876749999311869,
+      "max_abs_error": 1.25,
+      "mean_abs_error": 0.5118653774261475,
+      "relative_l2_error": 0.009170789746394948
+    },
+    {
+      "key": "model.layers.0.self_attn.k_proj.weight",
+      "shape": [
+        256,
+        1536
+      ],
+      "parameters": 393216,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 786432,
+      "quantized_bytes": 393216,
+      "scale_bytes": 4,
+      "stored_bytes": 393220,
+      "quantization_time_sec": 0.0049423829999568625,
+      "max_abs_error": 0.001953125,
+      "mean_abs_error": 0.0008502544951625168,
+      "relative_l2_error": 0.017708410181046585
+    },
+    {
+      "key": "model.layers.0.self_attn.o_proj.weight",
+      "shape": [
+        1536,
+        1536
+      ],
+      "parameters": 2359296,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 4718592,
+      "quantized_bytes": 2359296,
+      "scale_bytes": 4,
+      "stored_bytes": 2359300,
+      "quantization_time_sec": 0.11452125099992827,
+      "max_abs_error": 0.001220703125,
+      "mean_abs_error": 0.0005523986183106899,
+      "relative_l2_error": 0.027902722163565916
+    },
+    {
+      "key": "model.layers.0.self_attn.q_proj.bias",
+      "shape": [
+        1536
+      ],
+      "parameters": 1536,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 3072,
+      "quantized_bytes": 1536,
+      "scale_bytes": 4,
+      "stored_bytes": 1540,
+      "quantization_time_sec": 0.0002124169999433434,
+      "max_abs_error": 0.125,
+      "mean_abs_error": 0.059019118547439575,
+      "relative_l2_error": 0.025907288631965033
+    },
+    {
+      "key": "model.layers.0.self_attn.q_proj.weight",
+      "shape": [
+        1536,
+        1536
+      ],
+      "parameters": 2359296,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 4718592,
+      "quantized_bytes": 2359296,
+      "scale_bytes": 4,
+      "stored_bytes": 2359300,
+      "quantization_time_sec": 0.060049133000006805,
+      "max_abs_error": 0.0078125,
+      "mean_abs_error": 0.0027660131454467773,
+      "relative_l2_error": 0.06580215444581734
+    },
+    {
+      "key": "model.layers.0.self_attn.v_proj.bias",
+      "shape": [
+        256
+      ],
+      "parameters": 256,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 512,
+      "quantized_bytes": 256,
+      "scale_bytes": 4,
+      "stored_bytes": 260,
+      "quantization_time_sec": 0.00018810900007792952,
+      "max_abs_error": 0.013671875,
+      "mean_abs_error": 0.0066918907687067986,
+      "relative_l2_error": 0.03403013976854571
+    },
+    {
+      "key": "model.layers.0.self_attn.v_proj.weight",
+      "shape": [
+        256,
+        1536
+      ],
+      "parameters": 393216,
+      "original_dtype": "torch.bfloat16",
+      "quantized_dtype": "torch.int8",
+      "original_bytes": 786432,
+      "quantized_bytes": 393216,
+      "scale_bytes": 4,
+      "stored_bytes": 393220,
+      "quantization_time_sec": 0.00650210200001311,
+      "max_abs_error": 0.0009765625,
+      "mean_abs_error": 0.00045914994552731514,
+      "relative_l2_error": 0.028389018164514265
+    }
+  ],
+  "validation": {
+    "tensor_count": true,
+    "original_storage": true,
+    "int8_dtype": true,
+    "finite_errors": true,
+    "success": true
+  }
+}

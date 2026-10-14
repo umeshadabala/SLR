@@ -1,0 +1,260 @@
+{
+  "experiment": "EXP-04",
+  "step": "4E-2",
+  "stage": "corrected_two_layer_warmup",
+  "status": "PASS",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "num_layers": 28,
+  "layer_params": 46797824,
+  "one_layer_residency_mb": 89.259765625,
+  "two_layer_residency_mb": 178.51953125,
+  "maximum_residency_mb": 178.51953125,
+  "pipeline_wall_sec": 3.4706359560004785,
+  "total_load_sec": 0.031182711002657015,
+  "total_execution_sec": 3.1327663219990427,
+  "total_release_sec": 0.016167301999303163,
+  "final_shape": [
+    1,
+    8,
+    1536
+  ],
+  "final_dtype": "torch.bfloat16",
+  "final_norm": 1072.0,
+  "final_resident_layers": 0,
+  "records": [
+    {
+      "layer": 0,
+      "execution_sec": 0.1064265709992469,
+      "release_sec": 0.0007994989991857437,
+      "next_load_sec": 0.0019127680006931769,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 1,
+      "execution_sec": 0.11238482800035854,
+      "release_sec": 0.00048338700071326457,
+      "next_load_sec": 0.0009856430006038863,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 2,
+      "execution_sec": 0.10267062999992049,
+      "release_sec": 0.0005156480001460295,
+      "next_load_sec": 0.0010207170007561217,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 3,
+      "execution_sec": 0.1032287850002831,
+      "release_sec": 0.0005005640005038003,
+      "next_load_sec": 0.0010260749995723017,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 4,
+      "execution_sec": 0.10458520999964094,
+      "release_sec": 0.0005558980001296732,
+      "next_load_sec": 0.0010249260003547533,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 5,
+      "execution_sec": 0.10139653999976872,
+      "release_sec": 0.0004639039998437511,
+      "next_load_sec": 0.0009890110004562302,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 6,
+      "execution_sec": 0.10038471400002891,
+      "release_sec": 0.00045212300028651953,
+      "next_load_sec": 0.00108560100034083,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 7,
+      "execution_sec": 0.13276530200073466,
+      "release_sec": 0.0005250419999356382,
+      "next_load_sec": 0.0010418800002298667,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 8,
+      "execution_sec": 0.11015984499954357,
+      "release_sec": 0.0005029880003348808,
+      "next_load_sec": 0.0010880109994104714,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 9,
+      "execution_sec": 0.12101537099988491,
+      "release_sec": 0.0005644969996865257,
+      "next_load_sec": 0.0020903079994241125,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 10,
+      "execution_sec": 0.10798740399968665,
+      "release_sec": 0.0004840760002480238,
+      "next_load_sec": 0.0015081539995662752,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 11,
+      "execution_sec": 0.108045955000307,
+      "release_sec": 0.0004464249996090075,
+      "next_load_sec": 0.0009866410000540782,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 12,
+      "execution_sec": 0.10298415699980978,
+      "release_sec": 0.0004542480000964133,
+      "next_load_sec": 0.000985702000434685,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 13,
+      "execution_sec": 0.1076851549996718,
+      "release_sec": 0.0004824439993171836,
+      "next_load_sec": 0.0009514410003248486,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 14,
+      "execution_sec": 0.10127973099952214,
+      "release_sec": 0.0004399270001158584,
+      "next_load_sec": 0.0009578560002410086,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 15,
+      "execution_sec": 0.10852225800044835,
+      "release_sec": 0.0004798879999725614,
+      "next_load_sec": 0.0010574309999356046,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 16,
+      "execution_sec": 0.13094357699992543,
+      "release_sec": 0.00045300500005396316,
+      "next_load_sec": 0.0009556759996485198,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 17,
+      "execution_sec": 0.10387683199951425,
+      "release_sec": 0.0004472759992495412,
+      "next_load_sec": 0.0009293470002376125,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 18,
+      "execution_sec": 0.10414006300015899,
+      "release_sec": 0.0004643379998015007,
+      "next_load_sec": 0.0009702939996714122,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 19,
+      "execution_sec": 0.11628823699993518,
+      "release_sec": 0.001554469000438985,
+      "next_load_sec": 0.0013291569994180463,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 20,
+      "execution_sec": 0.1127039490002062,
+      "release_sec": 0.0004820909998670686,
+      "next_load_sec": 0.000984576000519155,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 21,
+      "execution_sec": 0.11012188199947559,
+      "release_sec": 0.00047198199990816647,
+      "next_load_sec": 0.0009772889998203027,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 22,
+      "execution_sec": 0.10729654900023888,
+      "release_sec": 0.0004826659996979288,
+      "next_load_sec": 0.000934087000132422,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 23,
+      "execution_sec": 0.11109563100035302,
+      "release_sec": 0.0004885250000370434,
+      "next_load_sec": 0.0009393170003022533,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 24,
+      "execution_sec": 0.1060106929999165,
+      "release_sec": 0.00046611400011897786,
+      "next_load_sec": 0.0009369950003019767,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 25,
+      "execution_sec": 0.15045155899952078,
+      "release_sec": 0.000535932000275352,
+      "next_load_sec": 0.0009651139998823055,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 2
+    },
+    {
+      "layer": 26,
+      "execution_sec": 0.1219561790003354,
+      "release_sec": 0.0016408860001320136,
+      "next_load_sec": 0.0,
+      "residency_before_execute_mb": 178.51953125,
+      "resident_after_transition": 1
+    },
+    {
+      "layer": 27,
+      "execution_sec": 0.12635871500060603,
+      "release_sec": 0.0005294599995977478,
+      "next_load_sec": 0.0,
+      "residency_before_execute_mb": 89.259765625,
+      "resident_after_transition": 0
+    }
+  ],
+  "validation": {
+    "all_28_layers_executed": true,
+    "two_layer_residency": true,
+    "maximum_residency_correct": true,
+    "final_layer_released": true,
+    "all_layers_meta": true,
+    "output_shape_valid": true,
+    "output_dtype_valid": true,
+    "output_finite": true
+  }
+}

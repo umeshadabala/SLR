@@ -1,0 +1,38 @@
+{
+  "experiment": "EXP-04",
+  "step": "4F-1",
+  "stage": "background_prefetch_mechanism",
+  "worker_threads": 1,
+  "single_layer_test": {
+    "layer": 0,
+    "worker_thread": 135553798371008,
+    "load_sec": 0.0014678439993076609,
+    "passed": true
+  },
+  "two_layer_test": {
+    "resident_layers": [
+      0,
+      1
+    ],
+    "residency_mb": 178.51953125,
+    "passed": true
+  },
+  "execution_test": {
+    "layer0_exec_sec": 0.4403777469997294,
+    "layer1_exec_sec": 0.36082961600004637,
+    "output_shape": [
+      1,
+      8,
+      1536
+    ],
+    "dtype": "torch.bfloat16",
+    "passed": true
+  },
+  "validation": {
+    "background_load": true,
+    "worker_thread": true,
+    "two_layer_residency": true,
+    "prefetched_execution": true,
+    "final_release": true
+  }
+}

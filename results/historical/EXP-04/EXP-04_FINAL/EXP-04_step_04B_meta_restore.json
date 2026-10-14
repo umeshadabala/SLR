@@ -1,0 +1,30 @@
+{
+  "experiment": "EXP-04",
+  "step": "4B-0",
+  "purpose": "Restore Qwen architecture on META",
+  "model": {
+    "name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "parameters": 1543714304,
+    "layers": 28,
+    "hidden_size": 1536,
+    "vocab_size": 151936
+  },
+  "paths": {
+    "model_dir": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "config": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json",
+    "weights": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/model.safetensors"
+  },
+  "construction": {
+    "time_sec": 2.3495409729998755,
+    "rss_before_gb": 0.9097328186035156,
+    "rss_after_gb": 0.944549560546875,
+    "rss_delta_gb": 0.034816741943359375
+  },
+  "device_state": {
+    "meta_parameters": 1543714304,
+    "cpu_parameters": 0,
+    "other_parameters": 0,
+    "all_meta": true
+  },
+  "success": true
+}

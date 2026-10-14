@@ -1,0 +1,228 @@
+{
+  "experiment": "EXP-05.5",
+  "cell": 4,
+  "status": "PASS",
+  "architecture": "mixed_mlp_int8",
+  "attention_precision": "BF16",
+  "mlp_precision": "INT8_per_output_channel",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "layers_executed": 28,
+  "prefix_tokens": 8,
+  "prefix_cache_length": 8,
+  "decode_tokens": 1,
+  "decode_cache_length": 9,
+  "peak_active_layers": 1,
+  "peak_active_params": 46797824,
+  "prefix": {
+    "load_seconds": 9.624281342999666,
+    "execution_seconds": 2.4153617039994515,
+    "release_seconds": 0.009030148000647387
+  },
+  "decode": {
+    "load_seconds": 3.953113072999713,
+    "execution_seconds": 0.3014361110006121,
+    "release_seconds": 0.006378956000389735
+  },
+  "final_residency": {
+    "cpu_params": 0,
+    "meta_params": 1310339072
+  },
+  "layer_records": [
+    {
+      "layer": 0,
+      "load_seconds": 0.41483109399996465,
+      "execution_seconds": 0.1342792489999738,
+      "release_seconds": 0.000449780000053579,
+      "cache_length": 8
+    },
+    {
+      "layer": 1,
+      "load_seconds": 0.7189990639999451,
+      "execution_seconds": 0.08241929399991932,
+      "release_seconds": 0.00032461999990118784,
+      "cache_length": 8
+    },
+    {
+      "layer": 2,
+      "load_seconds": 0.6680994719999944,
+      "execution_seconds": 0.14473490199998196,
+      "release_seconds": 0.00033875999997690087,
+      "cache_length": 8
+    },
+    {
+      "layer": 3,
+      "load_seconds": 0.6300055490000886,
+      "execution_seconds": 0.13019908499995836,
+      "release_seconds": 0.00040763000015431317,
+      "cache_length": 8
+    },
+    {
+      "layer": 4,
+      "load_seconds": 0.528458068999953,
+      "execution_seconds": 0.11001018899992232,
+      "release_seconds": 0.0004591100000652659,
+      "cache_length": 8
+    },
+    {
+      "layer": 5,
+      "load_seconds": 0.5929746260001139,
+      "execution_seconds": 0.09116267200010952,
+      "release_seconds": 0.0005557100000714854,
+      "cache_length": 8
+    },
+    {
+      "layer": 6,
+      "load_seconds": 0.5112329930000215,
+      "execution_seconds": 0.09452417199986485,
+      "release_seconds": 0.0004993600000489096,
+      "cache_length": 8
+    },
+    {
+      "layer": 7,
+      "load_seconds": 0.4780803680000645,
+      "execution_seconds": 0.10987726900020789,
+      "release_seconds": 0.0003475500000149623,
+      "cache_length": 8
+    },
+    {
+      "layer": 8,
+      "load_seconds": 0.4905428260001372,
+      "execution_seconds": 0.07937655499995344,
+      "release_seconds": 0.00045299900011741556,
+      "cache_length": 8
+    },
+    {
+      "layer": 9,
+      "load_seconds": 0.41953172000012273,
+      "execution_seconds": 0.07323721700004171,
+      "release_seconds": 0.0002456800000345538,
+      "cache_length": 8
+    },
+    {
+      "layer": 10,
+      "load_seconds": 0.3200986690001173,
+      "execution_seconds": 0.07296298599999318,
+      "release_seconds": 0.00025219999997716513,
+      "cache_length": 8
+    },
+    {
+      "layer": 11,
+      "load_seconds": 0.3196473989999049,
+      "execution_seconds": 0.07222287699983099,
+      "release_seconds": 0.00022982899986345728,
+      "cache_length": 8
+    },
+    {
+      "layer": 12,
+      "load_seconds": 0.31448496899997735,
+      "execution_seconds": 0.07293444599986287,
+      "release_seconds": 0.00023237000004883157,
+      "cache_length": 8
+    },
+    {
+      "layer": 13,
+      "load_seconds": 0.3053491010000471,
+      "execution_seconds": 0.07408778499984692,
+      "release_seconds": 0.0002484500000718981,
+      "cache_length": 8
+    },
+    {
+      "layer": 14,
+      "load_seconds": 0.2953452639999341,
+      "execution_seconds": 0.07565071599992734,
+      "release_seconds": 0.00023893000002317422,
+      "cache_length": 8
+    },
+    {
+      "layer": 15,
+      "load_seconds": 0.3190776789999745,
+      "execution_seconds": 0.0752943160000541,
+      "release_seconds": 0.0002822600001763931,
+      "cache_length": 8
+    },
+    {
+      "layer": 16,
+      "load_seconds": 0.31145207099984873,
+      "execution_seconds": 0.07602036599996609,
+      "release_seconds": 0.00026176999995186634,
+      "cache_length": 8
+    },
+    {
+      "layer": 17,
+      "load_seconds": 0.2327233559999513,
+      "execution_seconds": 0.07295907599996099,
+      "release_seconds": 0.0002482999998392188,
+      "cache_length": 8
+    },
+    {
+      "layer": 18,
+      "load_seconds": 0.19441229299991392,
+      "execution_seconds": 0.08208758499995383,
+      "release_seconds": 0.0003502600000047096,
+      "cache_length": 8
+    },
+    {
+      "layer": 19,
+      "load_seconds": 0.21509378899986586,
+      "execution_seconds": 0.07853120499999022,
+      "release_seconds": 0.00031172000012702483,
+      "cache_length": 8
+    },
+    {
+      "layer": 20,
+      "load_seconds": 0.18718827399993643,
+      "execution_seconds": 0.08167379400015307,
+      "release_seconds": 0.0003323900000395952,
+      "cache_length": 8
+    },
+    {
+      "layer": 21,
+      "load_seconds": 0.19944745099996908,
+      "execution_seconds": 0.08108718499988754,
+      "release_seconds": 0.0004259300001194788,
+      "cache_length": 8
+    },
+    {
+      "layer": 22,
+      "load_seconds": 0.20963884000002508,
+      "execution_seconds": 0.08169543400003931,
+      "release_seconds": 0.000272259999974267,
+      "cache_length": 8
+    },
+    {
+      "layer": 23,
+      "load_seconds": 0.1449419719999696,
+      "execution_seconds": 0.07274158499990335,
+      "release_seconds": 0.0002383300000019517,
+      "cache_length": 8
+    },
+    {
+      "layer": 24,
+      "load_seconds": 0.1561751600002026,
+      "execution_seconds": 0.07311251600003743,
+      "release_seconds": 0.00025052000000869157,
+      "cache_length": 8
+    },
+    {
+      "layer": 25,
+      "load_seconds": 0.150341921999825,
+      "execution_seconds": 0.0717481870001393,
+      "release_seconds": 0.00028942999983883055,
+      "cache_length": 8
+    },
+    {
+      "layer": 26,
+      "load_seconds": 0.14907725099988056,
+      "execution_seconds": 0.07772585500015339,
+      "release_seconds": 0.00026059000015266065,
+      "cache_length": 8
+    },
+    {
+      "layer": 27,
+      "load_seconds": 0.14703010199991695,
+      "execution_seconds": 0.07300518599981842,
+      "release_seconds": 0.00022340999998959887,
+      "cache_length": 8
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "experiment": "EXP-05",
+  "cell": "CELL-1",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "checkpoint_dir": "/content/EXP-05/checkpoints/source",
+  "model_file": "/content/EXP-05/checkpoints/source/model.safetensors",
+  "model_file_size_bytes": 3087467144,
+  "model_file_size_gb": 2.8754278495907784,
+  "config_file": "/content/EXP-05/checkpoints/source/config.json",
+  "verification": {
+    "model_type": true,
+    "architecture": true,
+    "hidden_size": true,
+    "layers": true,
+    "attention_heads": true,
+    "kv_heads": true,
+    "vocab_size": true
+  }
+}

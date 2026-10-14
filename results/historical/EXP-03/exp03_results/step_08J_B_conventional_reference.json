@@ -1,0 +1,21 @@
+{
+  "step": "step_08J_B_conventional_fp16_reference",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "dtype": "torch.bfloat16",
+  "load_time_sec": 0.37840652600016256,
+  "forward_time_sec": 5.942979537000156,
+  "rss_before_load_gb": 1.1853065490722656,
+  "rss_after_load_gb": 1.19781494140625,
+  "logits_shape": [
+    1,
+    8,
+    151936
+  ],
+  "last_logits_shape": [
+    1,
+    151936
+  ],
+  "logits_finite": true,
+  "predicted_token_id": 15,
+  "predicted_token": "0"
+}

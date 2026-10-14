@@ -1,0 +1,30 @@
+{
+  "experiment": "EXP-04",
+  "step": "4E-1",
+  "stage": "two_layer_residency_functional_validation",
+  "status": "PASS",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "num_layers": 28,
+  "one_layer_residency_mb": 89.259765625,
+  "two_layer_residency_mb": 178.51953125,
+  "persistent_safe_open": true,
+  "handle_open_sec": 0.005622022000352445,
+  "layer0_load_sec": 0.001538441000320745,
+  "layer1_load_sec": 0.0012544599999273487,
+  "layer0_execution_sec": 0.1355736519999482,
+  "layer1_execution_sec": 0.1592496199996276,
+  "layer0_release_sec": 0.0008917619998101145,
+  "layer1_release_sec": 0.0007720270000390883,
+  "validation": {
+    "layer0_load": true,
+    "layer1_prefetch": true,
+    "two_layer_residency": true,
+    "layer0_execution": true,
+    "layer0_release": true,
+    "layer1_persistence": true,
+    "layer1_execution": true,
+    "layer1_release": true,
+    "all_layers_released": true
+  }
+}

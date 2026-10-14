@@ -1,0 +1,22 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "checkpoint_file": "/Users/umimac/Documents/Selective Layer Residency(Experiment)/new/App/artifacts/source/model.safetensors",
+  "file_size_bytes": 3087467144,
+  "total_tensors": 338,
+  "total_parameters": 1543714304,
+  "transformer_parameters": 1310339072,
+  "non_layer_parameters": 233375232,
+  "num_hidden_layers": 28,
+  "parameters_per_layer": 46797824,
+  "dtypes": [
+    "torch.bfloat16"
+  ],
+  "verification_status": "PASS",
+  "notes": [
+    "All 28 layers present with exact 46,797,824 parameters each",
+    "Tied input/output embeddings verified via model.embed_tokens.weight",
+    "Final RMSNorm verified via model.norm.weight",
+    "BF16 tensor dtype verified across all parameters"
+  ]
+}

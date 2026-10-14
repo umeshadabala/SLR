@@ -1,0 +1,80 @@
+{
+  "experiment": "EXP-05_CELL_16R",
+  "status": "FAIL",
+  "prompt": "Explain what a CPU is in simple terms.",
+  "max_new_tokens": 8,
+  "bf16": {
+    "mode": "BF16",
+    "generated_ids": [
+      362,
+      13,
+      220,
+      16,
+      13,
+      220,
+      16,
+      13
+    ],
+    "generated_text": " A. 1. 1.",
+    "prefill_time_sec": 3.3339100289999806,
+    "prefill_cache_length": 0,
+    "final_cache_length": 0,
+    "decode_times_sec": [
+      0.5707148719998258,
+      0.5919753789999049,
+      0.7000093439996817,
+      0.9450688169999921,
+      0.8715240260003156,
+      0.8764745929997844,
+      0.778610234000098,
+      0.6138801000001877
+    ],
+    "decode_total_sec": 5.94825736499979,
+    "mean_latency_sec": 0.7435321706249738,
+    "mean_tok_per_sec": 1.3449317185017737
+  },
+  "mixed": {
+    "mode": "MIXED",
+    "generated_ids": [
+      105806,
+      111740,
+      111740,
+      111740,
+      111740,
+      111740,
+      111740,
+      111740
+    ],
+    "generated_text": "\u4e25\u91cd\u7684\u4e25\u91cd\u5f71\u54cd\u4e25\u91cd\u5f71\u54cd\u4e25\u91cd\u5f71\u54cd\u4e25\u91cd\u5f71\u54cd\u4e25\u91cd\u5f71\u54cd\u4e25\u91cd\u5f71\u54cd\u4e25\u91cd\u5f71\u54cd",
+    "prefill_time_sec": 15.126653263000208,
+    "prefill_cache_length": 0,
+    "final_cache_length": 0,
+    "decode_times_sec": [
+      7.58209972900022,
+      7.335096095000154,
+      6.736716114999581,
+      6.706751548999819,
+      6.305512756999633,
+      7.2617314419999275,
+      6.204803055999946,
+      7.1500458139998955
+    ],
+    "decode_total_sec": 55.282756556999175,
+    "mean_latency_sec": 6.910344569624897,
+    "mean_tok_per_sec": 0.14471058424432248
+  },
+  "token_agreement": {
+    "count": 0,
+    "total": 8,
+    "rate": 0.0,
+    "first_divergence": 0
+  },
+  "cache_validation": false,
+  "residency": {
+    "bf16_cpu": 0,
+    "bf16_meta": 1310339072,
+    "mixed_cpu": 0,
+    "mixed_meta": 1310339072,
+    "pass": true
+  }
+}

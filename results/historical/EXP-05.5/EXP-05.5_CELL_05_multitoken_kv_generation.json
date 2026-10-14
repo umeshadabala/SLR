@@ -1,0 +1,144 @@
+{
+  "experiment": "EXP-05.5",
+  "cell": 5,
+  "status": "PASS",
+  "architecture": "mixed_mlp_int8",
+  "attention_precision": "BF16",
+  "mlp_precision": "INT8_per_output_channel",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "prefix_tokens": 8,
+  "generated_tokens": 8,
+  "generated_token_ids": [
+    220,
+    16,
+    13,
+    220,
+    16,
+    13,
+    220,
+    16
+  ],
+  "cache": {
+    "initial": 0,
+    "after_prefix": 8,
+    "final": 16,
+    "expected_final": 16
+  },
+  "residency": {
+    "peak_active_layers": 1,
+    "peak_active_params": 46797824,
+    "final_cpu_params": 0,
+    "final_meta_params": 1310339072
+  },
+  "prefix": {
+    "load_seconds": 7.525321400000621,
+    "execution_seconds": 2.5178405080002904,
+    "release_seconds": 0.013416138000366118
+  },
+  "decode": {
+    "total_seconds": 34.929337831996236,
+    "load_seconds": 32.416983361998746,
+    "execution_seconds": 2.459170197001413,
+    "release_seconds": 0.0531842729960772,
+    "mean_token_latency_seconds": 4.3661672289995295,
+    "mean_tokens_per_second": 0.22903382934078353,
+    "token_records": [
+      {
+        "step": 1,
+        "input_token_id": 220,
+        "next_token_id": 16,
+        "cache_before": 8,
+        "cache_after": 9,
+        "load_seconds": 4.311766009999474,
+        "execution_seconds": 0.308423552000022,
+        "release_seconds": 0.007341575999362249,
+        "total_seconds": 4.627531137998858,
+        "tokens_per_second": 0.21609795162446874
+      },
+      {
+        "step": 2,
+        "input_token_id": 16,
+        "next_token_id": 13,
+        "cache_before": 9,
+        "cache_after": 10,
+        "load_seconds": 4.1595528380000815,
+        "execution_seconds": 0.3070619610000449,
+        "release_seconds": 0.006335687999126094,
+        "total_seconds": 4.4729504869992525,
+        "tokens_per_second": 0.22356607856637942
+      },
+      {
+        "step": 3,
+        "input_token_id": 13,
+        "next_token_id": 220,
+        "cache_before": 10,
+        "cache_after": 11,
+        "load_seconds": 3.8802940490004403,
+        "execution_seconds": 0.299839723000332,
+        "release_seconds": 0.006428896999523204,
+        "total_seconds": 4.1865626690002955,
+        "tokens_per_second": 0.23885943650254465
+      },
+      {
+        "step": 4,
+        "input_token_id": 220,
+        "next_token_id": 16,
+        "cache_before": 11,
+        "cache_after": 12,
+        "load_seconds": 4.217457023999486,
+        "execution_seconds": 0.30938325899978736,
+        "release_seconds": 0.006886660999498417,
+        "total_seconds": 4.533726943998772,
+        "tokens_per_second": 0.2205690841888229
+      },
+      {
+        "step": 5,
+        "input_token_id": 16,
+        "next_token_id": 13,
+        "cache_before": 12,
+        "cache_after": 13,
+        "load_seconds": 3.8419105779994425,
+        "execution_seconds": 0.3027755150003486,
+        "release_seconds": 0.005910221999783971,
+        "total_seconds": 4.150596314999575,
+        "tokens_per_second": 0.24092923621267717
+      },
+      {
+        "step": 6,
+        "input_token_id": 13,
+        "next_token_id": 220,
+        "cache_before": 13,
+        "cache_after": 14,
+        "load_seconds": 3.8983414359993276,
+        "execution_seconds": 0.30596338200007267,
+        "release_seconds": 0.006474311999681959,
+        "total_seconds": 4.210779129999082,
+        "tokens_per_second": 0.2374857405546745
+      },
+      {
+        "step": 7,
+        "input_token_id": 220,
+        "next_token_id": 16,
+        "cache_before": 14,
+        "cache_after": 15,
+        "load_seconds": 4.260678761999316,
+        "execution_seconds": 0.3240567689999807,
+        "release_seconds": 0.007391616999939288,
+        "total_seconds": 4.592127147999236,
+        "tokens_per_second": 0.21776400517039135
+      },
+      {
+        "step": 8,
+        "input_token_id": 16,
+        "next_token_id": 13,
+        "cache_before": 15,
+        "cache_after": 16,
+        "load_seconds": 3.8469826650011782,
+        "execution_seconds": 0.30166603600082453,
+        "release_seconds": 0.006415299999162016,
+        "total_seconds": 4.155064001001165,
+        "tokens_per_second": 0.24067017975151514
+      }
+    ]
+  }
+}

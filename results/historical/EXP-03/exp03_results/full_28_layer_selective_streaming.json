@@ -1,0 +1,567 @@
+{
+  "experiment": "EXP-03",
+  "step": "step_08H_full_28_layer_selective_streaming",
+  "model": {
+    "name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "parameters": 1543714304,
+    "layers": 28,
+    "hidden_size": 1536
+  },
+  "input": {
+    "input_ids": [
+      [
+        9707,
+        11,
+        525,
+        264,
+        674,
+        374,
+        13,
+        20
+      ]
+    ],
+    "batch_size": 1,
+    "sequence_length": 8
+  },
+  "streaming": {
+    "layers_completed": 28,
+    "total_disk_bytes": 2620678144,
+    "total_disk_gb": 2.4406967163085938,
+    "peak_transformer_bytes": 93595648,
+    "peak_transformer_mb": 89.259765625,
+    "peak_rss_gb": 0.6507186889648438
+  },
+  "timing": {
+    "embedding_sec": 0.00021224000010988675,
+    "total_load_sec": 9.751259240000309,
+    "total_execution_sec": 11.60272391000126,
+    "total_release_sec": 10.020944217998931,
+    "final_norm_sec": 0.0007934499999464606,
+    "total_sec": 31.44731057800027
+  },
+  "final_output": {
+    "shape": [
+      1,
+      8,
+      1536
+    ],
+    "dtype": "torch.bfloat16",
+    "device": "cpu",
+    "finite": true
+  },
+  "validation": {
+    "all_layer_outputs_valid": true,
+    "all_layers_released": true,
+    "final_shape_correct": true,
+    "final_dtype_correct": true,
+    "final_device_correct": true,
+    "final_values_finite": true,
+    "success": true
+  },
+  "per_layer": [
+    {
+      "layer": 0,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.2551217639997958,
+      "execution_time_sec": 0.08378891800020938,
+      "release_time_sec": 0.26789540300023873,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 1,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.2623647830000664,
+      "execution_time_sec": 0.08267696799975965,
+      "release_time_sec": 0.2656650119997721,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 2,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.27070084300021335,
+      "execution_time_sec": 0.343220871000085,
+      "release_time_sec": 0.283169402999647,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6507148742675781,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 3,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.27938896300020133,
+      "execution_time_sec": 0.43475444900013827,
+      "release_time_sec": 0.2663699029999407,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 4,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.2742014919999747,
+      "execution_time_sec": 0.4438662590000604,
+      "release_time_sec": 0.2783960820001994,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 5,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.2744309439999597,
+      "execution_time_sec": 0.44613469900014024,
+      "release_time_sec": 0.2776322130002882,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 6,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.2899008029999095,
+      "execution_time_sec": 0.482901628000036,
+      "release_time_sec": 0.3431069220000609,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 7,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.34174111099991933,
+      "execution_time_sec": 0.48944840800004386,
+      "release_time_sec": 0.2849528429997008,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6507148742675781,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 8,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.2656102630003261,
+      "execution_time_sec": 0.45111011900007725,
+      "release_time_sec": 0.26768013299988525,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 9,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.26675718299975415,
+      "execution_time_sec": 0.42369202000008954,
+      "release_time_sec": 0.2689543129999947,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 10,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.27379342300037024,
+      "execution_time_sec": 0.4022143799998048,
+      "release_time_sec": 0.27551492300017344,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 11,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.267653092999808,
+      "execution_time_sec": 0.3395190520000142,
+      "release_time_sec": 0.26726951399996324,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 12,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.27210793299991565,
+      "execution_time_sec": 0.34467069100037406,
+      "release_time_sec": 0.28118123300009756,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 13,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.28601284299975305,
+      "execution_time_sec": 0.32532938099984676,
+      "release_time_sec": 0.2740106830001423,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 14,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.25995972400005485,
+      "execution_time_sec": 0.33482762199992067,
+      "release_time_sec": 0.25590996399978394,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6507148742675781,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 15,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.2757197329997325,
+      "execution_time_sec": 0.414767689999735,
+      "release_time_sec": 0.42659448999984306,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 16,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.4248323490000985,
+      "execution_time_sec": 0.4772708479999892,
+      "release_time_sec": 0.5032084969998323,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 17,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.4816418079999494,
+      "execution_time_sec": 0.526634237000053,
+      "release_time_sec": 0.7202859520002676,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 18,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.7960025190000124,
+      "execution_time_sec": 0.6017871740000373,
+      "release_time_sec": 0.9209431760000371,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 19,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.5053932269997858,
+      "execution_time_sec": 0.5412272660000781,
+      "release_time_sec": 0.35707212099987373,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 20,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.3074907720001647,
+      "execution_time_sec": 0.5267175270000735,
+      "release_time_sec": 0.41445135000003575,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506309509277344,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 21,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.4673739080003543,
+      "execution_time_sec": 0.46933892800007015,
+      "release_time_sec": 0.44181438899977366,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 22,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.4636452280001322,
+      "execution_time_sec": 0.4621190679999927,
+      "release_time_sec": 0.42421809999996185,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 23,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.3214501409997865,
+      "execution_time_sec": 0.46443985900032203,
+      "release_time_sec": 0.33797267199997805,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 24,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.4621817289998944,
+      "execution_time_sec": 0.4379646090001188,
+      "release_time_sec": 0.4223530889998983,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 25,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.4551565980000305,
+      "execution_time_sec": 0.3935750599998755,
+      "release_time_sec": 0.2794181829999616,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 26,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.29606939300037993,
+      "execution_time_sec": 0.4002460900001097,
+      "release_time_sec": 0.2845277429996713,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6507186889648438,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    },
+    {
+      "layer": 27,
+      "tensor_count": 12,
+      "storage_mb": 89.259765625,
+      "load_time_sec": 0.3545566699999654,
+      "execution_time_sec": 0.4584800890002043,
+      "release_time_sec": 0.33037591199990857,
+      "rss_before_load_gb": 0.6502304077148438,
+      "rss_after_load_gb": 0.6506576538085938,
+      "rss_after_release_gb": 0.6502304077148438,
+      "output_shape": [
+        1,
+        8,
+        1536
+      ],
+      "output_valid": true,
+      "released": true
+    }
+  ]
+}

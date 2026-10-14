@@ -1,0 +1,107 @@
+{
+  "experiment": "EXP-03",
+  "step": "step_08I_B_tied_embedding_output_projection",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "parameters": 1543714304,
+  "output_projection": {
+    "method": "tied_input_embedding",
+    "embedding_shape": [
+      151936,
+      1536
+    ],
+    "embedding_storage_mb": 445.125,
+    "projection_time_sec": 2.3352298590002647
+  },
+  "memory": {
+    "rss_before_gb": 0.6498908996582031,
+    "rss_after_gb": 1.0845832824707031
+  },
+  "logits": {
+    "shape": [
+      1,
+      151936
+    ],
+    "dtype": "torch.bfloat16",
+    "device": "cpu",
+    "finite": true
+  },
+  "prediction": {
+    "token_id": 15,
+    "token": "0"
+  },
+  "top_10": [
+    {
+      "rank": 1,
+      "token_id": 15,
+      "logit": 17.625,
+      "token": "0"
+    },
+    {
+      "rank": 2,
+      "token_id": 20,
+      "logit": 17.125,
+      "token": "5"
+    },
+    {
+      "rank": 3,
+      "token_id": 13,
+      "logit": 17.0,
+      "token": "."
+    },
+    {
+      "rank": 4,
+      "token_id": 16,
+      "logit": 16.875,
+      "token": "1"
+    },
+    {
+      "rank": 5,
+      "token_id": 17,
+      "logit": 16.875,
+      "token": "2"
+    },
+    {
+      "rank": 6,
+      "token_id": 19,
+      "logit": 16.75,
+      "token": "4"
+    },
+    {
+      "rank": 7,
+      "token_id": 21,
+      "logit": 16.75,
+      "token": "6"
+    },
+    {
+      "rank": 8,
+      "token_id": 23,
+      "logit": 16.625,
+      "token": "8"
+    },
+    {
+      "rank": 9,
+      "token_id": 22,
+      "logit": 16.625,
+      "token": "7"
+    },
+    {
+      "rank": 10,
+      "token_id": 18,
+      "logit": 16.625,
+      "token": "3"
+    }
+  ],
+  "architecture": {
+    "transformer_layers_meta": true,
+    "independent_lm_head_loaded": false,
+    "shared_embedding_used": true
+  },
+  "validation": {
+    "logits_shape_correct": true,
+    "logits_dtype_correct": true,
+    "logits_device_correct": true,
+    "logits_finite": true,
+    "hidden_state_valid": true,
+    "success": true
+  }
+}

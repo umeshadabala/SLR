@@ -1,0 +1,26 @@
+{
+  "experiment": "EXP-04",
+  "step": "4F-4",
+  "stage": "storage_page_cache_prefetch",
+  "baseline_load_sec": 0.002025671999945189,
+  "prefetch": {
+    "layer": 2,
+    "tensor_count": 12,
+    "bytes_touched": 93595648,
+    "mb_touched": 89.259765625,
+    "elapsed_sec": 0.0019701729997905204,
+    "checksum": -0.07337570190429688
+  },
+  "post_prefetch_load_sec": 0.0014064870001675445,
+  "load_difference_sec": 0.0006191849997776444,
+  "load_reduction_percent": 30.566893346721407,
+  "load_speedup": 1.440235138827366,
+  "active_residency_mb": 178.51953125,
+  "validation": {
+    "prefetch_completed": true,
+    "no_third_model_layer": true,
+    "active_residency_bounded": true,
+    "post_prefetch_load_completed": true,
+    "cleanup_completed": true
+  }
+}

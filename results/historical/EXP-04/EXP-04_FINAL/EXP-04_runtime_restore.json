@@ -1,0 +1,18 @@
+{
+  "experiment": "EXP-04",
+  "step": "runtime_restore",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "weights_path": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/model.safetensors",
+  "weights_size_gb": 2.8754278495907784,
+  "config_path": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json",
+  "tokenizer_files_downloaded": [
+    "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer.json",
+    "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json"
+  ],
+  "weights_download_time_sec": 86.01961891299993,
+  "config_verified": true,
+  "expected_layers": 28,
+  "expected_hidden_size": 1536,
+  "success": true
+}

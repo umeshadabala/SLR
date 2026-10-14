@@ -1,0 +1,37 @@
+{
+  "experiment": "EXP-04",
+  "step": "4C-2",
+  "stage": "prebound_layer0_functional_test",
+  "status": "PASS",
+  "checkpoint": "/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/model.safetensors",
+  "checkpoint_tensors": 338,
+  "safe_open": {
+    "persistent": true,
+    "open_time_sec": 0.002346366000438138
+  },
+  "layer": 0,
+  "load_time_sec": 0.0014087730000937881,
+  "execution_time_sec": 0.17187211000009484,
+  "release_time_sec": 0.0005204900003263901,
+  "transformer_residency_mb": 89.259765625,
+  "input_shape": [
+    1,
+    8,
+    1536
+  ],
+  "output_shape": [
+    1,
+    8,
+    1536
+  ],
+  "dtype": "torch.bfloat16",
+  "validation": {
+    "handle_access": true,
+    "prebound_bindings": true,
+    "meta_before_load": true,
+    "cpu_after_load": true,
+    "execution": true,
+    "finite_output": true,
+    "complete_release": true
+  }
+}

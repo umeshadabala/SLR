@@ -1,0 +1,93 @@
+{
+  "experiment": "EXP-03",
+  "title": "Selective Residency for Low-Resource LLM Inference",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_parameters": 1543714304,
+  "representation": "BF16",
+  "architecture": {
+    "transformer_layers": 28,
+    "hidden_size": 1536,
+    "vocab_size": 151936,
+    "tied_word_embeddings": true
+  },
+  "objective": "Evaluate whether transformer layers can be streamed from SSD-backed safetensors into CPU RAM one layer at a time while preserving functional inference.",
+  "selective_residency": {
+    "transformer_weight_volume_gb": 2.4406967163085938,
+    "peak_transformer_residency_mb": 89.259765625,
+    "residency_reduction_percent": 96.42857142857143,
+    "peak_process_rss_gb": 0.6507186889648438
+  },
+  "inference": {
+    "layers_streamed": 28,
+    "final_hidden_shape": [
+      1,
+      8,
+      1536
+    ],
+    "output_projection": "tied embedding matrix",
+    "predicted_token_id": 15,
+    "predicted_token": "0"
+  },
+  "performance": {
+    "step": "step_08K_performance_analysis",
+    "transformer_weight_volume_gb": 2.4406967163085938,
+    "peak_transformer_residency_mb": 89.259765625,
+    "residency_reduction_percent": 96.42857142857143,
+    "weight_volume_to_peak_residency_ratio": 28.0,
+    "peak_process_rss_gb": 0.6507186889648438,
+    "timing": {
+      "total_streaming_sec": 31.44731057800027,
+      "load_sec": 9.751259240000309,
+      "execution_sec": 11.60272391000126,
+      "release_sec": 10.020944217998931,
+      "residency_overhead_sec": 19.77220345799924,
+      "output_projection_sec": 2.3352298590002647
+    },
+    "fractions": {
+      "compute_fraction": 0.3689575895917226,
+      "residency_overhead_fraction": 0.6287406806682975
+    },
+    "per_layer": {
+      "average_load_sec": 0.3482592585714396,
+      "average_execution_sec": 0.41438299678575924,
+      "average_release_sec": 0.3578908649285332,
+      "average_total_sec": 1.123118234928581
+    }
+  },
+  "correctness": {
+    "step": "step_08J_C_correctness_comparison",
+    "selective_top1": 15,
+    "reference_top1": 15,
+    "top1_match": true,
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "mean_relative_error": 0.0,
+    "cosine_similarity": 0.9999774098396301,
+    "top10_intersection": 10,
+    "top10_jaccard": 1.0,
+    "logit_close": true,
+    "cosine_close": true,
+    "correctness_pass": true
+  },
+  "validation": {
+    "full_streaming_success": true,
+    "correctness_success": true,
+    "end_to_end_success": true
+  },
+  "generated_at": "2026-10-05T16:05:16.696392",
+  "source_results": [
+    "full_28_layer_selective_streaming.json",
+    "model_metadata.json",
+    "selective_load_release_reload.json",
+    "selectively_loaded_layer_execution.json",
+    "single_layer_load.json",
+    "step_08I_A_weight_tying.json",
+    "step_08I_B_tied_output_projection.json",
+    "step_08J_A_reference_safety.json",
+    "step_08J_B_conventional_reference.json",
+    "step_08J_C_correctness_comparison.json",
+    "step_08K_performance_analysis.json",
+    "tensor_layout.json",
+    "two_layer_sequential_streaming.json"
+  ]
+}

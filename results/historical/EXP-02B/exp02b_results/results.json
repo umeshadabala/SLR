@@ -1,0 +1,43 @@
+{
+  "experiment_id": "EXP-02b",
+  "experiment_name": "INT8 quantization (bitsandbytes) \u2014 Qwen2.5-1.5B-Instruct (CPU)",
+  "hypothesis": "INT8 quantization via bitsandbytes load_in_8bit will further reduce peak RAM below FP16, with uncertain throughput impact depending on CPU INT8 kernel support.",
+  "setup": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "method": "bitsandbytes load_in_8bit (direct load, no FP32 precursor)",
+    "bitsandbytes_version": "0.50.2",
+    "device": "cpu",
+    "torch_threads": 2,
+    "max_new_tokens": 64,
+    "decoding": "greedy",
+    "benchmark_prompt_count": 12
+  },
+  "measurement": {
+    "load_time_sec": 27.91,
+    "peak_rss_gb_during_load": 4.7931,
+    "peak_rss_gb_during_inference": 5.2287,
+    "avg_tokens_per_sec": 0.2184,
+    "total_benchmark_time_sec": 2167.56,
+    "successful_prompts": 12,
+    "failed_prompts": 0
+  },
+  "comparison": {
+    "peak_ram_load_gb": {
+      "fp32": 8.6423,
+      "fp16": 6.3303,
+      "int8_bnb": 4.7931
+    },
+    "peak_ram_inference_gb": {
+      "fp32": 6.9316,
+      "fp16": 3.5037,
+      "int8_bnb": 5.2287
+    },
+    "avg_tokens_per_sec": {
+      "fp32": 1.3079,
+      "fp16": 1.2428,
+      "int8_bnb": 0.2184
+    }
+  },
+  "result": "12/12 success, coherent outputs. INT8 (bitsandbytes) achieved the lowest load RAM of the three precisions tested (4.7931 GB) but HIGHER inference RAM than FP16 (5.2287 GB vs 3.5037 GB) and was approximately 5.7x SLOWER than FP16 (0.2184 vs 1.2428 tok/s). The observed behavior is consistent with the bitsandbytes CPU path repeatedly casting INT8 weights/inputs for computation rather than using a fully optimized native CPU INT8 execution path.",
+  "conclusion": "FP16 remains the best precision among the tested configurations for this memory-constrained CPU use case. Although bitsandbytes INT8 reduced peak RAM during the model-loading phase, it did not provide a corresponding inference-memory advantage and introduced a substantial throughput penalty. This is a useful negative result: lower bit-width does not automatically produce better CPU inference when the selected runtime/kernel path is not hardware-optimized for CPU INT8 execution. EXP-02c should therefore investigate a genuinely CPU-native INT8 approach before concluding that INT8 itself is unsuitable."
+}

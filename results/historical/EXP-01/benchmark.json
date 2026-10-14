@@ -1,0 +1,133 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "max_new_tokens": 64,
+  "greedy": true,
+  "total_benchmark_time_sec": 353.55,
+  "successful_count": 12,
+  "failed_count": 0,
+  "avg_tokens_per_sec": 1.3079,
+  "total_output_tokens": 486,
+  "peak_rss_gb_during_inference": 6.9316,
+  "per_prompt_results": [
+    {
+      "index": 0,
+      "prompt": "What is the capital of France?",
+      "success": true,
+      "prompt_token_count": 36,
+      "output_token_count": 8,
+      "elapsed_sec": 15.2927,
+      "tokens_per_sec": 0.5231,
+      "output_text": "The capital of France is Paris."
+    },
+    {
+      "index": 1,
+      "prompt": "Explain photosynthesis in two sentences.",
+      "success": true,
+      "prompt_token_count": 37,
+      "output_token_count": 39,
+      "elapsed_sec": 26.0195,
+      "tokens_per_sec": 1.4989,
+      "output_text": "Photosynthesis is the process by which plants use sunlight to convert carbon dioxide and water into glucose and oxygen. This process not only provides energy for plant growth but also releases oxygen into the atmosphere."
+    },
+    {
+      "index": 2,
+      "prompt": "Write a haiku about the ocean.",
+      "success": true,
+      "prompt_token_count": 37,
+      "output_token_count": 19,
+      "elapsed_sec": 14.4054,
+      "tokens_per_sec": 1.3189,
+      "output_text": "Ocean's vastness,\nWhispers of waves in harmony,\nBoundless blue expanse."
+    },
+    {
+      "index": 3,
+      "prompt": "What is 17 multiplied by 24?",
+      "success": true,
+      "prompt_token_count": 40,
+      "output_token_count": 64,
+      "elapsed_sec": 54.1617,
+      "tokens_per_sec": 1.1816,
+      "output_text": "To find the product of 17 and 24, you can use the standard multiplication method:\n\n```\n     17\n   \u00d7  24\n   _______\n    68   (17\u00d74)\n   340  (17\u00d720, shifted one"
+    },
+    {
+      "index": 4,
+      "prompt": "Summarize the plot of Romeo and Juliet in one sentence.",
+      "success": true,
+      "prompt_token_count": 42,
+      "output_token_count": 45,
+      "elapsed_sec": 33.9036,
+      "tokens_per_sec": 1.3273,
+      "output_text": "Romeo and Juliet is a tragic love story set in Verona, Italy, where two young star-crossed lovers from feuding families come together against all odds to be together, ultimately leading to their tragic deaths."
+    },
+    {
+      "index": 5,
+      "prompt": "Name three programming languages used for systems programming.",
+      "success": true,
+      "prompt_token_count": 38,
+      "output_token_count": 64,
+      "elapsed_sec": 46.872,
+      "tokens_per_sec": 1.3654,
+      "output_text": "Three commonly used programming languages for systems programming include:\n\n1. C/C++\n2. Assembly Language\n3. Rust\n\nC and C++ are widely used because they provide low-level access to hardware resources, making them suitable for system software development such as operating systems, device drivers, and other core components of computer systems.\n\n"
+    },
+    {
+      "index": 6,
+      "prompt": "What causes rain?",
+      "success": true,
+      "prompt_token_count": 33,
+      "output_token_count": 64,
+      "elapsed_sec": 40.6019,
+      "tokens_per_sec": 1.5763,
+      "output_text": "Rain is caused by the condensation of water vapor in the atmosphere into liquid droplets or ice crystals. This process occurs when warm air rises and cools, causing the water vapor to turn back into liquid form. The condensed water then falls from clouds as precipitation, which can take various forms such as rain, snow,"
+    },
+    {
+      "index": 7,
+      "prompt": "Translate 'good morning' into French.",
+      "success": true,
+      "prompt_token_count": 37,
+      "output_token_count": 11,
+      "elapsed_sec": 9.4443,
+      "tokens_per_sec": 1.1647,
+      "output_text": "\"Good morning\" in French is \"Bonjour.\""
+    },
+    {
+      "index": 8,
+      "prompt": "List two benefits of regular exercise.",
+      "success": true,
+      "prompt_token_count": 36,
+      "output_token_count": 64,
+      "elapsed_sec": 40.3985,
+      "tokens_per_sec": 1.5842,
+      "output_text": "Two benefits of regular exercise include:\n\n1. Improved cardiovascular health: Exercise helps strengthen the heart and lungs, making them more efficient at pumping blood throughout the body. This can lead to better overall circulation and oxygen delivery to tissues.\n\n2. Weight management: Regular physical activity burns calories and builds muscle mass, which increases metabolism and"
+    },
+    {
+      "index": 9,
+      "prompt": "What is the chemical symbol for gold?",
+      "success": true,
+      "prompt_token_count": 37,
+      "output_token_count": 9,
+      "elapsed_sec": 8.376,
+      "tokens_per_sec": 1.0745,
+      "output_text": "The chemical symbol for gold is Au."
+    },
+    {
+      "index": 10,
+      "prompt": "Explain what a REST API is in simple terms.",
+      "success": true,
+      "prompt_token_count": 40,
+      "output_token_count": 64,
+      "elapsed_sec": 40.9065,
+      "tokens_per_sec": 1.5645,
+      "output_text": "A REST (Representational State Transfer) API is a type of web service that allows different software applications to communicate with each other over the internet using standard HTTP methods like GET, POST, PUT, DELETE, etc. It's designed to be stateless and follows principles such as caching, uniform interface, and layering.\n\n"
+    },
+    {
+      "index": 11,
+      "prompt": "What year did the first man land on the moon?",
+      "success": true,
+      "prompt_token_count": 40,
+      "output_token_count": 35,
+      "elapsed_sec": 23.0888,
+      "tokens_per_sec": 1.5159,
+      "output_text": "The first person to land on the Moon was American astronaut Neil Armstrong, who made that historic achievement during the Apollo 11 mission in July 1969."
+    }
+  ]
+}

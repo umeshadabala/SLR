@@ -1,0 +1,44 @@
+{
+  "experiment": "EXP-05",
+  "cell": "CELL-4",
+  "layer_id": 0,
+  "method": "symmetric_per_tensor_int8",
+  "input_shape": [
+    1,
+    8,
+    1536
+  ],
+  "bf16_output_shape": [
+    1,
+    8,
+    1536
+  ],
+  "int8_output_shape": [
+    1,
+    8,
+    1536
+  ],
+  "bf16_load_time_sec": 0.005183136000027844,
+  "bf16_execution_time_sec": 0.3624457530000882,
+  "int8_load_quantize_reconstruct_time_sec": 3.057237641000029,
+  "int8_execution_time_sec": 0.13315802199997506,
+  "comparison": {
+    "max_abs_difference": 0.15625,
+    "mean_abs_difference": 0.02675333060324192,
+    "rmse": 0.03411349281668663,
+    "relative_l2_error": 0.03009902689379057,
+    "cosine_similarity": 0.9995511174201965
+  },
+  "storage": {
+    "bf16_layer_bytes": 93595648,
+    "int8_data_plus_scales_bytes": 46797872,
+    "reduction_percent": 49.999948715564216
+  },
+  "validation": {
+    "shape": true,
+    "finite": true,
+    "cosine": true,
+    "cleanup": true,
+    "success": true
+  }
+}

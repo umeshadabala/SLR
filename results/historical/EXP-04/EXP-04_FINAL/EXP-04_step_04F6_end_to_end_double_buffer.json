@@ -1,0 +1,1460 @@
+{
+  "experiment": "EXP-04",
+  "step": "4F-6",
+  "stage": "end_to_end_asynchronous_double_buffer",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "num_layers": 28,
+  "layer_params": 46797824,
+  "residency": {
+    "one_active_layer_mb": 89.259765625,
+    "active_plus_staged_mb": 178.51953125,
+    "maximum_weight_data_mb": 178.51953125,
+    "maximum_active_layers": 1,
+    "maximum_staged_layers": 1
+  },
+  "runs": [
+    {
+      "initial_load_sec": 0.001090783000108786,
+      "stage_total_sec": 0.02521462400090968,
+      "install_total_sec": 0.009555920003549545,
+      "execute_total_sec": 2.8871984079996764,
+      "release_total_sec": 0.012099821998162952,
+      "final_hidden_shape": [
+        1,
+        8,
+        1536
+      ],
+      "final_norm": 1071.94775390625,
+      "max_weight_data_mb": 178.51953125,
+      "max_active_layers": 1,
+      "max_staged_layers": 1,
+      "stage_results": [
+        {
+          "layer": 1,
+          "stage_time_sec": 0.0026865729996643495,
+          "staged_mb": 89.259765625,
+          "checksum": -2.7141265869140625
+        },
+        {
+          "layer": 2,
+          "stage_time_sec": 0.0007492020004065125,
+          "staged_mb": 89.259765625,
+          "checksum": -0.07337570190429688
+        },
+        {
+          "layer": 3,
+          "stage_time_sec": 0.0007376669991572271,
+          "staged_mb": 89.259765625,
+          "checksum": 4.433074951171875
+        },
+        {
+          "layer": 4,
+          "stage_time_sec": 0.0007823530004316126,
+          "staged_mb": 89.259765625,
+          "checksum": -0.3370361328125
+        },
+        {
+          "layer": 5,
+          "stage_time_sec": 0.0008126950006044353,
+          "staged_mb": 89.259765625,
+          "checksum": 0.6958599414210767
+        },
+        {
+          "layer": 6,
+          "stage_time_sec": 0.0007517459998780396,
+          "staged_mb": 89.259765625,
+          "checksum": 1.943878173828125
+        },
+        {
+          "layer": 7,
+          "stage_time_sec": 0.0009134639994954341,
+          "staged_mb": 89.259765625,
+          "checksum": 2.568878173828125
+        },
+        {
+          "layer": 8,
+          "stage_time_sec": 0.0007385090002571815,
+          "staged_mb": 89.259765625,
+          "checksum": 1.5369873046875
+        },
+        {
+          "layer": 9,
+          "stage_time_sec": 0.0007343360002778354,
+          "staged_mb": 89.259765625,
+          "checksum": 1.0500335693359375
+        },
+        {
+          "layer": 10,
+          "stage_time_sec": 0.0013495189996319823,
+          "staged_mb": 89.259765625,
+          "checksum": 1.1462440490722656
+        },
+        {
+          "layer": 11,
+          "stage_time_sec": 0.0007316679993891739,
+          "staged_mb": 89.259765625,
+          "checksum": 1.0204849243164062
+        },
+        {
+          "layer": 12,
+          "stage_time_sec": 0.0007784830004311516,
+          "staged_mb": 89.259765625,
+          "checksum": 0.46475982666015625
+        },
+        {
+          "layer": 13,
+          "stage_time_sec": 0.0009645949994592229,
+          "staged_mb": 89.259765625,
+          "checksum": -3.851466178894043
+        },
+        {
+          "layer": 14,
+          "stage_time_sec": 0.0008038799996938906,
+          "staged_mb": 89.259765625,
+          "checksum": -0.8980312347412109
+        },
+        {
+          "layer": 15,
+          "stage_time_sec": 0.00076567599990085,
+          "staged_mb": 89.259765625,
+          "checksum": 2.3297119140625
+        },
+        {
+          "layer": 16,
+          "stage_time_sec": 0.0007309860002351343,
+          "staged_mb": 89.259765625,
+          "checksum": 1.1970207691192627
+        },
+        {
+          "layer": 17,
+          "stage_time_sec": 0.0008486779997838312,
+          "staged_mb": 89.259765625,
+          "checksum": 2.221832275390625
+        },
+        {
+          "layer": 18,
+          "stage_time_sec": 0.000885489000211237,
+          "staged_mb": 89.259765625,
+          "checksum": 1.3548526763916016
+        },
+        {
+          "layer": 19,
+          "stage_time_sec": 0.0007828530006008805,
+          "staged_mb": 89.259765625,
+          "checksum": 0.7077755928039551
+        },
+        {
+          "layer": 20,
+          "stage_time_sec": 0.0007598060001328122,
+          "staged_mb": 89.259765625,
+          "checksum": 0.0929107666015625
+        },
+        {
+          "layer": 21,
+          "stage_time_sec": 0.0008286550000775605,
+          "staged_mb": 89.259765625,
+          "checksum": 0.595916748046875
+        },
+        {
+          "layer": 22,
+          "stage_time_sec": 0.0008339320002050954,
+          "staged_mb": 89.259765625,
+          "checksum": 0.31246185302734375
+        },
+        {
+          "layer": 23,
+          "stage_time_sec": 0.000790795000284561,
+          "staged_mb": 89.259765625,
+          "checksum": 2.3337249755859375
+        },
+        {
+          "layer": 24,
+          "stage_time_sec": 0.0010226410004179343,
+          "staged_mb": 89.259765625,
+          "checksum": 0.17359066009521484
+        },
+        {
+          "layer": 25,
+          "stage_time_sec": 0.0007273620003616088,
+          "staged_mb": 89.259765625,
+          "checksum": 4.245086669921875
+        },
+        {
+          "layer": 26,
+          "stage_time_sec": 0.0011423300002206815,
+          "staged_mb": 89.259765625,
+          "checksum": 5.757167816162109
+        },
+        {
+          "layer": 27,
+          "stage_time_sec": 0.0015607309996994445,
+          "staged_mb": 89.259765625,
+          "checksum": 5.941497802734375
+        }
+      ],
+      "layer_results": [
+        {
+          "executed_layer": 0,
+          "next_layer": 1,
+          "execute_sec": 0.10211630400044669,
+          "stage_sec": 0.0026865729996643495,
+          "release_sec": 0.00043218399969191523,
+          "install_sec": 0.0003528280003592954,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 1,
+          "next_layer": 2,
+          "execute_sec": 0.1005678520004949,
+          "stage_sec": 0.0007492020004065125,
+          "release_sec": 0.0004328420000092592,
+          "install_sec": 0.0003108529999735765,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 2,
+          "next_layer": 3,
+          "execute_sec": 0.12677762499970413,
+          "stage_sec": 0.0007376669991572271,
+          "release_sec": 0.00042739499986055307,
+          "install_sec": 0.00031743700037623057,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 3,
+          "next_layer": 4,
+          "execute_sec": 0.1009211119999236,
+          "stage_sec": 0.0007823530004316126,
+          "release_sec": 0.0005358089993023896,
+          "install_sec": 0.0003822029993898468,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 4,
+          "next_layer": 5,
+          "execute_sec": 0.10402436700042017,
+          "stage_sec": 0.0008126950006044353,
+          "release_sec": 0.0004428270003700163,
+          "install_sec": 0.0003305830005047028,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 5,
+          "next_layer": 6,
+          "execute_sec": 0.10257435099993018,
+          "stage_sec": 0.0007517459998780396,
+          "release_sec": 0.00048171899925364414,
+          "install_sec": 0.0007515460001741303,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 6,
+          "next_layer": 7,
+          "execute_sec": 0.1018510249996325,
+          "stage_sec": 0.0009134639994954341,
+          "release_sec": 0.000394204000258469,
+          "install_sec": 0.0003364280000823783,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 7,
+          "next_layer": 8,
+          "execute_sec": 0.09978017600042222,
+          "stage_sec": 0.0007385090002571815,
+          "release_sec": 0.000449750000370841,
+          "install_sec": 0.0003231009995943168,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 8,
+          "next_layer": 9,
+          "execute_sec": 0.1006593679994694,
+          "stage_sec": 0.0007343360002778354,
+          "release_sec": 0.0006445340004574973,
+          "install_sec": 0.0003072910003538709,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 9,
+          "next_layer": 10,
+          "execute_sec": 0.10738917300022877,
+          "stage_sec": 0.0013495189996319823,
+          "release_sec": 0.000399697999455384,
+          "install_sec": 0.00028978600039408775,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 10,
+          "next_layer": 11,
+          "execute_sec": 0.1020419819997187,
+          "stage_sec": 0.0007316679993891739,
+          "release_sec": 0.0004413189999468159,
+          "install_sec": 0.0003164990002915147,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 11,
+          "next_layer": 12,
+          "execute_sec": 0.1323968339993371,
+          "stage_sec": 0.0007784830004311516,
+          "release_sec": 0.00040204600009019487,
+          "install_sec": 0.0005223289999776171,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 12,
+          "next_layer": 13,
+          "execute_sec": 0.10492579800029489,
+          "stage_sec": 0.0009645949994592229,
+          "release_sec": 0.00040203999924415257,
+          "install_sec": 0.0002890489995479584,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 13,
+          "next_layer": 14,
+          "execute_sec": 0.10040854099952412,
+          "stage_sec": 0.0008038799996938906,
+          "release_sec": 0.0004321289998188149,
+          "install_sec": 0.0003021709999302402,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 14,
+          "next_layer": 15,
+          "execute_sec": 0.09707268400052271,
+          "stage_sec": 0.00076567599990085,
+          "release_sec": 0.00041884400070557604,
+          "install_sec": 0.00030372400033229496,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 15,
+          "next_layer": 16,
+          "execute_sec": 0.09698372000002564,
+          "stage_sec": 0.0007309860002351343,
+          "release_sec": 0.0004263809996700729,
+          "install_sec": 0.0003290290005679708,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 16,
+          "next_layer": 17,
+          "execute_sec": 0.10034536000057415,
+          "stage_sec": 0.0008486779997838312,
+          "release_sec": 0.0003802190003625583,
+          "install_sec": 0.0006035129999872879,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 17,
+          "next_layer": 18,
+          "execute_sec": 0.10220537599980162,
+          "stage_sec": 0.000885489000211237,
+          "release_sec": 0.0003930059992853785,
+          "install_sec": 0.0003281520002929028,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 18,
+          "next_layer": 19,
+          "execute_sec": 0.10166235100041376,
+          "stage_sec": 0.0007828530006008805,
+          "release_sec": 0.00039197000023705186,
+          "install_sec": 0.00028387600013957126,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 19,
+          "next_layer": 20,
+          "execute_sec": 0.09688210800050001,
+          "stage_sec": 0.0007598060001328122,
+          "release_sec": 0.00039781699979357654,
+          "install_sec": 0.00032294399989041267,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 20,
+          "next_layer": 21,
+          "execute_sec": 0.1235018029992716,
+          "stage_sec": 0.0008286550000775605,
+          "release_sec": 0.0004530280002654763,
+          "install_sec": 0.0002860410004359437,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 21,
+          "next_layer": 22,
+          "execute_sec": 0.10287264099952154,
+          "stage_sec": 0.0008339320002050954,
+          "release_sec": 0.00038955899981374387,
+          "install_sec": 0.0002922060002674698,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 22,
+          "next_layer": 23,
+          "execute_sec": 0.09606575199995859,
+          "stage_sec": 0.000790795000284561,
+          "release_sec": 0.00035908799964090576,
+          "install_sec": 0.0002851630006261985,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 23,
+          "next_layer": 24,
+          "execute_sec": 0.09316731400031131,
+          "stage_sec": 0.0010226410004179343,
+          "release_sec": 0.0005027709994465113,
+          "install_sec": 0.00048723600048106164,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 24,
+          "next_layer": 25,
+          "execute_sec": 0.09805612599939195,
+          "stage_sec": 0.0007273620003616088,
+          "release_sec": 0.00040561600053479197,
+          "install_sec": 0.00027084500015917,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 25,
+          "next_layer": 26,
+          "execute_sec": 0.09673334099989006,
+          "stage_sec": 0.0011423300002206815,
+          "release_sec": 0.00039370200011035195,
+          "install_sec": 0.00031267299982573604,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 26,
+          "next_layer": 27,
+          "execute_sec": 0.10112896999999066,
+          "stage_sec": 0.0015607309996994445,
+          "release_sec": 0.0004493690003073425,
+          "install_sec": 0.0003184139995937585,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 27,
+          "next_layer": null,
+          "execute_sec": 0.09408635399995546,
+          "stage_sec": 0.0,
+          "release_sec": 0.0004199559998596669,
+          "install_sec": 0.0,
+          "peak_weight_data_mb": 0.0,
+          "post_install_residency_mb": 0.0
+        }
+      ],
+      "success": true,
+      "wall_sec": 3.264762177999728
+    },
+    {
+      "initial_load_sec": 0.001260155000636587,
+      "stage_total_sec": 0.027528042999620084,
+      "install_total_sec": 0.00907470300080604,
+      "execute_total_sec": 2.8817599990006784,
+      "release_total_sec": 0.012519100004283246,
+      "final_hidden_shape": [
+        1,
+        8,
+        1536
+      ],
+      "final_norm": 1071.94775390625,
+      "max_weight_data_mb": 178.51953125,
+      "max_active_layers": 1,
+      "max_staged_layers": 1,
+      "stage_results": [
+        {
+          "layer": 1,
+          "stage_time_sec": 0.0032018390002122032,
+          "staged_mb": 89.259765625,
+          "checksum": -2.7141265869140625
+        },
+        {
+          "layer": 2,
+          "stage_time_sec": 0.0008457410003757104,
+          "staged_mb": 89.259765625,
+          "checksum": -0.07337570190429688
+        },
+        {
+          "layer": 3,
+          "stage_time_sec": 0.0008636369993837434,
+          "staged_mb": 89.259765625,
+          "checksum": 4.433074951171875
+        },
+        {
+          "layer": 4,
+          "stage_time_sec": 0.000825380999231129,
+          "staged_mb": 89.259765625,
+          "checksum": -0.3370361328125
+        },
+        {
+          "layer": 5,
+          "stage_time_sec": 0.0007178050000220537,
+          "staged_mb": 89.259765625,
+          "checksum": 0.6958599414210767
+        },
+        {
+          "layer": 6,
+          "stage_time_sec": 0.000784578000093461,
+          "staged_mb": 89.259765625,
+          "checksum": 1.943878173828125
+        },
+        {
+          "layer": 7,
+          "stage_time_sec": 0.0007162430001699249,
+          "staged_mb": 89.259765625,
+          "checksum": 2.568878173828125
+        },
+        {
+          "layer": 8,
+          "stage_time_sec": 0.0007186350003394182,
+          "staged_mb": 89.259765625,
+          "checksum": 1.5369873046875
+        },
+        {
+          "layer": 9,
+          "stage_time_sec": 0.000668865000079677,
+          "staged_mb": 89.259765625,
+          "checksum": 1.0500335693359375
+        },
+        {
+          "layer": 10,
+          "stage_time_sec": 0.0008410769996771705,
+          "staged_mb": 89.259765625,
+          "checksum": 1.1462440490722656
+        },
+        {
+          "layer": 11,
+          "stage_time_sec": 0.0008578440001656418,
+          "staged_mb": 89.259765625,
+          "checksum": 1.0204849243164062
+        },
+        {
+          "layer": 12,
+          "stage_time_sec": 0.000882152000485803,
+          "staged_mb": 89.259765625,
+          "checksum": 0.46475982666015625
+        },
+        {
+          "layer": 13,
+          "stage_time_sec": 0.0007874550001361058,
+          "staged_mb": 89.259765625,
+          "checksum": -3.851466178894043
+        },
+        {
+          "layer": 14,
+          "stage_time_sec": 0.0008709300000191433,
+          "staged_mb": 89.259765625,
+          "checksum": -0.8980312347412109
+        },
+        {
+          "layer": 15,
+          "stage_time_sec": 0.0007376149997071479,
+          "staged_mb": 89.259765625,
+          "checksum": 2.3297119140625
+        },
+        {
+          "layer": 16,
+          "stage_time_sec": 0.0008519509992765961,
+          "staged_mb": 89.259765625,
+          "checksum": 1.1970207691192627
+        },
+        {
+          "layer": 17,
+          "stage_time_sec": 0.000759804000153963,
+          "staged_mb": 89.259765625,
+          "checksum": 2.221832275390625
+        },
+        {
+          "layer": 18,
+          "stage_time_sec": 0.0008825120003166376,
+          "staged_mb": 89.259765625,
+          "checksum": 1.3548526763916016
+        },
+        {
+          "layer": 19,
+          "stage_time_sec": 0.000692970999807585,
+          "staged_mb": 89.259765625,
+          "checksum": 0.7077755928039551
+        },
+        {
+          "layer": 20,
+          "stage_time_sec": 0.0016350870000678697,
+          "staged_mb": 89.259765625,
+          "checksum": 0.0929107666015625
+        },
+        {
+          "layer": 21,
+          "stage_time_sec": 0.003026851999493374,
+          "staged_mb": 89.259765625,
+          "checksum": 0.595916748046875
+        },
+        {
+          "layer": 22,
+          "stage_time_sec": 0.0007171979996201117,
+          "staged_mb": 89.259765625,
+          "checksum": 0.31246185302734375
+        },
+        {
+          "layer": 23,
+          "stage_time_sec": 0.0010850640001081047,
+          "staged_mb": 89.259765625,
+          "checksum": 2.3337249755859375
+        },
+        {
+          "layer": 24,
+          "stage_time_sec": 0.0007302889998754836,
+          "staged_mb": 89.259765625,
+          "checksum": 0.17359066009521484
+        },
+        {
+          "layer": 25,
+          "stage_time_sec": 0.0007392400002572685,
+          "staged_mb": 89.259765625,
+          "checksum": 4.245086669921875
+        },
+        {
+          "layer": 26,
+          "stage_time_sec": 0.0010299220002707443,
+          "staged_mb": 89.259765625,
+          "checksum": 5.757167816162109
+        },
+        {
+          "layer": 27,
+          "stage_time_sec": 0.0010573560002740123,
+          "staged_mb": 89.259765625,
+          "checksum": 5.941497802734375
+        }
+      ],
+      "layer_results": [
+        {
+          "executed_layer": 0,
+          "next_layer": 1,
+          "execute_sec": 0.09607538999989629,
+          "stage_sec": 0.0032018390002122032,
+          "release_sec": 0.000429218999670411,
+          "install_sec": 0.0003138920001219958,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 1,
+          "next_layer": 2,
+          "execute_sec": 0.13420395299999655,
+          "stage_sec": 0.0008457410003757104,
+          "release_sec": 0.00044697500015900005,
+          "install_sec": 0.00031308199959312333,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 2,
+          "next_layer": 3,
+          "execute_sec": 0.09931626799971127,
+          "stage_sec": 0.0008636369993837434,
+          "release_sec": 0.0004145440007050638,
+          "install_sec": 0.00030363899986696197,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 3,
+          "next_layer": 4,
+          "execute_sec": 0.10124416700000438,
+          "stage_sec": 0.000825380999231129,
+          "release_sec": 0.000451115000032587,
+          "install_sec": 0.00033545899987075245,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 4,
+          "next_layer": 5,
+          "execute_sec": 0.09498297800018918,
+          "stage_sec": 0.0007178050000220537,
+          "release_sec": 0.0004636169996956596,
+          "install_sec": 0.0006625209998674109,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 5,
+          "next_layer": 6,
+          "execute_sec": 0.102136671000153,
+          "stage_sec": 0.000784578000093461,
+          "release_sec": 0.00042907600072794594,
+          "install_sec": 0.0003329920000396669,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 6,
+          "next_layer": 7,
+          "execute_sec": 0.09929402199941251,
+          "stage_sec": 0.0007162430001699249,
+          "release_sec": 0.0004124160004721489,
+          "install_sec": 0.0002965949997815187,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 7,
+          "next_layer": 8,
+          "execute_sec": 0.09909294899989618,
+          "stage_sec": 0.0007186350003394182,
+          "release_sec": 0.000445621000835672,
+          "install_sec": 0.00028681200001301477,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 8,
+          "next_layer": 9,
+          "execute_sec": 0.09883036399969569,
+          "stage_sec": 0.000668865000079677,
+          "release_sec": 0.00042795599983946886,
+          "install_sec": 0.0003230219999750261,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 9,
+          "next_layer": 10,
+          "execute_sec": 0.09235817900025722,
+          "stage_sec": 0.0008410769996771705,
+          "release_sec": 0.0005680499998561572,
+          "install_sec": 0.0003278129997852375,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 10,
+          "next_layer": 11,
+          "execute_sec": 0.10126056599983713,
+          "stage_sec": 0.0008578440001656418,
+          "release_sec": 0.0004791709998244187,
+          "install_sec": 0.00033189700025104685,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 11,
+          "next_layer": 12,
+          "execute_sec": 0.09929119900061778,
+          "stage_sec": 0.000882152000485803,
+          "release_sec": 0.0004429970003911876,
+          "install_sec": 0.0002687249998416519,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 12,
+          "next_layer": 13,
+          "execute_sec": 0.10244273999978759,
+          "stage_sec": 0.0007874550001361058,
+          "release_sec": 0.00040801500017551007,
+          "install_sec": 0.00031757600027049193,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 13,
+          "next_layer": 14,
+          "execute_sec": 0.09659731300052954,
+          "stage_sec": 0.0008709300000191433,
+          "release_sec": 0.0004295190001357696,
+          "install_sec": 0.00032804500006022863,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 14,
+          "next_layer": 15,
+          "execute_sec": 0.0993409109996719,
+          "stage_sec": 0.0007376149997071479,
+          "release_sec": 0.0007993970002644346,
+          "install_sec": 0.0006525660000988864,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 15,
+          "next_layer": 16,
+          "execute_sec": 0.1158228849999432,
+          "stage_sec": 0.0008519509992765961,
+          "release_sec": 0.0003846200006591971,
+          "install_sec": 0.0002912919999289443,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 16,
+          "next_layer": 17,
+          "execute_sec": 0.0988838740004212,
+          "stage_sec": 0.000759804000153963,
+          "release_sec": 0.0004140250002819812,
+          "install_sec": 0.0002891989997806377,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 17,
+          "next_layer": 18,
+          "execute_sec": 0.10074930300015694,
+          "stage_sec": 0.0008825120003166376,
+          "release_sec": 0.00042437599950062577,
+          "install_sec": 0.0002639900003487128,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 18,
+          "next_layer": 19,
+          "execute_sec": 0.1027874809997229,
+          "stage_sec": 0.000692970999807585,
+          "release_sec": 0.00038537300042662537,
+          "install_sec": 0.0003025350006282679,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 19,
+          "next_layer": 20,
+          "execute_sec": 0.10733874699963053,
+          "stage_sec": 0.0016350870000678697,
+          "release_sec": 0.00041018100000655977,
+          "install_sec": 0.00029140700007701525,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 20,
+          "next_layer": 21,
+          "execute_sec": 0.10738598900024954,
+          "stage_sec": 0.003026851999493374,
+          "release_sec": 0.00040922599964687834,
+          "install_sec": 0.0002855690008800593,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 21,
+          "next_layer": 22,
+          "execute_sec": 0.10118249199967977,
+          "stage_sec": 0.0007171979996201117,
+          "release_sec": 0.0004068159996677423,
+          "install_sec": 0.00031396600024891086,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 22,
+          "next_layer": 23,
+          "execute_sec": 0.10336761200051114,
+          "stage_sec": 0.0010850640001081047,
+          "release_sec": 0.00040014700061874464,
+          "install_sec": 0.0002648170002430561,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 23,
+          "next_layer": 24,
+          "execute_sec": 0.101315519000309,
+          "stage_sec": 0.0007302889998754836,
+          "release_sec": 0.00039910400028020376,
+          "install_sec": 0.0002690439996513305,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 24,
+          "next_layer": 25,
+          "execute_sec": 0.10897160500007885,
+          "stage_sec": 0.0007392400002572685,
+          "release_sec": 0.00038761799987696577,
+          "install_sec": 0.0005191609998291824,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 25,
+          "next_layer": 26,
+          "execute_sec": 0.10179514100036613,
+          "stage_sec": 0.0010299220002707443,
+          "release_sec": 0.0005700689998775488,
+          "install_sec": 0.0002856659993994981,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 26,
+          "next_layer": 27,
+          "execute_sec": 0.1150288079998063,
+          "stage_sec": 0.0010573560002740123,
+          "release_sec": 0.0003967380007452448,
+          "install_sec": 0.0003034210003534099,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 27,
+          "next_layer": null,
+          "execute_sec": 0.10066287300014665,
+          "stage_sec": 0.0,
+          "release_sec": 0.00048311899990949314,
+          "install_sec": 0.0,
+          "peak_weight_data_mb": 0.0,
+          "post_install_residency_mb": 0.0
+        }
+      ],
+      "success": true,
+      "wall_sec": 3.2766325720003806
+    },
+    {
+      "initial_load_sec": 0.0010535679994063685,
+      "stage_total_sec": 0.029437760002110736,
+      "install_total_sec": 0.014633210999818402,
+      "execute_total_sec": 3.068402424000851,
+      "release_total_sec": 0.0128597999955673,
+      "final_hidden_shape": [
+        1,
+        8,
+        1536
+      ],
+      "final_norm": 1071.94775390625,
+      "max_weight_data_mb": 178.51953125,
+      "max_active_layers": 1,
+      "max_staged_layers": 1,
+      "stage_results": [
+        {
+          "layer": 1,
+          "stage_time_sec": 0.0009693080000943155,
+          "staged_mb": 89.259765625,
+          "checksum": -2.7141265869140625
+        },
+        {
+          "layer": 2,
+          "stage_time_sec": 0.0006934290004210197,
+          "staged_mb": 89.259765625,
+          "checksum": -0.07337570190429688
+        },
+        {
+          "layer": 3,
+          "stage_time_sec": 0.0009392480005772086,
+          "staged_mb": 89.259765625,
+          "checksum": 4.433074951171875
+        },
+        {
+          "layer": 4,
+          "stage_time_sec": 0.0007626050000908435,
+          "staged_mb": 89.259765625,
+          "checksum": -0.3370361328125
+        },
+        {
+          "layer": 5,
+          "stage_time_sec": 0.0010472969997863402,
+          "staged_mb": 89.259765625,
+          "checksum": 0.6958599414210767
+        },
+        {
+          "layer": 6,
+          "stage_time_sec": 0.0008967740004663938,
+          "staged_mb": 89.259765625,
+          "checksum": 1.943878173828125
+        },
+        {
+          "layer": 7,
+          "stage_time_sec": 0.0008208670005842578,
+          "staged_mb": 89.259765625,
+          "checksum": 2.568878173828125
+        },
+        {
+          "layer": 8,
+          "stage_time_sec": 0.0007600290000482346,
+          "staged_mb": 89.259765625,
+          "checksum": 1.5369873046875
+        },
+        {
+          "layer": 9,
+          "stage_time_sec": 0.0010503269995751907,
+          "staged_mb": 89.259765625,
+          "checksum": 1.0500335693359375
+        },
+        {
+          "layer": 10,
+          "stage_time_sec": 0.0011498710000523715,
+          "staged_mb": 89.259765625,
+          "checksum": 1.1462440490722656
+        },
+        {
+          "layer": 11,
+          "stage_time_sec": 0.0008217719996537198,
+          "staged_mb": 89.259765625,
+          "checksum": 1.0204849243164062
+        },
+        {
+          "layer": 12,
+          "stage_time_sec": 0.0011038060001737904,
+          "staged_mb": 89.259765625,
+          "checksum": 0.46475982666015625
+        },
+        {
+          "layer": 13,
+          "stage_time_sec": 0.0008393480002268916,
+          "staged_mb": 89.259765625,
+          "checksum": -3.851466178894043
+        },
+        {
+          "layer": 14,
+          "stage_time_sec": 0.002969138000480598,
+          "staged_mb": 89.259765625,
+          "checksum": -0.8980312347412109
+        },
+        {
+          "layer": 15,
+          "stage_time_sec": 0.0008430489997408586,
+          "staged_mb": 89.259765625,
+          "checksum": 2.3297119140625
+        },
+        {
+          "layer": 16,
+          "stage_time_sec": 0.0007658029999220162,
+          "staged_mb": 89.259765625,
+          "checksum": 1.1970207691192627
+        },
+        {
+          "layer": 17,
+          "stage_time_sec": 0.000761721999879228,
+          "staged_mb": 89.259765625,
+          "checksum": 2.221832275390625
+        },
+        {
+          "layer": 18,
+          "stage_time_sec": 0.0007567679995190701,
+          "staged_mb": 89.259765625,
+          "checksum": 1.3548526763916016
+        },
+        {
+          "layer": 19,
+          "stage_time_sec": 0.0008242480007538688,
+          "staged_mb": 89.259765625,
+          "checksum": 0.7077755928039551
+        },
+        {
+          "layer": 20,
+          "stage_time_sec": 0.0007679749996896135,
+          "staged_mb": 89.259765625,
+          "checksum": 0.0929107666015625
+        },
+        {
+          "layer": 21,
+          "stage_time_sec": 0.0008321189998241607,
+          "staged_mb": 89.259765625,
+          "checksum": 0.595916748046875
+        },
+        {
+          "layer": 22,
+          "stage_time_sec": 0.0007121740000002319,
+          "staged_mb": 89.259765625,
+          "checksum": 0.31246185302734375
+        },
+        {
+          "layer": 23,
+          "stage_time_sec": 0.002096604000143998,
+          "staged_mb": 89.259765625,
+          "checksum": 2.3337249755859375
+        },
+        {
+          "layer": 24,
+          "stage_time_sec": 0.0014167750005071866,
+          "staged_mb": 89.259765625,
+          "checksum": 0.17359066009521484
+        },
+        {
+          "layer": 25,
+          "stage_time_sec": 0.0008061720000114292,
+          "staged_mb": 89.259765625,
+          "checksum": 4.245086669921875
+        },
+        {
+          "layer": 26,
+          "stage_time_sec": 0.0007674959997530095,
+          "staged_mb": 89.259765625,
+          "checksum": 5.757167816162109
+        },
+        {
+          "layer": 27,
+          "stage_time_sec": 0.003263036000134889,
+          "staged_mb": 89.259765625,
+          "checksum": 5.941497802734375
+        }
+      ],
+      "layer_results": [
+        {
+          "executed_layer": 0,
+          "next_layer": 1,
+          "execute_sec": 0.11765001500043581,
+          "stage_sec": 0.0009693080000943155,
+          "release_sec": 0.0004231829998389003,
+          "install_sec": 0.003063553000174579,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 1,
+          "next_layer": 2,
+          "execute_sec": 0.10342003100049624,
+          "stage_sec": 0.0006934290004210197,
+          "release_sec": 0.00040768199960439233,
+          "install_sec": 0.0002930450000349083,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 2,
+          "next_layer": 3,
+          "execute_sec": 0.10623235200000636,
+          "stage_sec": 0.0009392480005772086,
+          "release_sec": 0.0007133859999157721,
+          "install_sec": 0.0003415729997868766,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 3,
+          "next_layer": 4,
+          "execute_sec": 0.10457752199999959,
+          "stage_sec": 0.0007626050000908435,
+          "release_sec": 0.0007717089993093396,
+          "install_sec": 0.0002914609995059436,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 4,
+          "next_layer": 5,
+          "execute_sec": 0.10369924200040259,
+          "stage_sec": 0.0010472969997863402,
+          "release_sec": 0.0003805759997703717,
+          "install_sec": 0.00039164600002550287,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 5,
+          "next_layer": 6,
+          "execute_sec": 0.13524559899997257,
+          "stage_sec": 0.0008967740004663938,
+          "release_sec": 0.00043216799986112164,
+          "install_sec": 0.00032656399980623974,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 6,
+          "next_layer": 7,
+          "execute_sec": 0.10075204399981885,
+          "stage_sec": 0.0008208670005842578,
+          "release_sec": 0.00044322500070848037,
+          "install_sec": 0.00034212100035801996,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 7,
+          "next_layer": 8,
+          "execute_sec": 0.10394240700043156,
+          "stage_sec": 0.0007600290000482346,
+          "release_sec": 0.0004425829993124353,
+          "install_sec": 0.0003300340003988822,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 8,
+          "next_layer": 9,
+          "execute_sec": 0.09882899799958977,
+          "stage_sec": 0.0010503269995751907,
+          "release_sec": 0.0004398769997351337,
+          "install_sec": 0.000295115999506379,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 9,
+          "next_layer": 10,
+          "execute_sec": 0.12448012599998037,
+          "stage_sec": 0.0011498710000523715,
+          "release_sec": 0.000496478999593819,
+          "install_sec": 0.0003730369999175309,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 10,
+          "next_layer": 11,
+          "execute_sec": 0.0997896849994504,
+          "stage_sec": 0.0008217719996537198,
+          "release_sec": 0.00041701899954205146,
+          "install_sec": 0.00037820400029886514,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 11,
+          "next_layer": 12,
+          "execute_sec": 0.09727463600029296,
+          "stage_sec": 0.0011038060001737904,
+          "release_sec": 0.0008390559996769298,
+          "install_sec": 0.0003243950004616636,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 12,
+          "next_layer": 13,
+          "execute_sec": 0.09961361500063504,
+          "stage_sec": 0.0008393480002268916,
+          "release_sec": 0.00041632800002844306,
+          "install_sec": 0.00031989400031307014,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 13,
+          "next_layer": 14,
+          "execute_sec": 0.10133842400045978,
+          "stage_sec": 0.002969138000480598,
+          "release_sec": 0.000444909000179905,
+          "install_sec": 0.0003164409999953932,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 14,
+          "next_layer": 15,
+          "execute_sec": 0.09988952399999107,
+          "stage_sec": 0.0008430489997408586,
+          "release_sec": 0.0003853170001093531,
+          "install_sec": 0.00030457699995167786,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 15,
+          "next_layer": 16,
+          "execute_sec": 0.09778632999950787,
+          "stage_sec": 0.0007658029999220162,
+          "release_sec": 0.00044248699941817904,
+          "install_sec": 0.0005417570000645355,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 16,
+          "next_layer": 17,
+          "execute_sec": 0.0954152169997542,
+          "stage_sec": 0.000761721999879228,
+          "release_sec": 0.0004237449993524933,
+          "install_sec": 0.0003457390002949978,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 17,
+          "next_layer": 18,
+          "execute_sec": 0.09444316099961725,
+          "stage_sec": 0.0007567679995190701,
+          "release_sec": 0.00041013400004885625,
+          "install_sec": 0.0002964450004583341,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 18,
+          "next_layer": 19,
+          "execute_sec": 0.10520131000066613,
+          "stage_sec": 0.0008242480007538688,
+          "release_sec": 0.00044728300053975545,
+          "install_sec": 0.00045800299994880334,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 19,
+          "next_layer": 20,
+          "execute_sec": 0.1117887240006894,
+          "stage_sec": 0.0007679749996896135,
+          "release_sec": 0.000386818000151834,
+          "install_sec": 0.0003261479996581329,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 20,
+          "next_layer": 21,
+          "execute_sec": 0.1253510099995765,
+          "stage_sec": 0.0008321189998241607,
+          "release_sec": 0.0004172629996901378,
+          "install_sec": 0.0008003209995877114,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 21,
+          "next_layer": 22,
+          "execute_sec": 0.14088392299981933,
+          "stage_sec": 0.0007121740000002319,
+          "release_sec": 0.0003783689999181661,
+          "install_sec": 0.0006612649995076936,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 22,
+          "next_layer": 23,
+          "execute_sec": 0.10348708200035617,
+          "stage_sec": 0.002096604000143998,
+          "release_sec": 0.000383280999812996,
+          "install_sec": 0.0002741429998422973,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 23,
+          "next_layer": 24,
+          "execute_sec": 0.11323447599988867,
+          "stage_sec": 0.0014167750005071866,
+          "release_sec": 0.0004604380001183017,
+          "install_sec": 0.0002722119997997652,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 24,
+          "next_layer": 25,
+          "execute_sec": 0.10030168100001902,
+          "stage_sec": 0.0008061720000114292,
+          "release_sec": 0.0004278209999029059,
+          "install_sec": 0.002389107000453805,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 25,
+          "next_layer": 26,
+          "execute_sec": 0.10555493399988336,
+          "stage_sec": 0.0007674959997530095,
+          "release_sec": 0.0004123290000279667,
+          "install_sec": 0.0002726069997152081,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 26,
+          "next_layer": 27,
+          "execute_sec": 0.11389847499958705,
+          "stage_sec": 0.003263036000134889,
+          "release_sec": 0.00039201199979288504,
+          "install_sec": 0.00030380299995158566,
+          "peak_weight_data_mb": 178.51953125,
+          "post_install_residency_mb": 89.259765625
+        },
+        {
+          "executed_layer": 27,
+          "next_layer": null,
+          "execute_sec": 0.16432188099952327,
+          "stage_sec": 0.0,
+          "release_sec": 0.00042432299960637465,
+          "install_sec": 0.0,
+          "peak_weight_data_mb": 0.0,
+          "post_install_residency_mb": 0.0
+        }
+      ],
+      "success": true,
+      "wall_sec": 3.548996446000274
+    }
+  ],
+  "statistics": {
+    "wall": {
+      "mean": 3.3634637320001275,
+      "median": 3.2766325720003806,
+      "std": 0.16078562602617114,
+      "min": 3.264762177999728,
+      "max": 3.548996446000274
+    },
+    "stage": {
+      "mean": 0.027393475667546834,
+      "median": 0.027528042999620084,
+      "std": 0.0021147814771994987,
+      "min": 0.02521462400090968,
+      "max": 0.029437760002110736
+    },
+    "install": {
+      "mean": 0.011087944668057995,
+      "median": 0.009555920003549545,
+      "std": 0.0030797041210589987,
+      "min": 0.00907470300080604,
+      "max": 0.014633210999818402
+    },
+    "execution": {
+      "mean": 2.9457869436670685,
+      "median": 2.8871984079996764,
+      "std": 0.10622293107527796,
+      "min": 2.8817599990006784,
+      "max": 3.068402424000851
+    }
+  },
+  "warmup": {
+    "wall_sec": 9.081441889000416,
+    "result": {
+      "final_hidden_shape": [
+        1,
+        8,
+        1536
+      ],
+      "final_norm": 1071.94775390625,
+      "max_weight_data_mb": 178.51953125
+    }
+  },
+  "validation": {
+    "all_runs_successful": true,
+    "shape_valid": true,
+    "finite_outputs": true,
+    "one_active_layer_max": true,
+    "one_staged_layer_max": true,
+    "residency_bounded": true,
+    "final_cleanup": true
+  }
+}

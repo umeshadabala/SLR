@@ -1,0 +1,187 @@
+{
+  "package": "EXP-04_FINAL_RESEARCH_RESULTS",
+  "created_utc": "2026-10-06T07:57:09.835901Z",
+  "artifact_count": 36,
+  "artifacts": [
+    {
+      "path": "EXP-04_FINAL_REFERENCE_COMPARISON_CORRECTED.json",
+      "size_bytes": 1929,
+      "sha256": "4876ef3458647109eda32061fcfad0cfe812292090dce14b158e0c3ae1942916"
+    },
+    {
+      "path": "EXP-04_runtime_restore.json",
+      "size_bytes": 974,
+      "sha256": "03afb44d5e85afa5a5eb77a03b4905102de0fbf0a610e413048f4f95fe8adcf6"
+    },
+    {
+      "path": "EXP-04_step_04B_control_persistent_vs_reopen.json",
+      "size_bytes": 25300,
+      "sha256": "c3d924daeffdb5deade8e0f378d138f8b43025bbffa48c01f20751d5d68d8603"
+    },
+    {
+      "path": "EXP-04_step_04B_meta_restore.json",
+      "size_bytes": 1038,
+      "sha256": "75548a47fd2cbdad6169ffb51dec32aaefe47786e41b7d0682fa77d6bcc2f0b6"
+    },
+    {
+      "path": "EXP-04_step_04B_persistent_safeopen.json",
+      "size_bytes": 12522,
+      "sha256": "09bacb5c0b0ed0c0df325eb9a307f21502486d909785a4a105ba4055f81a7bbd"
+    },
+    {
+      "path": "EXP-04_step_04C0_cpu_memory_diagnostic.json",
+      "size_bytes": 19160,
+      "sha256": "3ed6d1fa1faaffcca6c2e0f44da927d9e877163db69ae212ec435415a885097b"
+    },
+    {
+      "path": "EXP-04_step_04C1_gc_isolation.json",
+      "size_bytes": 14868,
+      "sha256": "f6c374a78a726ef55119f1b5ca4768ad4622c61cccac9bffbd17a88c25811e56"
+    },
+    {
+      "path": "EXP-04_step_04C2_full_prebound_benchmark.json",
+      "size_bytes": 9543,
+      "sha256": "5bbbfdecf93231ca9192446db5cbe0f9272c57da716e59853405bd2c5291bb4e"
+    },
+    {
+      "path": "EXP-04_step_04C2_layer0_functional.json",
+      "size_bytes": 914,
+      "sha256": "eefee13ceda24f7eac5ecbae9e7ede6accca42349b4d4519a45a4fdd3272e51b"
+    },
+    {
+      "path": "EXP-04_step_04C2_prebound_rebuild.json",
+      "size_bytes": 564,
+      "sha256": "e2b72733f07fec7351e6dfb5bc8f1be5d3d7bb731ca6c41395901fa02120360c"
+    },
+    {
+      "path": "EXP-04_step_04D_repeated_dynamic_baseline.json",
+      "size_bytes": 29099,
+      "sha256": "4d12b0de26cb448449804c4785b760567afc010ffc98652586fd66786fa9aa04"
+    },
+    {
+      "path": "EXP-04_step_04E1_two_layer_functional.json",
+      "size_bytes": 963,
+      "sha256": "3a3942fef7258a406d55b4676ebfb029f250abb97704cd75296b00f2d9715709"
+    },
+    {
+      "path": "EXP-04_step_04E2_corrected_warmup.json",
+      "size_bytes": 7990,
+      "sha256": "58a8cf4db1fe62f0c8790dad34a75c23389f10c778ad64372a4d84e25149860a"
+    },
+    {
+      "path": "EXP-04_step_04E2_two_layer_benchmark.json",
+      "size_bytes": 22041,
+      "sha256": "282e9e8daf5cd9cc4e8726ef812dd932184db87d374e1d52d8861431358d8aef"
+    },
+    {
+      "path": "EXP-04_step_04F0_concurrency_sanity.json",
+      "size_bytes": 1055,
+      "sha256": "5db9d8994ef76a0dbb45ebcb336ef5bffa03856220e787d586f4af5dc2a2d423"
+    },
+    {
+      "path": "EXP-04_step_04F1_background_prefetch.json",
+      "size_bytes": 778,
+      "sha256": "08c22ebb369e6955cb972e725cb12c335d72624484e87404c273d161faad2cef"
+    },
+    {
+      "path": "EXP-04_step_04F2_overlap_validation.json",
+      "size_bytes": 1675,
+      "sha256": "03e5ecc80d8e640754a4ae2f6cfa97499c838635fb1c35c69563b00bab264e8d"
+    },
+    {
+      "path": "EXP-04_step_04F3_double_buffer_staging.json",
+      "size_bytes": 944,
+      "sha256": "a10f2be0ff57e1aa842e9e7886a91918187f20ca5b3561a88045329f62a4d108"
+    },
+    {
+      "path": "EXP-04_step_04F4_storage_prefetch.json",
+      "size_bytes": 758,
+      "sha256": "d2731201fe0eb62a54a4f0c8c36c3da769cc1369643ae954f7d61c1bf5625780"
+    },
+    {
+      "path": "EXP-04_step_04F5_repeated_storage_prefetch.json",
+      "size_bytes": 3266,
+      "sha256": "4f0a7361f6a4e58c96b0e768b4849341d6975a4e5c4ef463f83dd1caa57caf6e"
+    },
+    {
+      "path": "EXP-04_step_04F6_end_to_end_double_buffer.json",
+      "size_bytes": 48109,
+      "sha256": "c15dd25e7ae17881f8b944736d3dea3768d68fb117f35bfc3e11dae6d6846190"
+    },
+    {
+      "path": "README_FINAL_RESULTS.md",
+      "size_bytes": 3303,
+      "sha256": "468e9ff272430f5047ad225d9eb7a179359b3c7066aa2df1601e08717462ef23"
+    },
+    {
+      "path": "exp03_results/EXP-03_FINAL_RESULTS.json",
+      "size_bytes": 3068,
+      "sha256": "5bcc7cbdf9fa15daf8d9424153b9f3c773e25a7b706c2f2a36b1288c251d9945"
+    },
+    {
+      "path": "exp03_results/full_28_layer_selective_streaming.json",
+      "size_bytes": 15181,
+      "sha256": "ef94cbf29e0a6ccf29a70acdab9f2c1d168fd7abd6c2b2da64ac3fbfd8585394"
+    },
+    {
+      "path": "exp03_results/model_metadata.json",
+      "size_bytes": 1005,
+      "sha256": "b53e49a32daef6a623288621eaaeb9c77e44c0ac4b6f1444ada6a915128c58ab"
+    },
+    {
+      "path": "exp03_results/selective_load_release_reload.json",
+      "size_bytes": 900,
+      "sha256": "37af3b6b7b8b3626363da2eee6d9732d2f01ab7820e58818b8158d85163a6a42"
+    },
+    {
+      "path": "exp03_results/selectively_loaded_layer_execution.json",
+      "size_bytes": 982,
+      "sha256": "d057c4c1d3f121d96ae35985f5a554403644852b419ddeef3257fa054a35720f"
+    },
+    {
+      "path": "exp03_results/single_layer_load.json",
+      "size_bytes": 350,
+      "sha256": "979385d8a63687abe6f47911b2a5766e282708b9371596646a6803e128c851af"
+    },
+    {
+      "path": "exp03_results/step_08I_A_weight_tying.json",
+      "size_bytes": 363,
+      "sha256": "4ad4c1d4dfe79ddc5e7d6341434fca535c35392ee8aacd5118af1c787d22f577"
+    },
+    {
+      "path": "exp03_results/step_08I_B_tied_output_projection.json",
+      "size_bytes": 1952,
+      "sha256": "5e18460fe6d185d96b8d5f7f6b94edd195e4eea8452c400a1bc5bf76eea36659"
+    },
+    {
+      "path": "exp03_results/step_08J_A_reference_safety.json",
+      "size_bytes": 318,
+      "sha256": "a6473b0e41b3c277022bbd3cd83524b137048bd6dc74ac742f95e4b318c5240a"
+    },
+    {
+      "path": "exp03_results/step_08J_B_conventional_reference.json",
+      "size_bytes": 467,
+      "sha256": "abc80b0a9a5af8321f403bfee03ac3765b4fdb388a1251682a8c4bb021e54f32"
+    },
+    {
+      "path": "exp03_results/step_08J_C_correctness_comparison.json",
+      "size_bytes": 378,
+      "sha256": "8198ee9bf2fda3a1b2a1a9fe82ef7356c97249c44e9c3e4b10de60e8c19edb46"
+    },
+    {
+      "path": "exp03_results/step_08K_performance_analysis.json",
+      "size_bytes": 896,
+      "sha256": "b86947da5694bff6aa145a6a980669e828f2d26e39903c2d2f352ef7817a1a8d"
+    },
+    {
+      "path": "exp03_results/tensor_layout.json",
+      "size_bytes": 67772,
+      "sha256": "9786da50507234a66c685ada595ccac2ef9b0539200be780d9308a7642b73a29"
+    },
+    {
+      "path": "exp03_results/two_layer_sequential_streaming.json",
+      "size_bytes": 1471,
+      "sha256": "d611a9aef05a96b41f7034763dfb910a26181f30864a3aac476c61395805362f"
+    }
+  ]
+}

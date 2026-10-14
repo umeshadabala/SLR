@@ -1,0 +1,11 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "load_time_sec": 48.79,
+  "baseline_rss_gb_before_load": 0.6565,
+  "peak_rss_gb_during_load": 8.6423,
+  "total_params": 1543714304,
+  "total_params_billion_approx": 1.5437,
+  "loaded_dtype": "torch.float32",
+  "torch_version": "2.11.0+cpu",
+  "transformers_version": "5.17.0"
+}
