@@ -240,7 +240,52 @@ class SlrRepository extends ChangeNotifier {
 
   Future<void> refreshBenchmarks() async {
     if (_backendHealth.isReachable) {
-      _benchmarks = await _api.getBenchmarks();
+      final baseBenchmarks = await _api.getBenchmarks();
+      final runReports = await _api.listRunReports(limit: 20);
+
+      final runBenchmarks = <BenchmarkData>[];
+      for (final run in runReports) {
+        final runId = run['run_id']?.toString() ?? 'RUN';
+        final timings = run['timings'] as Map<String, dynamic>? ?? {};
+        final throughputs = run['throughputs'] as Map<String, dynamic>? ?? {};
+        final tps = (throughputs['decode_throughput'] as num?)?.toDouble() ??
+            (throughputs['end_to_end_throughput'] as num?)?.toDouble();
+        final ttft = (timings['model_ttft_sec'] as num?)?.toDouble() ??
+            (timings['server_ttft_sec'] as num?)?.toDouble();
+        final totalSec = (timings['total_server_duration_sec'] as num?)?.toDouble() ?? 0.0;
+        final promptToks = run['prompt_tokens'] as int? ?? 0;
+        final genToks = run['generated_tokens'] as int? ?? 0;
+
+        runBenchmarks.add(
+          BenchmarkData(
+            benchmarkId: 'RUN-$runId',
+            experimentId: 'EXP-07-WORKSTATION',
+            title: 'Qwen2.5-1.5B SLR Stream Run ($genToks tokens)',
+            timestamp: run['timestamp']?.toString() ?? '',
+            model: run['model_id']?.toString() ?? 'Qwen/Qwen2.5-1.5B-Instruct',
+            precision: 'BF16',
+            device: 'Apple Silicon Mac (Backend)',
+            osPlatform: 'macOS Darwin',
+            promptLength: promptToks,
+            outputLength: genToks,
+            timeToFirstTokenSec: ttft,
+            totalGenerationSec: totalSec,
+            tokensPerSecond: tps,
+            peakRssGb: (run['peak_process_rss_gb'] as num?)?.toDouble() ?? 0.0,
+            activeTransformerParamsRatio: '1/28 (46.8M / 1.31B)',
+            validationStatus: run['status']?.toString().toUpperCase() ?? 'COMPLETED',
+            isSimulated: false,
+            notes: [
+              'Execution: MAC-HOSTED SLR INFERENCE',
+              'Model TTFT: ${ttft != null ? "${ttft.toStringAsFixed(3)}s" : "N/A"}',
+              'Steady-State Decode: ${throughputs["decode_throughput"] != null ? "${(throughputs["decode_throughput"] as num).toStringAsFixed(2)} tok/s" : "N/A"}',
+              'Stop Reason: ${run["stop_reason"] ?? "eos"}',
+            ],
+          ),
+        );
+      }
+
+      _benchmarks = [...runBenchmarks, ...baseBenchmarks];
       notifyListeners();
     }
   }
@@ -393,10 +438,17 @@ class SlrRepository extends ChangeNotifier {
       content: '',
       timestamp: DateTime.now(),
       status: ChatMessageStatus.generating,
+      executionMode: 'MAC-HOSTED SLR INFERENCE',
+      executionLocation: 'Apple Silicon Mac (Workstation Backend)',
     );
     _chatMessages.add(assistantMsg);
     _isGenerating = true;
     notifyListeners();
+
+    final stopwatch = Stopwatch()..start();
+    final clientRequestStartMs = DateTime.now().millisecondsSinceEpoch.toDouble();
+    int clientTokensReceived = 0;
+    int? firstTokenElapsedMs;
 
     try {
       final effectiveMessages = _chatMessages
@@ -415,22 +467,57 @@ class SlrRepository extends ChangeNotifier {
         repetitionPenalty: _repetitionPenalty,
         doSample: !_greedyDecoding && _temperature > 0.0,
         jobId: jobId,
+        clientRequestStartMs: clientRequestStartMs,
       );
 
       _streamSubscription = stream.listen(
         (event) {
           final type = event['type']?.toString();
           if (type == 'token') {
+            clientTokensReceived++;
+            if (clientTokensReceived == 1) {
+              firstTokenElapsedMs = stopwatch.elapsedMilliseconds;
+              assistantMsg.uiFirstVisibleLatencySec = firstTokenElapsedMs! / 1000.0;
+            }
             final text = event['text']?.toString() ?? '';
             assistantMsg.content += text;
             notifyListeners();
           } else if (type == 'done') {
+            stopwatch.stop();
+            final totalClientMs = stopwatch.elapsedMilliseconds;
             assistantMsg.status = ChatMessageStatus.completed;
             final resp = event['response'] as Map<String, dynamic>? ?? {};
-            assistantMsg.timeToFirstTokenSec = (resp['time_to_first_token_sec'] as num?)?.toDouble();
-            assistantMsg.decodeThroughput = (resp['decode_throughput'] as num?)?.toDouble() ??
+            assistantMsg.fullReportJson = resp;
+
+            final timings = resp['timings'] as Map<String, dynamic>? ?? {};
+            final throughputs = resp['throughputs'] as Map<String, dynamic>? ?? {};
+
+            assistantMsg.timeToFirstTokenSec = (timings['server_ttft_sec'] as num?)?.toDouble() ??
+                (resp['time_to_first_token_sec'] as num?)?.toDouble();
+            assistantMsg.modelTtftSec = (timings['model_ttft_sec'] as num?)?.toDouble();
+            assistantMsg.tokenizationLatencySec = (timings['tokenization_latency_sec'] as num?)?.toDouble();
+            assistantMsg.prefillLatencySec = (timings['prefill_latency_sec'] as num?)?.toDouble();
+            assistantMsg.firstTokenDecodeSec = (timings['first_token_decode_sec'] as num?)?.toDouble();
+
+            assistantMsg.decodeThroughput = (throughputs['decode_throughput'] as num?)?.toDouble();
+            assistantMsg.decodeThroughputReason = throughputs['decode_throughput_reason']?.toString();
+            assistantMsg.endToEndThroughput = (throughputs['end_to_end_throughput'] as num?)?.toDouble() ??
                 (resp['tokens_per_second'] as num?)?.toDouble();
-            assistantMsg.totalGenerationSec = (resp['total_generation_sec'] as num?)?.toDouble();
+            assistantMsg.interTokenLatencySec = (throughputs['inter_token_latency_sec'] as num?)?.toDouble() ??
+                (resp['inter_token_latency_sec'] as num?)?.toDouble();
+
+            // Client observed throughput calculation
+            if (clientTokensReceived > 0 && firstTokenElapsedMs != null) {
+              final clientDecodeDurationMs = totalClientMs - firstTokenElapsedMs!;
+              if (clientTokensReceived > 1 && clientDecodeDurationMs > 0) {
+                assistantMsg.clientObservedThroughput = (clientTokensReceived - 1) / (clientDecodeDurationMs / 1000.0);
+              } else if (totalClientMs > 0) {
+                assistantMsg.clientObservedThroughput = clientTokensReceived / (totalClientMs / 1000.0);
+              }
+            }
+
+            assistantMsg.totalGenerationSec = (resp['total_generation_sec'] as num?)?.toDouble() ??
+                (timings['total_server_duration_sec'] as num?)?.toDouble();
             assistantMsg.promptTokens = resp['prompt_tokens'] as int?;
             assistantMsg.generatedTokens = resp['generated_tokens'] as int?;
             assistantMsg.peakRssGb = (resp['peak_process_rss_gb'] as num?)?.toDouble();
@@ -438,7 +525,13 @@ class SlrRepository extends ChangeNotifier {
 
             _currentJob = GenerationJob.fromJson(resp);
             notifyListeners();
+          } else if (type == 'cancelled') {
+            stopwatch.stop();
+            assistantMsg.status = ChatMessageStatus.cancelled;
+            assistantMsg.stopReason = 'cancelled';
+            notifyListeners();
           } else if (type == 'error') {
+            stopwatch.stop();
             assistantMsg.status = ChatMessageStatus.error;
             assistantMsg.error = event['error']?.toString() ?? 'Generation error occurred.';
             _lastError = assistantMsg.error;
@@ -446,6 +539,7 @@ class SlrRepository extends ChangeNotifier {
           }
         },
         onError: (err) {
+          stopwatch.stop();
           assistantMsg.status = ChatMessageStatus.error;
           final errorStr = err.toString();
           if (errorStr.contains('Connection refused') || errorStr.contains('SocketException')) {
@@ -460,15 +554,24 @@ class SlrRepository extends ChangeNotifier {
           notifyListeners();
         },
         onDone: () {
+          stopwatch.stop();
           if (assistantMsg.status == ChatMessageStatus.generating) {
-            assistantMsg.status = ChatMessageStatus.completed;
+            if (clientTokensReceived > 0) {
+              assistantMsg.status = ChatMessageStatus.completed;
+              assistantMsg.stopReason = 'stream_disconnected';
+            } else {
+              assistantMsg.status = ChatMessageStatus.error;
+              assistantMsg.error = 'Inference stream closed before generation completed.';
+            }
           }
           _isGenerating = false;
           refreshTelemetry();
+          refreshBenchmarks();
           notifyListeners();
         },
       );
     } catch (e) {
+      stopwatch.stop();
       assistantMsg.status = ChatMessageStatus.error;
       assistantMsg.error = 'Inference not executed: ${e.toString()}';
       _lastError = assistantMsg.error;

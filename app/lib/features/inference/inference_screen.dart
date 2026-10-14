@@ -7,7 +7,6 @@ import '../../data/models/chat_message.dart';
 import '../../data/models/system_status.dart';
 import '../../data/repositories/slr_repository.dart';
 import '../../shared/widgets/error_banner.dart';
-import '../../shared/widgets/status_badge.dart';
 
 class InferenceScreen extends StatefulWidget {
   const InferenceScreen({super.key});
@@ -66,10 +65,48 @@ class _InferenceScreenState extends State<InferenceScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'SLR CHAT',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-              overflow: TextOverflow.ellipsis,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'SLR CHAT',
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                  decoration: BoxDecoration(
+                    color: repo.isConnected
+                        ? AppColors.primary.withValues(alpha: 0.2)
+                        : (AndroidNativeBridge.isAndroid
+                            ? AppColors.warning.withValues(alpha: 0.2)
+                            : AppColors.error.withValues(alpha: 0.2)),
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: repo.isConnected
+                          ? AppColors.primary
+                          : (AndroidNativeBridge.isAndroid ? AppColors.warning : AppColors.error),
+                      width: 0.8,
+                    ),
+                  ),
+                  child: Text(
+                    repo.isConnected
+                        ? 'MAC-HOSTED SLR INFERENCE'
+                        : (AndroidNativeBridge.isAndroid
+                            ? 'STRUCTURAL TEST ONLY'
+                            : 'BACKEND DISCONNECTED'),
+                    style: TextStyle(
+                      fontSize: 8,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.4,
+                      color: repo.isConnected
+                          ? AppColors.primary
+                          : (AndroidNativeBridge.isAndroid ? AppColors.warning : AppColors.error),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Text(
               sysStatus.label,
@@ -552,19 +589,22 @@ class _InferenceScreenState extends State<InferenceScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Wrap(
-                            spacing: 8,
+                            spacing: 6,
+                            runSpacing: 4,
                             children: [
                               _chipMetric(
                                 'TTFT',
-                                msg.timeToFirstTokenSec != null
-                                    ? '${msg.timeToFirstTokenSec!.toStringAsFixed(2)}s'
-                                    : '-',
+                                msg.modelTtftSec != null
+                                    ? '${msg.modelTtftSec!.toStringAsFixed(2)}s'
+                                    : (msg.timeToFirstTokenSec != null
+                                        ? '${msg.timeToFirstTokenSec!.toStringAsFixed(2)}s'
+                                        : '-'),
                               ),
                               _chipMetric(
                                 'Decode',
                                 msg.decodeThroughput != null
-                                    ? '${msg.decodeThroughput!.toStringAsFixed(2)} tok/s'
-                                    : '-',
+                                    ? '${msg.decodeThroughput!.toStringAsFixed(1)} tok/s'
+                                    : (msg.decodeThroughputReason ?? '-'),
                               ),
                               _chipMetric(
                                 'Tokens',
@@ -572,10 +612,19 @@ class _InferenceScreenState extends State<InferenceScreen> {
                               ),
                             ],
                           ),
-                          Icon(
-                            isExpanded ? Icons.expand_less : Icons.expand_more,
-                            size: 16,
-                            color: AppColors.neutral,
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                isExpanded ? 'Hide Details' : 'Inspect Run',
+                                style: const TextStyle(fontSize: 10, color: AppColors.neutral),
+                              ),
+                              Icon(
+                                isExpanded ? Icons.expand_less : Icons.expand_more,
+                                size: 16,
+                                color: AppColors.neutral,
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -583,19 +632,50 @@ class _InferenceScreenState extends State<InferenceScreen> {
                     if (isExpanded) ...[
                       const SizedBox(height: 8),
                       Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: AppColors.surfaceElevatedDark,
                           borderRadius: BorderRadius.circular(6),
+                          border: Border.all(color: AppColors.borderDark),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _telemetryRow('Active Residency', '1 / 28 Layers (46.8M params)'),
-                            _telemetryRow('Total Latency', '${msg.totalGenerationSec?.toStringAsFixed(2) ?? "-"} s'),
-                            _telemetryRow('Prompt Tokens', '${msg.promptTokens ?? "-"}'),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              margin: const EdgeInsets.only(bottom: 6),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(color: AppColors.primary, width: 0.8),
+                              ),
+                              child: Text(
+                                msg.executionMode,
+                                style: const TextStyle(
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primary,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ),
+                            _telemetryRow('Execution Location', msg.executionLocation),
+                            _telemetryRow('Active Layer Residency', '1 / 28 Layers (46.8M active params)'),
+                            const Divider(height: 10),
+                            _telemetryRow('Model TTFT (Prefill + 1st)', msg.modelTtftSec != null ? '${msg.modelTtftSec!.toStringAsFixed(3)} s' : '-'),
+                            _telemetryRow('Server TTFT (Receipt to 1st)', msg.timeToFirstTokenSec != null ? '${msg.timeToFirstTokenSec!.toStringAsFixed(3)} s' : '-'),
+                            _telemetryRow('UI First-Visible Latency', msg.uiFirstVisibleLatencySec != null ? '${msg.uiFirstVisibleLatencySec!.toStringAsFixed(3)} s' : '-'),
+                            _telemetryRow('Prefill Latency', msg.prefillLatencySec != null ? '${msg.prefillLatencySec!.toStringAsFixed(3)} s' : '-'),
+                            _telemetryRow('1st Token Decode', msg.firstTokenDecodeSec != null ? '${msg.firstTokenDecodeSec!.toStringAsFixed(3)} s' : '-'),
+                            const Divider(height: 10),
+                            _telemetryRow('Steady-State Decode Throughput', msg.decodeThroughput != null ? '${msg.decodeThroughput!.toStringAsFixed(2)} tok/s' : (msg.decodeThroughputReason ?? '-')),
+                            _telemetryRow('End-to-End Throughput', msg.endToEndThroughput != null ? '${msg.endToEndThroughput!.toStringAsFixed(2)} tok/s' : '-'),
+                            _telemetryRow('Client-Observed Throughput', msg.clientObservedThroughput != null ? '${msg.clientObservedThroughput!.toStringAsFixed(2)} tok/s' : '-'),
+                            _telemetryRow('Total Request Latency', msg.totalGenerationSec != null ? '${msg.totalGenerationSec!.toStringAsFixed(2)} s' : '-'),
+                            const Divider(height: 10),
+                            _telemetryRow('Tokens (Prompt / Generated)', '${msg.promptTokens ?? "-"} in / ${msg.generatedTokens ?? "-"} out'),
                             _telemetryRow('Stop Reason', msg.stopReason ?? 'eos'),
-                            _telemetryRow('Peak Process RSS', '${msg.peakRssGb?.toStringAsFixed(3) ?? "-"} GB'),
+                            _telemetryRow('Backend Process Peak RSS', msg.peakRssGb != null ? '${msg.peakRssGb!.toStringAsFixed(3)} GB' : '-'),
                           ],
                         ),
                       ),

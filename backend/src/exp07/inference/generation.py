@@ -23,7 +23,12 @@ from exp07.inference.layer_residency import (
     load_layer_weights,
     release_layer_weights,
 )
-from exp07.schemas import GenerationJobResponse, LayerTimingRecord
+from exp07.schemas import (
+    GenerationJobResponse,
+    LayerTimingRecord,
+    ThroughputBreakdown,
+    TimingBreakdown,
+)
 
 
 def _sample_next_token(
@@ -76,18 +81,24 @@ def run_slr_generation(
     job_id: str = "job_default",
     cancel_check: Optional[Callable[[], bool]] = None,
     telemetry_callback: Optional[Callable[[int, int, float, float, float], None]] = None,
-    token_callback: Optional[Callable[[int, str, float], None]] = None,
+    token_callback: Optional[Callable[[int, str, float, bool], None]] = None,
+    started_callback: Optional[Callable[[int, float, float], None]] = None,
     metadata: ModelMetadata = ModelMetadata(),
     dtype: torch.dtype = torch.bfloat16,
+    t_server_received: Optional[float] = None,
+    client_request_start_ms: Optional[float] = None,
 ) -> GenerationJobResponse:
-    """Execute real SLR autoregressive text generation with strict 1-layer residency."""
-    start_total_time = time.perf_counter()
+    """Execute real SLR autoregressive text generation with strict 1-layer residency and monotonic timing accounting."""
+    if t_server_received is None:
+        t_server_received = time.perf_counter()
 
     # 1. Tokenize prompt
+    t_tok_start = time.perf_counter()
     inputs = tokenizer(prompt, return_tensors="pt")
     input_ids = inputs["input_ids"]
     prompt_tokens = int(input_ids.shape[1])
     prefix_len = prompt_tokens
+    t_tok_end = time.perf_counter()
 
     # 2. Fresh DynamicCache per generation
     cache = DynamicCache()
@@ -107,6 +118,10 @@ def run_slr_generation(
     # -------------------------------------------------------------------------
     # A. Prefix forward (Prefill)
     # -------------------------------------------------------------------------
+    t_prefill_start = time.perf_counter()
+    if started_callback:
+        started_callback(prompt_tokens, t_tok_end - t_tok_start, t_prefill_start - t_server_received)
+
     with torch.no_grad():
         hidden_states = model.model.embed_tokens(input_ids).to(dtype)
 
@@ -124,6 +139,32 @@ def run_slr_generation(
     for layer_idx in range(metadata.num_hidden_layers):
         if cancel_check and cancel_check():
             del cache
+            t_gen_end = time.perf_counter()
+            tb = TimingBreakdown(
+                t_server_received=t_server_received,
+                t_tokenization_start=t_tok_start,
+                t_tokenization_end=t_tok_end,
+                t_prefill_start=t_prefill_start,
+                t_prefill_end=t_gen_end,
+                t_first_token_generated=None,
+                t_first_token_sent=None,
+                t_generation_end=t_gen_end,
+                tokenization_latency_sec=t_tok_end - t_tok_start,
+                prefill_latency_sec=t_gen_end - t_prefill_start,
+                first_token_decode_sec=None,
+                model_ttft_sec=None,
+                server_ttft_sec=None,
+                decode_duration_sec=None,
+                total_server_duration_sec=t_gen_end - t_server_received,
+            )
+            tp = ThroughputBreakdown(
+                generated_tokens=0,
+                prompt_tokens=prompt_tokens,
+                steady_state_decode_tokens=0,
+                decode_throughput=None,
+                decode_throughput_reason="Cancelled during prefix pass",
+                end_to_end_throughput=None,
+            )
             return GenerationJobResponse(
                 job_id=job_id,
                 status="cancelled",
@@ -134,6 +175,8 @@ def run_slr_generation(
                 generated_tokens=0,
                 stop_reason="cancelled",
                 error="Cancelled during prefix pass",
+                timings=tb,
+                throughputs=tp,
             )
 
         # Load layer
@@ -188,6 +231,8 @@ def run_slr_generation(
             )
         )
 
+    t_prefill_end = time.perf_counter()
+
     # Prefix logits via final norm + tied embeddings
     with torch.no_grad():
         hidden_states = model.model.norm(hidden_states)
@@ -204,12 +249,13 @@ def run_slr_generation(
         repetition_penalty=repetition_penalty,
         do_sample=do_sample,
     )
+    t_first_token_generated = time.perf_counter()
     generated_token_ids.append(next_token)
-    ttft_sec = time.perf_counter() - start_total_time
 
     token_str = tokenizer.decode([next_token], skip_special_tokens=False)
     if token_callback:
-        token_callback(next_token, token_str, ttft_sec)
+        token_callback(next_token, token_str, t_first_token_generated - t_server_received, True)
+    t_first_token_sent = time.perf_counter()
 
     # Check immediate EOS
     if next_token in eos_ids:
@@ -299,11 +345,11 @@ def run_slr_generation(
                 break
 
             generated_token_ids.append(next_token)
-            tok_time = time.perf_counter() - start_total_time
+            t_tok_gen = time.perf_counter()
             token_str = tokenizer.decode([next_token], skip_special_tokens=False)
 
             if token_callback:
-                token_callback(next_token, token_str, tok_time)
+                token_callback(next_token, token_str, t_tok_gen - t_server_received, False)
 
             # Check stop sequences
             if stop_sequences:
@@ -312,17 +358,60 @@ def run_slr_generation(
                     stop_reason = "stop_sequence"
                     break
 
-    total_generation_sec = time.perf_counter() - start_total_time
-    decode_sec = max(total_generation_sec - ttft_sec, 0.0001)
-    decode_tokens = max(len(generated_token_ids) - 1, 0)
+    t_generation_end = time.perf_counter()
 
-    decode_throughput = (decode_tokens / decode_sec) if decode_tokens > 0 else None
-    inter_token_latency = (decode_sec / decode_tokens) if decode_tokens > 0 else None
+    # Latencies & Timings
+    tok_lat_sec = t_tok_end - t_tok_start
+    prefill_lat_sec = t_prefill_end - t_prefill_start
+    first_tok_decode_sec = t_first_token_generated - t_prefill_end
+    model_ttft = t_first_token_generated - t_prefill_start
+    server_ttft = t_first_token_generated - t_server_received
+    total_server_sec = t_generation_end - t_server_received
 
-    tokens_per_second = (
-        len(generated_token_ids) / total_generation_sec
-        if total_generation_sec > 0 and len(generated_token_ids) > 0
-        else None
+    total_tokens = len(generated_token_ids)
+    steady_state_tokens = max(total_tokens - 1, 0)
+    decode_duration = max(t_generation_end - t_first_token_generated, 0.0) if steady_state_tokens > 0 else 0.0
+
+    if steady_state_tokens > 0 and decode_duration > 0.0001:
+        decode_throughput = steady_state_tokens / decode_duration
+        decode_reason = f"{steady_state_tokens} tokens across {decode_duration:.3f}s steady-state decoding interval"
+        inter_token_lat = decode_duration / steady_state_tokens
+    else:
+        decode_throughput = None
+        decode_reason = "At least 2 generated tokens required to measure steady-state decode throughput (1st token produced in prefill)"
+        inter_token_lat = None
+
+    if total_tokens > 0 and total_server_sec > 0.0:
+        end_to_end_throughput = total_tokens / total_server_sec
+    else:
+        end_to_end_throughput = None
+
+    timing_breakdown = TimingBreakdown(
+        t_server_received=t_server_received,
+        t_tokenization_start=t_tok_start,
+        t_tokenization_end=t_tok_end,
+        t_prefill_start=t_prefill_start,
+        t_prefill_end=t_prefill_end,
+        t_first_token_generated=t_first_token_generated,
+        t_first_token_sent=t_first_token_sent,
+        t_generation_end=t_generation_end,
+        tokenization_latency_sec=tok_lat_sec,
+        prefill_latency_sec=prefill_lat_sec,
+        first_token_decode_sec=first_tok_decode_sec,
+        model_ttft_sec=model_ttft,
+        server_ttft_sec=server_ttft,
+        decode_duration_sec=decode_duration if steady_state_tokens > 0 else None,
+        total_server_duration_sec=total_server_sec,
+    )
+
+    throughput_breakdown = ThroughputBreakdown(
+        generated_tokens=total_tokens,
+        prompt_tokens=prompt_tokens,
+        steady_state_decode_tokens=steady_state_tokens,
+        decode_throughput=decode_throughput,
+        decode_throughput_reason=decode_reason,
+        end_to_end_throughput=end_to_end_throughput,
+        inter_token_latency_sec=inter_token_lat,
     )
 
     generated_text = tokenizer.decode(
@@ -340,17 +429,56 @@ def run_slr_generation(
         prompt_tokens=prompt_tokens,
         generated_text=generated_text,
         generated_token_ids=generated_token_ids,
-        generated_tokens=len(generated_token_ids),
+        generated_tokens=total_tokens,
         stop_reason=stop_reason,
-        time_to_first_token_sec=ttft_sec,
-        total_generation_sec=total_generation_sec,
-        tokens_per_second=tokens_per_second,
+        time_to_first_token_sec=server_ttft,
+        total_generation_sec=total_server_sec,
+        tokens_per_second=end_to_end_throughput,
         decode_throughput=decode_throughput,
-        inter_token_latency_sec=inter_token_latency,
+        inter_token_latency_sec=inter_token_lat,
         peak_active_params=peak_active_params,
         peak_active_layers=peak_active_layers,
         peak_process_rss_gb=peak_rss,
         engine_type="SelectiveLayerResidencyEngine",
         is_simulated=False,
+        timings=timing_breakdown,
+        throughputs=throughput_breakdown,
         layer_timings=layer_timings,
     )
+
+
+def _sample_next_token(
+    logits: torch.Tensor,
+    generated_ids: List[int],
+    temperature: float = 0.0,
+    top_p: float = 0.9,
+    repetition_penalty: float = 1.0,
+    do_sample: bool = False,
+) -> int:
+    """Greedy or nucleus sampling with repetition penalty."""
+    logits = logits.clone().squeeze().float()
+
+    if repetition_penalty > 1.0 and len(generated_ids) > 0:
+        for tid in set(generated_ids):
+            if logits[tid] < 0:
+                logits[tid] = logits[tid] * repetition_penalty
+            else:
+                logits[tid] = logits[tid] / repetition_penalty
+
+    if not do_sample or temperature <= 0.01:
+        return int(torch.argmax(logits, dim=-1).item())
+
+    logits = logits / max(temperature, 1e-4)
+
+    if top_p < 1.0:
+        sorted_logits, sorted_indices = torch.sort(logits, descending=True)
+        cumulative_probs = torch.cumsum(torch.softmax(sorted_logits, dim=-1), dim=-1)
+        sorted_indices_to_remove = cumulative_probs > top_p
+        sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
+        sorted_indices_to_remove[..., 0] = 0
+        indices_to_remove = sorted_indices[sorted_indices_to_remove]
+        logits[indices_to_remove] = -float("Inf")
+
+    probs = torch.softmax(logits, dim=-1)
+    return int(torch.multinomial(probs, num_samples=1).item())
+

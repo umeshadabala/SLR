@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import platform
 import threading
+import time
 from typing import Any, Dict, List
 from fastapi import APIRouter, HTTPException, Query, Response
 from fastapi.responses import StreamingResponse
@@ -34,6 +35,7 @@ experiment_service = ExperimentService(config.results_dir)
 
 
 @router.get("/health", response_model=HealthResponse)
+@router.get("/api/v1/health", response_model=HealthResponse)
 def get_health() -> HealthResponse:
     """Service health check returning real runtime and model status."""
     status = engine.get_status()
@@ -124,28 +126,32 @@ def list_models() -> List[Dict[str, Any]]:
 
 
 @router.post("/api/v1/generation/start", response_model=GenerationJobResponse)
+@router.post("/api/v1/generate/start", response_model=GenerationJobResponse)
 def start_generation(req: GenerationRequest) -> GenerationJobResponse:
     """Trigger autoregressive generation with selective residency."""
+    t_recv = time.perf_counter()
     status = engine.get_status()
     if not status.is_loaded:
         raise HTTPException(
-            status_code=400,
+            status_code=503,
             detail=(
                 f"Model is not loaded (current state: '{status.state}'). "
                 f"{status.checkpoint_guidance or status.error_message or ''}"
             ),
         )
 
-    return engine.generate(req)
+    return engine.generate(req, t_server_received=t_recv)
 
 
 @router.post("/api/v1/generation/stream")
+@router.post("/api/v1/generate/stream")
 def stream_generation(req: GenerationRequest):
     """Server-Sent Events (SSE) streaming autoregressive generation."""
+    t_recv = time.perf_counter()
     status = engine.get_status()
     if not status.is_loaded:
         raise HTTPException(
-            status_code=400,
+            status_code=503,
             detail=(
                 f"Model is not loaded (current state: '{status.state}'). "
                 f"{status.checkpoint_guidance or status.error_message or ''}"
@@ -153,9 +159,24 @@ def stream_generation(req: GenerationRequest):
         )
 
     return StreamingResponse(
-        engine.generate_stream(req),
+        engine.generate_stream(req, t_server_received=t_recv),
         media_type="text/event-stream",
     )
+
+
+@router.get("/api/v1/results/runs")
+def list_runs(limit: int = 50) -> List[Dict[str, Any]]:
+    """Retrieve historical per-request measurement run records."""
+    return engine.experiment_service.list_run_reports(limit=limit)
+
+
+@router.get("/api/v1/results/runs/{run_id}")
+def get_run(run_id: str) -> Dict[str, Any]:
+    """Retrieve detailed measurement report for a single run."""
+    report = engine.experiment_service.get_run_report(run_id)
+    if not report:
+        raise HTTPException(status_code=404, detail=f"Run report '{run_id}' not found.")
+    return report
 
 
 @router.get("/api/v1/generation/{job_id}", response_model=GenerationJobResponse)

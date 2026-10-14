@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -11,11 +12,48 @@ from exp07.schemas import BenchmarkRecord, ExperimentSummary
 
 
 class ExperimentService:
-    """Manages real experimental records and benchmark exports."""
+    """Manages real experimental records, per-request run benchmarks, and exports."""
 
     def __init__(self, results_dir: str = "results"):
         self.results_dir = Path(results_dir)
         self.historical_dir = self.results_dir / "historical"
+        self.runs_dir = self.results_dir / "runs"
+        self.runs_dir.mkdir(parents=True, exist_ok=True)
+
+    def save_run_report(self, report_dict: Dict[str, Any]) -> str:
+        """Persist a single inference request record to disk."""
+        run_id = report_dict.get("run_id", "unknown")
+        timestamp_slug = report_dict.get("timestamp_epoch", time.time())
+        filename = f"run_{int(timestamp_slug)}_{run_id}.json"
+        target_path = self.runs_dir / filename
+        with open(target_path, "w", encoding="utf-8") as f:
+            json.dump(report_dict, f, indent=2)
+        return str(target_path)
+
+    def list_run_reports(self, limit: int = 50) -> List[Dict[str, Any]]:
+        """List recently saved run reports, newest first."""
+        reports = []
+        for file in sorted(self.runs_dir.glob("run_*.json"), reverse=True)[:limit]:
+            try:
+                with open(file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    reports.append(data)
+            except Exception:
+                continue
+        return reports
+
+    def get_run_report(self, run_id: str) -> Optional[Dict[str, Any]]:
+        """Retrieve a specific run report by run_id."""
+        for file in self.runs_dir.glob("run_*.json"):
+            if run_id in file.name:
+                try:
+                    with open(file, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                        if data.get("run_id") == run_id:
+                            return data
+                except Exception:
+                    continue
+        return None
 
     def list_experiments(self) -> List[ExperimentSummary]:
         """Index all available experiment series."""

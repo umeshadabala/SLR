@@ -72,6 +72,41 @@ class ChatMessage(BaseModel):
     content: str = Field(..., min_length=1)
 
 
+class TimingBreakdown(BaseModel):
+    t_server_received: float
+    t_tokenization_start: float
+    t_tokenization_end: float
+    t_prefill_start: float
+    t_prefill_end: float
+    t_first_token_generated: Optional[float] = None
+    t_first_token_sent: Optional[float] = None
+    t_generation_end: Optional[float] = None
+    tokenization_latency_sec: float
+    prefill_latency_sec: float
+    first_token_decode_sec: Optional[float] = None
+    model_ttft_sec: Optional[float] = None
+    server_ttft_sec: Optional[float] = None
+    decode_duration_sec: Optional[float] = None
+    total_server_duration_sec: float
+    t_client_request_start: Optional[float] = None
+    t_client_first_token_received: Optional[float] = None
+    t_client_first_token_rendered: Optional[float] = None
+    t_client_response_complete: Optional[float] = None
+    transport_ttft_sec: Optional[float] = None
+    ui_first_visible_latency_sec: Optional[float] = None
+
+
+class ThroughputBreakdown(BaseModel):
+    generated_tokens: int
+    prompt_tokens: int
+    steady_state_decode_tokens: int
+    decode_throughput: Optional[float] = None
+    decode_throughput_reason: Optional[str] = None
+    end_to_end_throughput: Optional[float] = None
+    inter_token_latency_sec: Optional[float] = None
+    client_observed_throughput: Optional[float] = None
+
+
 class GenerationRequest(BaseModel):
     prompt: Optional[str] = None
     messages: Optional[List[ChatMessage]] = None
@@ -82,6 +117,7 @@ class GenerationRequest(BaseModel):
     do_sample: bool = False
     stop_sequences: List[str] = Field(default_factory=lambda: ["<|im_end|>", "<|endoftext|>"])
     job_id: Optional[str] = None
+    client_request_start_ms: Optional[float] = None
 
 
 class LayerTimingRecord(BaseModel):
@@ -101,6 +137,7 @@ class GenerationJobResponse(BaseModel):
         ...,
         description="'queued', 'running', 'completed', 'cancelled', or 'failed'",
     )
+    execution_mode: str = "MAC-HOSTED SLR INFERENCE"
     prompt: str = ""
     prompt_tokens: int = 0
     generated_text: str = ""
@@ -121,7 +158,39 @@ class GenerationJobResponse(BaseModel):
     engine_type: str = "SelectiveLayerResidencyEngine"
     is_simulated: bool = False
     error: Optional[str] = None
+    timings: Optional[TimingBreakdown] = None
+    throughputs: Optional[ThroughputBreakdown] = None
     layer_timings: List[LayerTimingRecord] = Field(default_factory=list)
+
+
+class InferenceRunReport(BaseModel):
+    run_id: str
+    timestamp: str
+    timestamp_epoch: float
+    execution_mode: str = "MAC-HOSTED SLR INFERENCE"
+    execution_location: str = "Apple Silicon Mac (Workstation Backend)"
+    device_metadata: Dict[str, Any]
+    model_id: str
+    model_revision: str
+    checkpoint_path: str
+    checkpoint_verification_status: str
+    engine_type: str
+    runtime_version: str
+    prompt: str
+    prompt_tokens: int
+    generated_tokens: int
+    generated_text: str
+    generated_token_ids: List[int]
+    generation_settings: Dict[str, Any]
+    timings: TimingBreakdown
+    throughputs: ThroughputBreakdown
+    status: str
+    stop_reason: str
+    peak_active_params: int
+    peak_active_layers: int
+    peak_process_rss_gb: float
+    layer_residency_summary: str
+    error: Optional[str] = None
 
 
 class TelemetryResponse(BaseModel):

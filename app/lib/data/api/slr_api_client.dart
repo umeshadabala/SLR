@@ -83,6 +83,7 @@ class SlrApiClient {
     double repetitionPenalty = 1.0,
     bool doSample = false,
     String? jobId,
+    double? clientRequestStartMs,
   }) async* {
     final request = http.Request('POST', _uri('/api/v1/generation/stream'));
     request.headers['Content-Type'] = 'application/json';
@@ -96,6 +97,7 @@ class SlrApiClient {
     if (prompt != null) payload['prompt'] = prompt;
     if (messages != null) payload['messages'] = messages;
     if (jobId != null) payload['job_id'] = jobId;
+    if (clientRequestStartMs != null) payload['client_request_start_ms'] = clientRequestStartMs;
     request.body = jsonEncode(payload);
 
     final streamedResponse = await _client.send(request);
@@ -122,6 +124,27 @@ class SlrApiClient {
         }
       }
     }
+  }
+
+  Future<List<Map<String, dynamic>>> listRunReports({int limit = 50}) async {
+    try {
+      final res = await _client.get(_uri('/api/v1/results/runs?limit=$limit')).timeout(ApiConfig.timeout);
+      if (res.statusCode == 200) {
+        final list = jsonDecode(res.body) as List<dynamic>;
+        return list.cast<Map<String, dynamic>>();
+      }
+    } catch (_) {}
+    return [];
+  }
+
+  Future<Map<String, dynamic>?> getRunReport(String runId) async {
+    try {
+      final res = await _client.get(_uri('/api/v1/results/runs/$runId')).timeout(ApiConfig.timeout);
+      if (res.statusCode == 200) {
+        return jsonDecode(res.body) as Map<String, dynamic>;
+      }
+    } catch (_) {}
+    return null;
   }
 
   Future<GenerationJob> getGenerationJob(String jobId) async {
