@@ -13,6 +13,8 @@ eggs/
 /lib/
 /lib64/
 *.apk
+!apks/*.apk
+!apks/*.zip
 .devmemory/
 parts/
 sdist/

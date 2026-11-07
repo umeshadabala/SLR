@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicReference
  */
 class MemorySafetyController(
     private val context: Context,
-    private val diagnostics: DeviceDiagnostics
+    val diagnostics: DeviceDiagnostics
 ) {
 
     enum class FuseState {
@@ -106,6 +106,8 @@ class MemorySafetyController(
 
     fun startMonitoring() {
         stopMonitoring()
+        isCancelled.set(false)
+        currentState.set(FuseState.NORMAL)
         breachSampleCounter = 0
         scheduler = Executors.newSingleThreadScheduledExecutor { r ->
             val t = Thread(r, "SLR-MemorySafetyMonitor")

@@ -27,6 +27,23 @@ android {
         // flag during build.
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        ndk {
+            abiFilters.addAll(listOf("arm64-v8a"))
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags.addAll(listOf("-std=c++17", "-O3", "-fopenmp", "-ffast-math"))
+                arguments.addAll(listOf("-DANDROID_STL=c++_shared"))
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 
     buildTypes {
@@ -34,6 +51,7 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+            isDebuggable = true
         }
     }
 }

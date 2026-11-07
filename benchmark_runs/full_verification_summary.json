@@ -1,0 +1,52 @@
+{
+  "timestamp": 1791970200.3030589,
+  "duration_total_sec": 1.41,
+  "total_checks": 6,
+  "passed": 6,
+  "failed": 0,
+  "skipped_or_unavailable": 0,
+  "results": [
+    {
+      "test_id": "ENV-01",
+      "name": "Python Dependencies",
+      "status": "PASS",
+      "details": "torch=2.14.1 transformers=5.19.0 fastapi=0.143.0",
+      "duration_sec": 0.963
+    },
+    {
+      "test_id": "DEV-01",
+      "name": "Physical Device Identity",
+      "status": "PASS",
+      "details": "Serial: ZN5228K32H, motorola moto g37 power (Android 16, API 36)",
+      "duration_sec": 0.171
+    },
+    {
+      "test_id": "SRV-01",
+      "name": "FastAPI /health on :8000",
+      "status": "PASS",
+      "details": "status=ok model_state=ready",
+      "duration_sec": 0.022
+    },
+    {
+      "test_id": "NET-01",
+      "name": "ADB Reverse tcp:8000",
+      "status": "PASS",
+      "details": "Active reverse mapping verified",
+      "duration_sec": 0.013
+    },
+    {
+      "test_id": "BNCH-01",
+      "name": "Latest Benchmark Report",
+      "status": "PASS",
+      "details": "File: run_80155076_benchmark.json, Passed: 7/7, Duration: 167025ms",
+      "duration_sec": 0.117
+    },
+    {
+      "test_id": "INF-01",
+      "name": "Native SLR Generation Run",
+      "status": "PASS",
+      "details": "File: run_1791969894_native_d4d3d13c.json, TTFT: 28.51s, ActiveLayers: 1/28, Text: 'I'",
+      "duration_sec": 0.121
+    }
+  ]
+}

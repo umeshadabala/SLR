@@ -74,35 +74,44 @@ class _InferenceScreenState extends State<InferenceScreen> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(width: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
-                  decoration: BoxDecoration(
-                    color: repo.isConnected
-                        ? AppColors.primary.withValues(alpha: 0.2)
-                        : (AndroidNativeBridge.isAndroid
-                            ? AppColors.warning.withValues(alpha: 0.2)
-                            : AppColors.error.withValues(alpha: 0.2)),
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(
-                      color: repo.isConnected
-                          ? AppColors.primary
-                          : (AndroidNativeBridge.isAndroid ? AppColors.warning : AppColors.error),
-                      width: 0.8,
+                InkWell(
+                  onTap: () {
+                    final nextMode = repo.isAndroidNativeMode
+                        ? ExecutionMode.macHosted
+                        : ExecutionMode.androidNative;
+                    repo.setExecutionMode(nextMode);
+                  },
+                  borderRadius: BorderRadius.circular(4),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                    decoration: BoxDecoration(
+                      color: repo.isAndroidNativeMode
+                          ? AppColors.success.withValues(alpha: 0.2)
+                          : (repo.isConnected
+                              ? AppColors.primary.withValues(alpha: 0.2)
+                              : AppColors.error.withValues(alpha: 0.2)),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(
+                        color: repo.isAndroidNativeMode
+                            ? AppColors.success
+                            : (repo.isConnected ? AppColors.primary : AppColors.error),
+                        width: 0.8,
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    repo.isConnected
-                        ? 'MAC-HOSTED SLR INFERENCE'
-                        : (AndroidNativeBridge.isAndroid
-                            ? 'STRUCTURAL TEST ONLY'
-                            : 'BACKEND DISCONNECTED'),
-                    style: TextStyle(
-                      fontSize: 8,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.4,
-                      color: repo.isConnected
-                          ? AppColors.primary
-                          : (AndroidNativeBridge.isAndroid ? AppColors.warning : AppColors.error),
+                    child: Text(
+                      repo.isAndroidNativeMode
+                          ? 'ANDROID-NATIVE INFERENCE'
+                          : (repo.isConnected
+                              ? 'MAC-HOSTED SLR INFERENCE'
+                              : 'BACKEND DISCONNECTED'),
+                      style: TextStyle(
+                        fontSize: 8,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.4,
+                        color: repo.isAndroidNativeMode
+                            ? AppColors.success
+                            : (repo.isConnected ? AppColors.primary : AppColors.error),
+                      ),
                     ),
                   ),
                 ),
@@ -134,8 +143,8 @@ class _InferenceScreenState extends State<InferenceScreen> {
       ),
       body: Column(
         children: [
-          // 1. Detailed System Status Banner
-          if (sysStatus == SlrSystemStatus.backendUnreachable)
+          // 1. Detailed System Status Banner (Only for Mac-Hosted mode when disconnected)
+          if (!repo.isAndroidNativeMode && sysStatus == SlrSystemStatus.backendUnreachable)
             Padding(
               padding: const EdgeInsets.all(12),
               child: Container(
@@ -588,29 +597,33 @@ class _InferenceScreenState extends State<InferenceScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Wrap(
-                            spacing: 6,
-                            runSpacing: 4,
-                            children: [
-                              _chipMetric(
-                                'TTFT',
-                                msg.modelTtftSec != null
-                                    ? '${msg.modelTtftSec!.toStringAsFixed(2)}s'
-                                    : (msg.timeToFirstTokenSec != null
-                                        ? '${msg.timeToFirstTokenSec!.toStringAsFixed(2)}s'
-                                        : '-'),
-                              ),
-                              _chipMetric(
-                                'Decode',
-                                msg.decodeThroughput != null
-                                    ? '${msg.decodeThroughput!.toStringAsFixed(1)} tok/s'
-                                    : (msg.decodeThroughputReason ?? '-'),
-                              ),
-                              _chipMetric(
-                                'Tokens',
-                                '${msg.generatedTokens} out',
-                              ),
-                            ],
+                          Expanded(
+                            child: Wrap(
+                              spacing: 6,
+                              runSpacing: 4,
+                              children: [
+                                _chipMetric(
+                                  'TTFT',
+                                  msg.modelTtftSec != null
+                                      ? '${msg.modelTtftSec!.toStringAsFixed(2)}s'
+                                      : (msg.timeToFirstTokenSec != null
+                                          ? '${msg.timeToFirstTokenSec!.toStringAsFixed(2)}s'
+                                          : '-'),
+                                ),
+                                _chipMetric(
+                                  'Decode',
+                                  msg.decodeThroughput != null
+                                      ? (msg.decodeThroughput! < 0.1
+                                          ? '${msg.decodeThroughput!.toStringAsFixed(2)} tok/s'
+                                          : '${msg.decodeThroughput!.toStringAsFixed(1)} tok/s')
+                                      : (msg.decodeThroughputReason ?? 'N/A'),
+                                ),
+                                _chipMetric(
+                                  'Tokens',
+                                  '${msg.generatedTokens} out',
+                                ),
+                              ],
+                            ),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.min,
@@ -667,15 +680,20 @@ class _InferenceScreenState extends State<InferenceScreen> {
                             _telemetryRow('UI First-Visible Latency', msg.uiFirstVisibleLatencySec != null ? '${msg.uiFirstVisibleLatencySec!.toStringAsFixed(3)} s' : '-'),
                             _telemetryRow('Prefill Latency', msg.prefillLatencySec != null ? '${msg.prefillLatencySec!.toStringAsFixed(3)} s' : '-'),
                             _telemetryRow('1st Token Decode', msg.firstTokenDecodeSec != null ? '${msg.firstTokenDecodeSec!.toStringAsFixed(3)} s' : '-'),
-                            const Divider(height: 10),
-                            _telemetryRow('Steady-State Decode Throughput', msg.decodeThroughput != null ? '${msg.decodeThroughput!.toStringAsFixed(2)} tok/s' : (msg.decodeThroughputReason ?? '-')),
+                            _telemetryRow('Steady-State Decode Throughput', msg.decodeThroughput != null ? '${msg.decodeThroughput!.toStringAsFixed(2)} tok/s' : (msg.decodeThroughputReason ?? 'N/A')),
+                            if (msg.interTokenLatencySec != null)
+                              _telemetryRow('Inter-Token Latency', '${msg.interTokenLatencySec!.toStringAsFixed(3)} s/tok'),
                             _telemetryRow('End-to-End Throughput', msg.endToEndThroughput != null ? '${msg.endToEndThroughput!.toStringAsFixed(2)} tok/s' : '-'),
                             _telemetryRow('Client-Observed Throughput', msg.clientObservedThroughput != null ? '${msg.clientObservedThroughput!.toStringAsFixed(2)} tok/s' : '-'),
                             _telemetryRow('Total Request Latency', msg.totalGenerationSec != null ? '${msg.totalGenerationSec!.toStringAsFixed(2)} s' : '-'),
                             const Divider(height: 10),
                             _telemetryRow('Tokens (Prompt / Generated)', '${msg.promptTokens ?? "-"} in / ${msg.generatedTokens ?? "-"} out'),
                             _telemetryRow('Stop Reason', msg.stopReason ?? 'eos'),
-                            _telemetryRow('Backend Process Peak RSS', msg.peakRssGb != null ? '${msg.peakRssGb!.toStringAsFixed(3)} GB' : '-'),
+                            _telemetryRow('Peak Process RSS', msg.peakRssGb != null ? '${msg.peakRssGb!.toStringAsFixed(3)} GB' : '-'),
+                            if (msg.fullReportJson?['memory_measurements'] != null)
+                              _telemetryRow('Memory Composition', 'Anon: ${(msg.fullReportJson!["memory_measurements"]["rss_anon_mb"] as num?)?.toDouble().toStringAsFixed(1) ?? "-"} MB | File: ${(msg.fullReportJson!["memory_measurements"]["rss_file_mb"] as num?)?.toDouble().toStringAsFixed(1) ?? "-"} MB'),
+                            if (msg.fullReportJson?['acceleration_mode'] != null)
+                              _telemetryRow('Acceleration Mode', msg.fullReportJson!['acceleration_mode']?.toString() ?? 'NATIVE'),
                           ],
                         ),
                       ),
@@ -720,7 +738,15 @@ class _InferenceScreenState extends State<InferenceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: const TextStyle(fontSize: 11, color: AppColors.neutral)),
-          Text(value, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white)),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+          ),
         ],
       ),
     );

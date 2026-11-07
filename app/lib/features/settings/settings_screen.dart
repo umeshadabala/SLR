@@ -38,6 +38,78 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Execution Mode Switcher
+            Container(
+              padding: const EdgeInsets.all(18),
+              margin: const EdgeInsets.only(bottom: 20),
+              decoration: BoxDecoration(
+                color: AppColors.surfaceDark,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: repo.isAndroidNativeMode ? AppColors.success : AppColors.primary,
+                  width: 1.2,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        repo.isAndroidNativeMode ? Icons.phone_android : Icons.computer,
+                        color: repo.isAndroidNativeMode ? AppColors.success : AppColors.primary,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        'EXECUTION MODE',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.8,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  RadioListTile<ExecutionMode>(
+                    value: ExecutionMode.androidNative,
+                    groupValue: repo.executionMode,
+                    activeColor: AppColors.success,
+                    title: const Text(
+                      'ANDROID-NATIVE INFERENCE (Standalone On-Device)',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text(
+                      '100% offline Qwen2.5-1.5B SLR engine running on device processor. No Mac backend or network required.',
+                      style: TextStyle(fontSize: 11, color: AppColors.neutral),
+                    ),
+                    onChanged: (mode) {
+                      if (mode != null) repo.setExecutionMode(mode);
+                    },
+                  ),
+                  const Divider(height: 1),
+                  RadioListTile<ExecutionMode>(
+                    value: ExecutionMode.macHosted,
+                    groupValue: repo.executionMode,
+                    activeColor: AppColors.primary,
+                    title: const Text(
+                      'MAC-HOSTED SLR INFERENCE (Development Host)',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text(
+                      'Stream tokens from Python FastAPI / PyTorch backend running on host Mac via USB adb reverse or Wi-Fi.',
+                      style: TextStyle(fontSize: 11, color: AppColors.neutral),
+                    ),
+                    onChanged: (mode) {
+                      if (mode != null) repo.setExecutionMode(mode);
+                    },
+                  ),
+                ],
+              ),
+            ),
+
             // Checkpoint Configuration
             Container(
               padding: const EdgeInsets.all(18),

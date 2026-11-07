@@ -1,0 +1,28 @@
+{
+  "run_id": "native_9f80d97d",
+  "timestamp": "2026-10-14T10:21:54Z",
+  "execution_mode": "ANDROID-NATIVE INFERENCE",
+  "execution_location": "Android Phone Local Processor (No Host)",
+  "model_id": "Qwen\/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "prompt_tokens": 16,
+  "generated_tokens": 14,
+  "generated_text": "1, 2, 3, 4, 5",
+  "stop_reason": "eos",
+  "timings": {
+    "tokenization_latency_sec": 0.004404693,
+    "prefill_latency_sec": 34.084426233,
+    "first_token_decode_sec": 5.775668,
+    "model_ttft_sec": 39.864596387,
+    "decode_duration_sec": 331.543809789,
+    "total_generation_sec": 371.408406176
+  },
+  "throughputs": {
+    "decode_throughput": 0.039210504362224154,
+    "end_to_end_throughput": 0.03769435415892497,
+    "steady_state_tokens": 13
+  },
+  "peak_active_layers": 1,
+  "peak_active_params": 46797824,
+  "peak_process_rss_gb": 3.5118064880371094
+}

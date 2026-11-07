@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -146,6 +147,104 @@ class AndroidNativeBridge {
     } catch (e) {
       debugPrint('runSafeBenchmark error: $e');
       rethrow;
+    }
+  }
+
+  // --- Native SLR Generation & Streaming ---
+  static bool _channelInitialized = false;
+  static final StreamController<Map<String, dynamic>> _nativeTokenController =
+      StreamController<Map<String, dynamic>>.broadcast();
+  static final StreamController<Map<String, dynamic>> _nativeDoneController =
+      StreamController<Map<String, dynamic>>.broadcast();
+  static final StreamController<String> _nativeErrorController =
+      StreamController<String>.broadcast();
+
+  static void ensureInitialized() {
+    if (_channelInitialized) return;
+    _channelInitialized = true;
+    _channel.setMethodCallHandler((call) async {
+      switch (call.method) {
+        case 'onNativeToken':
+          if (call.arguments is Map) {
+            _nativeTokenController.add(Map<String, dynamic>.from(call.arguments as Map));
+          }
+          break;
+        case 'onNativeDone':
+          if (call.arguments is Map) {
+            _nativeDoneController.add(Map<String, dynamic>.from(call.arguments as Map));
+          }
+          break;
+        case 'onNativeError':
+          if (call.arguments is Map) {
+            final args = Map<String, dynamic>.from(call.arguments as Map);
+            _nativeErrorController.add(args['error']?.toString() ?? 'Native inference error');
+          } else {
+            _nativeErrorController.add(call.arguments?.toString() ?? 'Native inference error');
+          }
+          break;
+      }
+    });
+  }
+
+  static Stream<Map<String, dynamic>> get onNativeToken {
+    ensureInitialized();
+    return _nativeTokenController.stream;
+  }
+
+  static Stream<Map<String, dynamic>> get onNativeDone {
+    ensureInitialized();
+    return _nativeDoneController.stream;
+  }
+
+  static Stream<String> get onNativeError {
+    ensureInitialized();
+    return _nativeErrorController.stream;
+  }
+
+  static Future<bool> startNativeGeneration({
+    required String prompt,
+    List<Map<String, String>>? messages,
+    int maxNewTokens = 32,
+    double temperature = 0.0,
+    double topP = 1.0,
+  }) async {
+    if (!isAndroid) return false;
+    ensureInitialized();
+    try {
+      final res = await _channel.invokeMethod<bool>('startNativeGeneration', {
+        'prompt': prompt,
+        'messages': messages,
+        'maxNewTokens': maxNewTokens,
+        'temperature': temperature,
+        'topP': topP,
+      });
+      return res ?? false;
+    } catch (e) {
+      debugPrint('startNativeGeneration error: $e');
+      return false;
+    }
+  }
+
+  static Future<bool> cancelNativeGeneration() async {
+    if (!isAndroid) return false;
+    try {
+      final res = await _channel.invokeMethod<bool>('cancelNativeGeneration');
+      return res ?? false;
+    } catch (e) {
+      debugPrint('cancelNativeGeneration error: $e');
+      return false;
+    }
+  }
+
+  static Future<List<Map<String, dynamic>>> listNativeRuns() async {
+    if (!isAndroid) return [];
+    try {
+      final res = await _channel.invokeMethod<List<dynamic>>('listNativeRuns');
+      if (res == null) return [];
+      return res.map((item) => Map<String, dynamic>.from(item as Map)).toList();
+    } catch (e) {
+      debugPrint('listNativeRuns error: $e');
+      return [];
     }
   }
 }

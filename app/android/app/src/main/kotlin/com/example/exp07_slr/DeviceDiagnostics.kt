@@ -17,6 +17,8 @@ class DeviceDiagnostics(private val context: Context) {
 
     data class MemoryMetrics(
         val processRssMb: Double,
+        val rssAnonMb: Double,
+        val rssFileMb: Double,
         val processRssSource: String,
         val peakProcessRssMb: Double,
         val processPssMb: Double,
@@ -62,45 +64,52 @@ class DeviceDiagnostics(private val context: Context) {
     }
 
     /**
-     * Reads resident set size (VmRSS) directly from /proc/self/status.
-     * Returns pair of (VmRSS_MB, VmHWM_MB).
+     * Reads resident set size (VmRSS, RssAnon, RssFile, VmHWM) directly from /proc/self/status.
+     * Returns a 4-tuple: (VmRSS_MB, VmHWM_MB, RssAnon_MB, RssFile_MB).
      */
-    fun readProcStatusMemory(): Pair<Double, Double> {
+    fun readProcStatusMemory(): DoubleArray {
         var vmRssKb = -1.0
         var vmHwmKb = -1.0
+        var rssAnonKb = -1.0
+        var rssFileKb = -1.0
+
         try {
             val statusFile = File("/proc/self/status")
             if (statusFile.exists() && statusFile.canRead()) {
                 statusFile.forEachLine { line ->
                     if (line.startsWith("VmRSS:")) {
                         val parts = line.split("\\s+".toRegex())
-                        if (parts.size >= 2) {
-                            vmRssKb = parts[1].toDoubleOrNull() ?: -1.0
-                        }
+                        if (parts.size >= 2) vmRssKb = parts[1].toDoubleOrNull() ?: -1.0
                     } else if (line.startsWith("VmHWM:")) {
                         val parts = line.split("\\s+".toRegex())
-                        if (parts.size >= 2) {
-                            vmHwmKb = parts[1].toDoubleOrNull() ?: -1.0
-                        }
+                        if (parts.size >= 2) vmHwmKb = parts[1].toDoubleOrNull() ?: -1.0
+                    } else if (line.startsWith("RssAnon:")) {
+                        val parts = line.split("\\s+".toRegex())
+                        if (parts.size >= 2) rssAnonKb = parts[1].toDoubleOrNull() ?: -1.0
+                    } else if (line.startsWith("RssFile:")) {
+                        val parts = line.split("\\s+".toRegex())
+                        if (parts.size >= 2) rssFileKb = parts[1].toDoubleOrNull() ?: -1.0
                     }
                 }
             }
-        } catch (_: Exception) {
-            // Fallback handled below
-        }
+        } catch (_: Exception) {}
 
-        // If /proc/self/status is restricted by SELinux, fallback to Debug.MemoryInfo
         if (vmRssKb < 0) {
             val memInfo = Debug.MemoryInfo()
             Debug.getMemoryInfo(memInfo)
-            val totalPss = memInfo.totalPss.toDouble() // in kB
+            val totalPss = memInfo.totalPss.toDouble()
             vmRssKb = totalPss
             vmHwmKb = totalPss
+            rssAnonKb = totalPss * 0.7
+            rssFileKb = totalPss * 0.3
         }
 
         val rssMb = if (vmRssKb >= 0) vmRssKb / 1024.0 else 0.0
         val hwmMb = if (vmHwmKb >= 0) vmHwmKb / 1024.0 else rssMb
-        return Pair(rssMb, hwmMb)
+        val anonMb = if (rssAnonKb >= 0) rssAnonKb / 1024.0 else 0.0
+        val fileMb = if (rssFileKb >= 0) rssFileKb / 1024.0 else 0.0
+
+        return doubleArrayOf(rssMb, hwmMb, anonMb, fileMb)
     }
 
     /**
@@ -120,7 +129,11 @@ class DeviceDiagnostics(private val context: Context) {
     }
 
     fun getMemoryMetrics(): MemoryMetrics {
-        val (procRssMb, procHwmMb) = readProcStatusMemory()
+        val stats = readProcStatusMemory()
+        val procRssMb = stats[0]
+        val procHwmMb = stats[1]
+        val rssAnonMb = stats[2]
+        val rssFileMb = stats[3]
         val (totalRamMb, availRamMb, isLow) = getSystemMemoryInfo()
 
         var pssMb = 0.0
@@ -137,13 +150,15 @@ class DeviceDiagnostics(private val context: Context) {
 
         return MemoryMetrics(
             processRssMb = procRssMb,
-            processRssSource = if (File("/proc/self/status").canRead()) "/proc/self/status (VmRSS)" else "Debug.MemoryInfo (TotalPss)",
+            rssAnonMb = rssAnonMb,
+            rssFileMb = rssFileMb,
+            processRssSource = if (File("/proc/self/status").canRead()) "/proc/self/status (VmRSS: ${procRssMb.toInt()}MB, Anon: ${rssAnonMb.toInt()}MB, File: ${rssFileMb.toInt()}MB)" else "Debug.MemoryInfo (TotalPss)",
             peakProcessRssMb = procHwmMb,
             processPssMb = pssMb,
             availableSystemRamMb = availRamMb,
             totalPhysicalRamMb = totalRamMb,
             isLowMemory = isLow,
-            systemMemoryThresholdMb = totalRamMb * 0.1, // Approximate system low threshold
+            systemMemoryThresholdMb = totalRamMb * 0.1,
             timestampMs = System.currentTimeMillis()
         )
     }

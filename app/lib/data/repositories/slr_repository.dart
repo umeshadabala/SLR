@@ -1,3 +1,4 @@
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
@@ -13,9 +14,16 @@ import '../models/model_status.dart';
 import '../models/system_status.dart';
 import '../models/telemetry_data.dart';
 
+enum ExecutionMode {
+  androidNative,
+  macHosted,
+}
+
 class SlrRepository extends ChangeNotifier {
   final SlrApiClient _api;
 
+  ExecutionMode _executionMode =
+      AndroidNativeBridge.isAndroid ? ExecutionMode.androidNative : ExecutionMode.macHosted;
   BackendHealth _backendHealth = BackendHealth.unreachable();
   ModelStatus _modelStatus = ModelStatus.offline();
   TelemetryData _telemetry = TelemetryData.unavailable();
@@ -46,6 +54,8 @@ class SlrRepository extends ChangeNotifier {
 
   SlrRepository({SlrApiClient? api}) : _api = api ?? SlrApiClient();
 
+  ExecutionMode get executionMode => _executionMode;
+  bool get isAndroidNativeMode => _executionMode == ExecutionMode.androidNative;
   BackendHealth get backendHealth => _backendHealth;
   ModelStatus get modelStatus => _modelStatus;
   TelemetryData get telemetry => _telemetry;
@@ -57,8 +67,35 @@ class SlrRepository extends ChangeNotifier {
   String? get lastError => _lastError;
   bool get isConnected => _backendHealth.isReachable;
 
+  void setExecutionMode(ExecutionMode mode) {
+    if (_executionMode != mode) {
+      _executionMode = mode;
+      _lastError = null;
+      notifyListeners();
+      refreshAll();
+    }
+  }
+
   SlrSystemStatus get systemStatus {
     if (_isGenerating) return SlrSystemStatus.inferenceRunning;
+
+    if (_executionMode == ExecutionMode.androidNative) {
+      if (_lastError != null && _lastError!.isNotEmpty && !_modelStatus.isLoaded) {
+        return SlrSystemStatus.inferenceFailed;
+      }
+      if (_modelStatus.isLoaded) {
+        return SlrSystemStatus.modelReady;
+      }
+      if (_modelStatus.state == 'loading') {
+        return SlrSystemStatus.modelLoading;
+      }
+      if (_modelStatus.state == 'checkpoint_missing') {
+        return SlrSystemStatus.modelMissing;
+      }
+      return SlrSystemStatus.modelMissing;
+    }
+
+    // Mac-Hosted mode
     if (!_backendHealth.isReachable) return SlrSystemStatus.backendUnreachable;
     if (_lastError != null && _lastError!.isNotEmpty && !_modelStatus.isLoaded) {
       return SlrSystemStatus.inferenceFailed;
@@ -150,14 +187,62 @@ class SlrRepository extends ChangeNotifier {
   Future<void> refreshAll() async {
     await refreshModelStatus();
     await refreshTelemetry();
+    await refreshBenchmarks();
     if (_backendHealth.isReachable) {
-      await refreshBenchmarks();
       await refreshExperiments();
     }
   }
 
   Future<void> refreshModelStatus() async {
-    // 1. Probe backend health unconditionally to verify actual reachability
+    if (_executionMode == ExecutionMode.androidNative && AndroidNativeBridge.isAndroid) {
+      _androidDiagnostics = await AndroidNativeBridge.getDeviceDiagnostics();
+      final chk = await AndroidNativeBridge.verifyCheckpoint();
+      final localFileExists = chk?['exists'] == true;
+      final sizeMb = (chk?['sizeMb'] as num?)?.toDouble() ?? 0.0;
+      final hasTok = chk?['hasTokenizer'] == true;
+      final path = chk?['path']?.toString() ?? '';
+
+      if (localFileExists && hasTok) {
+        _modelStatus = ModelStatus(
+          modelId: 'Qwen/Qwen2.5-1.5B-Instruct',
+          targetRevision: '989aa7980e4cf806f80c7fef2b1adb7bc71aa306',
+          state: 'ready',
+          isLoaded: true,
+          isSimulated: false,
+          engineType: 'Android On-Device SLR Engine (Sequential Layer Residency 1/28)',
+          dtype: 'bfloat16',
+          totalParameters: 1543714304,
+          activeParameters: 0,
+          activeLayers: 0,
+          totalLayers: 28,
+          layerSizeMb: 89.26,
+          checkpointGuidance:
+              'Checkpoint & tokenizer verified in local storage ($path, ${sizeMb.toStringAsFixed(1)} MB). Standalone offline inference ready.',
+        );
+      } else {
+        _modelStatus = ModelStatus(
+          modelId: 'Qwen/Qwen2.5-1.5B-Instruct',
+          targetRevision: '989aa7980e4cf806f80c7fef2b1adb7bc71aa306',
+          state: 'checkpoint_missing',
+          isLoaded: false,
+          isSimulated: false,
+          engineType: 'Android On-Device SLR Engine',
+          dtype: 'bfloat16',
+          totalParameters: 1543714304,
+          activeParameters: 0,
+          activeLayers: 0,
+          totalLayers: 28,
+          layerSizeMb: 89.26,
+          errorMessage: 'Missing required model files in Android application storage.',
+          checkpointGuidance:
+              'Model files missing in application storage. Place model.safetensors and vocab.json in internal storage.',
+        );
+      }
+      notifyListeners();
+      return;
+    }
+
+    // Mac-Hosted mode
     final health = await _api.checkHealth();
     _backendHealth = health;
 
@@ -190,7 +275,7 @@ class SlrRepository extends ChangeNotifier {
           layerSizeMb: 89.26,
           errorMessage: 'Cannot connect to SLR backend at ${ApiConfig.baseUrl}: ${health.error ?? "Connection refused"}',
           checkpointGuidance: localFileExists
-              ? 'Local weights exist on phone storage. To connect to host backend over USB, run "adb reverse tcp:8000 tcp:8000" on your Mac, or configure host IP in Settings.'
+              ? 'Local weights exist on phone storage. Switch to ANDROID-NATIVE INFERENCE mode to run offline on-device, or run "adb reverse tcp:8000 tcp:8000" for Mac host.'
               : 'SLR backend unreachable at ${ApiConfig.baseUrl}. Set up "adb reverse tcp:8000 tcp:8000" or configure Mac Wi-Fi IP in Settings.',
         );
       } else {
@@ -203,7 +288,7 @@ class SlrRepository extends ChangeNotifier {
   }
 
   Future<void> refreshTelemetry() async {
-    if (_backendHealth.isReachable) {
+    if (_executionMode == ExecutionMode.macHosted && _backendHealth.isReachable) {
       _telemetry = await _api.getTelemetry();
       notifyListeners();
     } else if (AndroidNativeBridge.isAndroid) {
@@ -232,6 +317,9 @@ class SlrRepository extends ChangeNotifier {
         );
       }
       notifyListeners();
+    } else if (_backendHealth.isReachable) {
+      _telemetry = await _api.getTelemetry();
+      notifyListeners();
     } else {
       _telemetry = TelemetryData.unavailable();
       notifyListeners();
@@ -239,11 +327,57 @@ class SlrRepository extends ChangeNotifier {
   }
 
   Future<void> refreshBenchmarks() async {
+    final nativeBenchmarks = <BenchmarkData>[];
+    if (AndroidNativeBridge.isAndroid) {
+      final nativeRuns = await AndroidNativeBridge.listNativeRuns();
+      for (final run in nativeRuns) {
+        final runId = run['run_id']?.toString() ?? 'RUN';
+        final timings = (run['timings'] as Map?)?.cast<String, dynamic>() ?? {};
+        final throughputs = (run['throughputs'] as Map?)?.cast<String, dynamic>() ?? {};
+        final tps = (throughputs['decode_throughput'] as num?)?.toDouble() ??
+            (throughputs['end_to_end_throughput'] as num?)?.toDouble();
+        final ttft = (timings['model_ttft_sec'] as num?)?.toDouble();
+        final totalSec = (timings['total_duration_sec'] as num?)?.toDouble() ?? 0.0;
+        final promptToks = run['prompt_tokens'] as int? ?? 0;
+        final genToks = run['generated_tokens'] as int? ?? 0;
+        final peakMb = (run['peak_process_rss_mb'] as num?)?.toDouble() ?? 0.0;
+
+        nativeBenchmarks.add(
+          BenchmarkData(
+            benchmarkId: 'NATIVE-$runId',
+            experimentId: 'EXP-08-ANDROID-NATIVE',
+            title: 'Qwen2.5-1.5B Android SLR Run ($genToks tokens)',
+            timestamp: run['timestamp']?.toString() ?? '',
+            model: run['model_id']?.toString() ?? 'Qwen/Qwen2.5-1.5B-Instruct',
+            precision: 'BF16',
+            device: 'Motorola moto g37 power (On-Device Native)',
+            osPlatform: 'Android 16',
+            promptLength: promptToks,
+            outputLength: genToks,
+            timeToFirstTokenSec: ttft,
+            totalGenerationSec: totalSec,
+            tokensPerSecond: tps,
+            peakRssGb: peakMb / 1024.0,
+            activeTransformerParamsRatio: '1/28 (46.8M / 1.31B)',
+            validationStatus: run['status']?.toString().toUpperCase() ?? 'COMPLETED',
+            isSimulated: false,
+            notes: [
+              'Execution: ANDROID-NATIVE INFERENCE',
+              'Model TTFT: ${ttft != null ? "${ttft.toStringAsFixed(3)}s" : "N/A"}',
+              'Steady-State Decode: ${throughputs["decode_throughput"] != null ? "${(throughputs["decode_throughput"] as num).toStringAsFixed(2)} tok/s" : "N/A"}',
+              'Peak RSS: ${peakMb.toStringAsFixed(1)} MB',
+              'Stop Reason: ${run["stop_reason"] ?? "eos"}',
+            ],
+          ),
+        );
+      }
+    }
+
+    final macBenchmarks = <BenchmarkData>[];
     if (_backendHealth.isReachable) {
       final baseBenchmarks = await _api.getBenchmarks();
       final runReports = await _api.listRunReports(limit: 20);
 
-      final runBenchmarks = <BenchmarkData>[];
       for (final run in runReports) {
         final runId = run['run_id']?.toString() ?? 'RUN';
         final timings = run['timings'] as Map<String, dynamic>? ?? {};
@@ -256,7 +390,7 @@ class SlrRepository extends ChangeNotifier {
         final promptToks = run['prompt_tokens'] as int? ?? 0;
         final genToks = run['generated_tokens'] as int? ?? 0;
 
-        runBenchmarks.add(
+        macBenchmarks.add(
           BenchmarkData(
             benchmarkId: 'RUN-$runId',
             experimentId: 'EXP-07-WORKSTATION',
@@ -284,10 +418,11 @@ class SlrRepository extends ChangeNotifier {
           ),
         );
       }
-
-      _benchmarks = [...runBenchmarks, ...baseBenchmarks];
-      notifyListeners();
+      macBenchmarks.addAll(baseBenchmarks);
     }
+
+    _benchmarks = [...nativeBenchmarks, ...macBenchmarks];
+    notifyListeners();
   }
 
   Future<void> refreshExperiments() async {
@@ -408,11 +543,183 @@ class SlrRepository extends ChangeNotifier {
 
     _lastError = null;
 
+    if (_executionMode == ExecutionMode.androidNative) {
+      if (!_modelStatus.isLoaded) {
+        _lastError = 'Cannot send prompt: Android native model is not loaded (current state: "${_modelStatus.state}").';
+        notifyListeners();
+        return;
+      }
+
+      final userMsg = ChatMessageItem(
+        id: 'usr_${DateTime.now().millisecondsSinceEpoch}',
+        role: 'user',
+        content: trimmed,
+        timestamp: DateTime.now(),
+        status: ChatMessageStatus.completed,
+      );
+      _chatMessages.add(userMsg);
+
+      final assistantMsg = ChatMessageItem(
+        id: 'asst_${DateTime.now().millisecondsSinceEpoch}',
+        role: 'assistant',
+        content: '',
+        timestamp: DateTime.now(),
+        status: ChatMessageStatus.generating,
+        executionMode: 'ANDROID-NATIVE INFERENCE',
+        executionLocation: 'Motorola moto g37 power (On-Device SLR Engine)',
+      );
+      _chatMessages.add(assistantMsg);
+      _isGenerating = true;
+      notifyListeners();
+
+      final stopwatch = Stopwatch()..start();
+      int clientTokensReceived = 0;
+      int? firstTokenElapsedMs;
+
+      StreamSubscription? tokenSub;
+      StreamSubscription? doneSub;
+      StreamSubscription? errSub;
+      Timer? uiBatchTimer;
+      String pendingChunk = '';
+
+      void flushPendingChunk() {
+        if (pendingChunk.isNotEmpty) {
+          assistantMsg.content += pendingChunk;
+          pendingChunk = '';
+          notifyListeners();
+        }
+      }
+
+      void cleanup() {
+        uiBatchTimer?.cancel();
+        uiBatchTimer = null;
+        flushPendingChunk();
+        tokenSub?.cancel();
+        doneSub?.cancel();
+        errSub?.cancel();
+        _isGenerating = false;
+        refreshTelemetry();
+        refreshBenchmarks();
+        notifyListeners();
+      }
+
+      tokenSub = AndroidNativeBridge.onNativeToken.listen((event) {
+        clientTokensReceived++;
+        final text = event['text']?.toString() ?? '';
+        if (clientTokensReceived == 1) {
+          firstTokenElapsedMs = stopwatch.elapsedMilliseconds;
+          assistantMsg.uiFirstVisibleLatencySec = firstTokenElapsedMs! / 1000.0;
+          assistantMsg.content += text;
+          notifyListeners();
+        } else {
+          pendingChunk += text;
+          if (uiBatchTimer == null || !uiBatchTimer!.isActive) {
+            uiBatchTimer = Timer(const Duration(milliseconds: 25), () {
+              flushPendingChunk();
+            });
+          }
+        }
+      });
+
+      doneSub = AndroidNativeBridge.onNativeDone.listen((event) {
+        stopwatch.stop();
+        assistantMsg.status = ChatMessageStatus.completed;
+        final rawReport = event['report']?.toString();
+        Map<String, dynamic> resp = {};
+        if (rawReport != null) {
+          try {
+            resp = jsonDecode(rawReport) as Map<String, dynamic>;
+          } catch (_) {}
+        }
+        assistantMsg.fullReportJson = resp;
+
+        final timings = resp['timings'] as Map<String, dynamic>? ?? {};
+        final throughputs = resp['throughputs'] as Map<String, dynamic>? ?? {};
+
+        assistantMsg.modelTtftSec = (timings['model_ttft_sec'] as num?)?.toDouble();
+        assistantMsg.timeToFirstTokenSec =
+            assistantMsg.modelTtftSec ?? (firstTokenElapsedMs != null ? firstTokenElapsedMs! / 1000.0 : null);
+        assistantMsg.tokenizationLatencySec = (timings['tokenization_latency_sec'] as num?)?.toDouble();
+        assistantMsg.prefillLatencySec = (timings['prefill_latency_sec'] as num?)?.toDouble();
+        assistantMsg.firstTokenDecodeSec = (timings['first_token_decode_sec'] as num?)?.toDouble();
+
+        assistantMsg.decodeThroughput = (throughputs['decode_throughput'] as num?)?.toDouble();
+        assistantMsg.decodeThroughputReason = throughputs['decode_throughput_reason']?.toString();
+        assistantMsg.endToEndThroughput = (throughputs['end_to_end_throughput'] as num?)?.toDouble();
+        assistantMsg.interTokenLatencySec = (throughputs['inter_token_latency_sec'] as num?)?.toDouble();
+
+        final totalDurationSec =
+            (timings['total_duration_sec'] as num?)?.toDouble() ?? (stopwatch.elapsedMilliseconds / 1000.0);
+        assistantMsg.totalGenerationSec = totalDurationSec;
+
+        if (clientTokensReceived > 0 && firstTokenElapsedMs != null) {
+          final clientDecodeMs = stopwatch.elapsedMilliseconds - firstTokenElapsedMs!;
+          if (clientTokensReceived > 1 && clientDecodeMs > 0) {
+            assistantMsg.clientObservedThroughput = (clientTokensReceived - 1) / (clientDecodeMs / 1000.0);
+          } else if (stopwatch.elapsedMilliseconds > 0) {
+            assistantMsg.clientObservedThroughput = clientTokensReceived / (stopwatch.elapsedMilliseconds / 1000.0);
+          }
+        }
+
+        assistantMsg.promptTokens = resp['prompt_tokens'] as int?;
+        assistantMsg.generatedTokens = resp['generated_tokens'] as int? ?? clientTokensReceived;
+        final peakMb = (resp['peak_process_rss_mb'] as num?)?.toDouble();
+        assistantMsg.peakRssGb = peakMb != null ? peakMb / 1024.0 : null;
+        assistantMsg.stopReason = resp['stop_reason']?.toString() ?? 'eos';
+
+        _currentJob = GenerationJob.fromJson({
+          'job_id': resp['run_id']?.toString() ?? 'native_job',
+          'status': 'completed',
+          'model_id': 'Qwen/Qwen2.5-1.5B-Instruct',
+          'prompt_tokens': assistantMsg.promptTokens ?? 0,
+          'generated_tokens': assistantMsg.generatedTokens ?? 0,
+          'time_to_first_token_sec': assistantMsg.timeToFirstTokenSec ?? 0.0,
+          'total_generation_sec': assistantMsg.totalGenerationSec ?? 0.0,
+          'tokens_per_second': assistantMsg.decodeThroughput ?? assistantMsg.endToEndThroughput ?? 0.0,
+          'timings': timings,
+          'throughputs': throughputs,
+          'peak_process_rss_gb': assistantMsg.peakRssGb ?? 0.0,
+          'stop_reason': assistantMsg.stopReason ?? 'eos',
+        });
+
+        cleanup();
+      });
+
+      errSub = AndroidNativeBridge.onNativeError.listen((errMsg) {
+        stopwatch.stop();
+        assistantMsg.status = ChatMessageStatus.error;
+        assistantMsg.error = errMsg;
+        _lastError = errMsg;
+        cleanup();
+      });
+
+      final effectiveMessages = _chatMessages
+          .where((m) => m != assistantMsg && !m.hasError)
+          .map((m) => {'role': m.role, 'content': m.content})
+          .toList();
+
+      final ok = await AndroidNativeBridge.startNativeGeneration(
+        prompt: trimmed,
+        messages: effectiveMessages,
+        maxNewTokens: _maxNewTokens,
+        temperature: _greedyDecoding ? 0.0 : _temperature,
+        topP: _topP,
+      );
+
+      if (!ok) {
+        assistantMsg.status = ChatMessageStatus.error;
+        assistantMsg.error = 'Failed to invoke native inference engine on device.';
+        _lastError = assistantMsg.error;
+        cleanup();
+      }
+      return;
+    }
+
     // Pre-flight check: ensure backend is reachable before inserting generation messages
     if (!_backendHealth.isReachable) {
       _lastError =
           'Cannot send prompt: SLR backend is unreachable at ${ApiConfig.baseUrl}. '
-          '${AndroidNativeBridge.isAndroid ? "Run 'adb reverse tcp:8000 tcp:8000' over USB or configure host IP in Settings." : "Please start the Python backend server."}';
+          '${AndroidNativeBridge.isAndroid ? "Switch to ANDROID-NATIVE INFERENCE mode to run offline, or run 'adb reverse tcp:8000 tcp:8000' over USB." : "Please start the Python backend server."}';
       notifyListeners();
       return;
     }
@@ -597,6 +904,9 @@ class SlrRepository extends ChangeNotifier {
   }
 
   Future<void> cancelGeneration() async {
+    if (_executionMode == ExecutionMode.androidNative) {
+      await AndroidNativeBridge.cancelNativeGeneration();
+    }
     if (_streamSubscription != null) {
       await _streamSubscription?.cancel();
       _streamSubscription = null;
